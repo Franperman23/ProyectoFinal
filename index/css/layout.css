@@ -23,11 +23,18 @@
   position: relative;
 }
 
+/* LOGO IZQUIERDA */
+.navbar-left {
+  display: flex;
+  align-items: center;
+}
+
 .logo-img {
   height: 110px;
   width: auto;
 }
 
+/* NOMBRE CENTRADO ABSOLUTO */
 .brand-name {
   position: absolute;
   left: 50%;
@@ -43,7 +50,35 @@
   color: var(--color-principal);
 }
 
-/* NAV MENU */
+/* SOBRE NOSOTROS A LA IZQUIERDA DEL CENTRO */
+.sobre-link-center {
+  position: absolute;
+  top: 50%;
+  right: 65%;
+  transform: translateY(-50%);
+  margin-right: 40px;
+  font-size: 1rem;
+  font-weight: 500;
+  color: var(--color-texto);
+  text-decoration: none;
+  padding: 8px 12px;
+  transition: 0.3s;
+}
+
+.sobre-link-center:hover {
+  color: var(--color-principal);
+}
+
+/* NAV MENU DERECHA (ALINEADO CON SOBRE NOSOTROS) */
+.navbar-right {
+  position: absolute;
+  top: 50%;          /* antes 70%, ahora alineado al centro vertical */
+  right: 30px;
+  transform: translateY(-50%);
+  display: flex;
+  align-items: center;
+}
+
 .nav-menu {
   display: flex;
   gap: 26px;
@@ -68,6 +103,20 @@
 .nav-menu a:hover,
 .nav-menu a.active {
   color: var(--color-principal);
+}
+
+/* ICONO CESTA (SOLO IMAGEN) */
+.cesta-icon {
+  height: 48px; /* tamaño más grande pero equilibrado */
+  width: auto;
+  vertical-align: middle;
+  margin-top: -8px; /* lo baja visualmente para alinearlo con el resto del menú */
+  transition: transform 0.2s ease;
+}
+
+
+.nav-menu a:hover .cesta-icon {
+  transform: scale(1.1);
 }
 
 /* DROPDOWN */
@@ -248,11 +297,26 @@ main {
     transform: none;
     margin-top: 10px;
     font-size: 22px;
+    text-align: center;
+  }
+
+  .sobre-link-center {
+    position: static;
+    margin-top: 6px;
+    text-align: center;
+  }
+
+  .navbar-right {
+    position: static;
+    transform: none;
+    margin-top: 10px;
+    justify-content: center;
   }
 
   .nav-menu {
-    margin-top: 10px;
+    flex-wrap: wrap;
     gap: 14px;
+    justify-content: center;
   }
 
   .hero-slider {

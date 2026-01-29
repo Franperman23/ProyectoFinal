@@ -5,6 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <meta name="description" content="Pastelería Lama — Repostería artesanal, bollería, tartas personalizadas y panadería tradicional en Villarrubia de los Ojos.">
   <title>Pastelería Lama</title>
+
   <link rel="stylesheet" href="css/base.css">
   <link rel="stylesheet" href="css/layout.css">
   <link rel="stylesheet" href="css/components.css">
@@ -20,19 +21,22 @@
   <header class="navbar">
     <div class="navbar-inner">
 
+      <!-- IZQUIERDA: LOGO -->
       <div class="navbar-left">
-        <a href="index.html"><img src="img general/logo.png" alt="Logo Pastelería Lama" class="logo-img" /></a>
+        <a href="index.html">
+          <img src="img general/logo.png" alt="Logo Pastelería Lama" class="logo-img" />
+        </a>
       </div>
 
-      <div class="navbar-center">
-        <h1 class="brand-name">Pastelería <span>Lama</span></h1>
-      </div>
+      <!-- CENTRO: PASTELERÍA LAMA (CENTRADO) -->
+      <h1 class="brand-name">Pastelería <span>Lama</span></h1>
 
+      <!-- SOBRE NOSOTROS A LA IZQUIERDA DEL CENTRO -->
+      <a href="sobre-nosotros.html" class="sobre-link-center">Sobre nosotros</a>
+
+      <!-- DERECHA: MENÚ -->
       <nav class="navbar-right">
         <ul class="nav-menu">
-
-          <li><a href="sobre-nosotros.html">Sobre nosotros</a></li>
-
           <li class="dropdown">
             <a href="#">Pastelería</a>
             <ul class="dropdown-menu">
@@ -42,10 +46,13 @@
               <li><a href="eventos.html">Pastelería para eventos</a></li>
             </ul>
           </li>
-
           <li><a href="panaderia.html">Panadería</a></li>
           <li><a href="contacto.html">Contacto</a></li>
-
+          <li>
+            <a href="cesta.html">
+              <img src="img general/carrito.png" alt="Cesta de pedidos" class="cesta-icon">
+            </a>
+          </li>
         </ul>
       </nav>
 
@@ -188,6 +195,39 @@
           <p>Ofrecemos opciones a medida para eventos, intolerancias o preferencias específicas de cada cliente.</p>
         </div>
 
+      </div>
+    </section>
+
+    <!-- SECCIÓN PEDIDOS -->
+    <section class="fullwidth">
+      <div class="section-header">
+        <h2>Haz tu pedido</h2>
+        <p>Encarga tus dulces favoritos de forma rápida y sencilla.</p>
+      </div>
+
+      <div class="section-line"></div>
+
+      <div class="grid" style="max-width: 1000px; margin: 0 auto;">
+
+        <div class="why-item">
+          <h3>Encargos personalizados</h3>
+          <p>¿Necesitas una tarta especial o bandejas para un evento? Lo hacemos a tu gusto.</p>
+        </div>
+
+        <div class="why-item">
+          <h3>Pedidos rápidos</h3>
+          <p>Puedes hacer tu pedido por aquí, por teléfono, email o WhatsApp. Te confirmamos disponibilidad y hora de recogida.</p>
+        </div>
+
+        <div class="why-item">
+          <h3>Recogida en tienda</h3>
+          <p>Pasa a recoger tu pedido sin esperas. Todo listo cuando llegues.</p>
+        </div>
+
+      </div>
+
+      <div style="text-align:center; margin-top:40px;">
+        <a href="contacto.html" class="btn">Hacer pedido</a>
       </div>
     </section>
 
