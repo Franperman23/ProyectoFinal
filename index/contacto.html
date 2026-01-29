@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Contacta con Pastelería Lama para realizar pedidos, resolver dudas o solicitar información sobre nuestros productos y servicios.">
+  <title>Contacto — Pastelería Lama</title>
+
+  <link rel="stylesheet" href="css/base.css">
+  <link rel="stylesheet" href="css/layout.css">
+  <link rel="stylesheet" href="css/components.css">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Poppins:wght@300;400;500&display=swap" rel="stylesheet">
+</head>
+
+<body>
+
+  <!-- NAVBAR (COPIADO TAL CUAL) -->
+  <header class="navbar">
+    <div class="navbar-inner">
+
+      <div class="navbar-left">
+        <a href="index.html"><img src="img general/logo.png" alt="Logo Pastelería Lama" class="logo-img" /></a>
+      </div>
+
+      <div class="navbar-center">
+        <h1 class="brand-name">Pastelería <span>Lama</span></h1>
+      </div>
+
+      <nav class="navbar-right">
+        <ul class="nav-menu">
+
+          <li><a href="sobre-nosotros.html">Sobre nosotros</a></li>
+
+          <li class="dropdown">
+            <a href="#">Pastelería</a>
+            <ul class="dropdown-menu">
+              <li><a href="reposteria.html">Repostería</a></li>
+              <li><a href="bolleria.html">Bollería</a></li>
+              <li><a href="tartas.html">Tartas personalizadas</a></li>
+              <li><a href="eventos.html">Pastelería para eventos</a></li>
+            </ul>
+          </li>
+
+          <li><a href="panaderia.html">Panadería</a></li>
+          <li><a href="contacto.html" class="active">Contacto</a></li>
+
+        </ul>
+      </nav>
+
+    </div>
+  </header>
+
+  <main>
+
+    <!-- HERO CONTACTO (MISMA ESTRUCTURA QUE SOBRE-NOSOTROS) -->
+    <section class="hero-slider">
+      <div class="slider-container">
+        <!-- Puedes cambiar esta imagen por una específica de contacto si quieres -->
+        <div class="slide active" style="background-image: url('img index/hero3.png');"></div>
+      </div>
+
+      <div class="hero-overlay"></div>
+
+      <div class="hero-content">
+        <p class="hero-tag">Contacto</p>
+        <h2>Estamos aquí para ayudarte</h2>
+        <p class="hero-text">Pedidos, dudas, encargos especiales o información sobre nuestros productos. Escríbenos y te responderemos lo antes posible.</p>
+        <a href="#form-contacto" class="btn">Ir al formulario</a>
+      </div>
+    </section>
+
+    <!-- SECCIÓN FORMULARIO CONTACTO -->
+    <section class="fullwidth" id="form-contacto">
+      <div class="section-header">
+        <h2>Envíanos un mensaje</h2>
+        <p>Cuéntanos qué necesitas y nos pondremos en contacto contigo lo antes posible.</p>
+      </div>
+
+      <div class="section-line"></div>
+
+      <div class="grid" style="max-width: 1100px; margin: 0 auto; align-items: flex-start;">
+
+        <!-- FORMULARIO -->
+        <div class="why-item" style="min-height:auto;">
+          <h3>Formulario de contacto</h3>
+          <form action="#" method="POST">
+
+            <label for="nombre">Nombre</label>
+            <input id="nombre" type="text" name="nombre" required
+                   style="width:100%; padding:10px; margin-bottom:12px; border-radius:8px; border:1px solid #ddd;">
+
+            <label for="email">Email</label>
+            <input id="email" type="email" name="email" required
+                   style="width:100%; padding:10px; margin-bottom:12px; border-radius:8px; border:1px solid #ddd;">
+
+            <label for="telefono">Teléfono (opcional)</label>
+            <input id="telefono" type="tel" name="telefono"
+                   style="width:100%; padding:10px; margin-bottom:12px; border-radius:8px; border:1px solid #ddd;">
+
+            <label for="mensaje">Mensaje</label>
+            <textarea id="mensaje" name="mensaje" rows="5" required
+                      style="width:100%; padding:10px; margin-bottom:16px; border-radius:8px; border:1px solid #ddd;"></textarea>
+
+            <button type="submit" class="btn">Enviar mensaje</button>
+          </form>
+        </div>
+
+        <!-- BLOQUE INFO (RECICLANDO LO QUE YA TIENES EN EL FOOTER) -->
+        <div class="why-item" style="min-height:auto;">
+          <h3>También puedes contactarnos en</h3>
+          <p><strong>Teléfono fijo:</strong> 926 89 67 74</p>
+          <p><strong>Móvil:</strong> 660 87 84 19</p>
+          <p><strong>Email:</strong> info@pastelerialama.es</p>
+          <br>
+          <h3>Visítanos</h3>
+          <p>📍 Carretera de Urda 1</p>
+          <p>📌 Villarrubia de los Ojos</p>
+          <p>🏷️ 13670 (Ciudad Real)</p>
+          <br>
+          <h3>Horario</h3>
+          <p>Lunes a Viernes</p>
+          <p>🕒 10:00 a 14:30</p>
+          <p>🕒 17:00 a 20:00</p>
+          <p>Sábados</p>
+          <p>🕒 10:00 a 14:30</p>
+        </div>
+
+      </div>
+    </section>
+
+  </main>
+
+  <!-- FOOTER (COPIADO TAL CUAL) -->
+  <footer class="footer">
+    <div class="footer-inner">
+
+      <div class="footer-column footer-brand">
+        <img src="img general/logo.png" alt="Pastelería Lama" class="footer-logo" />
+
+        <div class="footer-socials">
+          <a href="https://www.instagram.com/pastelerialama/" target="_blank" rel="noopener noreferrer">
+            <img src="img general/instagram.png" alt="Instagram Pastelería Lama" />
+          </a>
+          <a href="https://www.facebook.com/Lama-Pasteler%C3%ADa-panader%C3%ADa-y-bolleria-100054487568378/" target="_blank" rel="noopener noreferrer">
+            <img src="img general/facebook.png" alt="Facebook Pastelería Lama" />
+          </a>
+        </div>
+      </div>
+
+      <div class="footer-column">
+        <h4>Contacto</h4>
+        <p>📞 926 89 67 74</p>
+        <p>📱 660 87 84 19</p>
+        <p>📧 info@pastelerialama.es</p>
+      </div>
+
+      <div class="footer-column">
+        <h4>Dónde estamos</h4>
+        <p>📍 Carretera de Urda 1</p>
+        <p>📌 Villarrubia de los Ojos</p>
+        <p>🏷️ 13670 (Ciudad Real)</p>
+      </div>
+
+      <div class="footer-column">
+        <h4>Horario</h4>
+        <p>Lunes a Viernes</p>
+        <p>🕒 10:00 a 14:30</p>
+        <p>🕒 17:00 a 20:00</p>
+        <p>Sábados</p>
+        <p>🕒 10:00 a 14:30</p>
+      </div>
+
+    </div>
+
+    <div class="footer-legal">
+      <p><a href="#">Aviso Legal</a> | <a href="#">Política de Cookies</a> | <a href="#">Política de Privacidad</a></p>
+      <p>Copyright © 2026 Pastelería y Panadería Lama</p>
+    </div>
+  </footer>
+
+  <script src="js/script.js"></script>
+
+</body>
+</html>
