@@ -1,0 +1,34 @@
+import { createBrowserRouter } from "react-router-dom";
+
+// PÁGINAS
+import Home from "./pages/Home";
+import Reposteria from "./pages/Reposteria";
+import Panaderia from "./pages/Panaderia";
+import Contacto from "./pages/Contacto";
+import SobreNosotros from "./pages/SobreNosotros";
+
+const router = createBrowserRouter([
+  {
+    path: "/",
+    element: <Home />,
+  },
+  {
+    path: "/reposteria",
+    element: <Reposteria />,
+  },
+  {
+    path: "/panaderia",
+    element: <Panaderia />,
+  },
+  {
+    path: "/contacto",
+    element: <Contacto />,
+  },
+
+  {
+    path: "/sobre-nosotros",
+    element: <SobreNosotros />,
+  },
+]);
+
+export default router;
