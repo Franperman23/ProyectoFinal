@@ -28,7 +28,7 @@ const Pedidos: React.FC = () => {
       </div>
 
       <div style={{ textAlign: "center", marginTop: "40px" }}>
-        <a href="/contacto" className="btn">Hacer pedido</a>
+        <a href="/contacto" className="btn">Hacer pedido personalizado</a>
       </div>
     </section>
   );
