@@ -58,7 +58,7 @@ const Navbar: React.FC = () => {
                 <li><Link to="/reposteria">Repostería</Link></li>
                 <li><Link to="/bolleria">Bollería</Link></li>
                 <li><Link to="/tartas-personalizadas">Tartas personalizadas</Link></li>
-                <li><Link to="/eventos">Pastelería para eventos</Link></li>
+                <li><Link to="/pasteleria-eventos">Pastelería para eventos</Link></li>
               </ul>
             </li>
 

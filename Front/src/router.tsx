@@ -8,6 +8,7 @@ import Contacto from "./pages/Contacto";
 import SobreNosotros from "./pages/SobreNosotros";
 import Bolleria from "./pages/Bolleria";
 import TartasPersonalizadas from "./pages/TartasPersonalizadas";
+import PasteleriaEventos from "./pages/PasteleriaEventos";
 
 const router = createBrowserRouter([
   {
@@ -41,6 +42,11 @@ const router = createBrowserRouter([
     path: "/tartas-personalizadas",
     element: <TartasPersonalizadas />,
   },
+
+  {
+    path: "/pasteleria-eventos",
+    element: <PasteleriaEventos />,
+  }
 ]);
 
 export default router;
