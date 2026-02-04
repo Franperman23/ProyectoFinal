@@ -14,7 +14,7 @@ const Especialidades: React.FC = () => {
         <article className="card">
           <a href="/reposteria">
             <div className="card-image">
-              <img src="/img index/card1.png" loading="lazy" alt="Repostería" />
+              <img src="img index/card1.png" loading="lazy" alt="Repostería" />
             </div>
             <div className="card-body">
               <h3>Repostería</h3>
@@ -26,7 +26,7 @@ const Especialidades: React.FC = () => {
         <article className="card">
           <a href="/bolleria">
             <div className="card-image">
-              <img src="/img index/card2.png" loading="lazy" alt="Bollería" />
+              <img src="img index/card2.png" loading="lazy" alt="Bollería" />
             </div>
             <div className="card-body">
               <h3>Bollería</h3>
@@ -38,7 +38,7 @@ const Especialidades: React.FC = () => {
         <article className="card">
           <a href="/tartas">
             <div className="card-image">
-              <img src="/img index/card3.png" loading="lazy" alt="Tartas personalizadas" />
+              <img src="img index/card3.png" loading="lazy" alt="Tartas personalizadas" />
             </div>
             <div className="card-body">
               <h3>Tartas personalizadas</h3>
@@ -50,7 +50,7 @@ const Especialidades: React.FC = () => {
         <article className="card">
           <a href="/eventos">
             <div className="card-image">
-              <img src="/img index/card4.png" loading="lazy" alt="Pastelería para eventos" />
+              <img src="img index/card4.png" loading="lazy" alt="Pastelería para eventos" />
             </div>
             <div className="card-body">
               <h3>Pastelería para eventos</h3>

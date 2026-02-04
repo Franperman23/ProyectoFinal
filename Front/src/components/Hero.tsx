@@ -12,11 +12,11 @@ const Hero: React.FC<HeroProps> = ({
   text = "Repostería artesanal con ingredientes selectos y un toque de elegancia en cada creación."
 }) => {
   const slides = [
-    "/img index/hero1.png",
-    "/img index/hero2.png",
-    "/img index/hero3.png",
-    "/img index/hero4.png",
-    "/img index/hero5.png",
+    "img index/hero1.png",
+    "img index/hero2.png",
+    "img index/hero3.png",
+    "img index/hero4.png",
+    "img index/hero5.png",
   ];
 
   const [current, setCurrent] = useState(0);

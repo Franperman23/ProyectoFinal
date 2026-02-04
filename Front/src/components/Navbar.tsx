@@ -57,7 +57,7 @@ const Navbar: React.FC = () => {
               <ul className="dropdown-menu">
                 <li><Link to="/reposteria">Repostería</Link></li>
                 <li><Link to="/bolleria">Bollería</Link></li>
-                <li><Link to="/tartas">Tartas personalizadas</Link></li>
+                <li><Link to="/tartas-personalizadas">Tartas personalizadas</Link></li>
                 <li><Link to="/eventos">Pastelería para eventos</Link></li>
               </ul>
             </li>
