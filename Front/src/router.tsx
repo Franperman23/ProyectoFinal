@@ -10,6 +10,7 @@ import Bolleria from "./pages/Bolleria";
 import TartasPersonalizadas from "./pages/TartasPersonalizadas";
 import PasteleriaEventos from "./pages/PasteleriaEventos";
 import DescubrirProductos from "./pages/DescubrirProductos";  
+import Carrito from "./pages/Carrito";
 
 const router = createBrowserRouter([
   {
@@ -52,6 +53,11 @@ const router = createBrowserRouter([
   {
     path: "/descubrir-productos",
     element: <DescubrirProductos />,
+  },
+
+  {
+    path: "/cesta",
+    element: <Carrito />,
   }
 ]);
 
