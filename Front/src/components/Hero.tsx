@@ -49,7 +49,7 @@ const Hero: React.FC<HeroProps> = ({
         <p className="hero-text">{text}</p>
 
         {/* BOTÓN FIJO PARA TODAS LAS PÁGINAS */}
-        <a href="/productos" className="btn">Descubrir productos</a>
+        <a href="/descubrir-productos" className="btn">Descubrir productos</a>
       </div>
     </section>
   );

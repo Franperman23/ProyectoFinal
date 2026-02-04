@@ -9,6 +9,7 @@ import SobreNosotros from "./pages/SobreNosotros";
 import Bolleria from "./pages/Bolleria";
 import TartasPersonalizadas from "./pages/TartasPersonalizadas";
 import PasteleriaEventos from "./pages/PasteleriaEventos";
+import DescubrirProductos from "./pages/DescubrirProductos";  
 
 const router = createBrowserRouter([
   {
@@ -46,6 +47,11 @@ const router = createBrowserRouter([
   {
     path: "/pasteleria-eventos",
     element: <PasteleriaEventos />,
+  },
+
+  {
+    path: "/descubrir-productos",
+    element: <DescubrirProductos />,
   }
 ]);
 
