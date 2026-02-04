@@ -6,6 +6,7 @@ import Reposteria from "./pages/Reposteria";
 import Panaderia from "./pages/Panaderia";
 import Contacto from "./pages/Contacto";
 import SobreNosotros from "./pages/SobreNosotros";
+import Bolleria from "./pages/Bolleria";
 
 const router = createBrowserRouter([
   {
@@ -28,6 +29,11 @@ const router = createBrowserRouter([
   {
     path: "/sobre-nosotros",
     element: <SobreNosotros />,
+  },
+
+  {
+    path: "/bolleria",
+    element: <Bolleria />,
   },
 ]);
 

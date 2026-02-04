@@ -27,7 +27,7 @@ const Reposteria: React.FC = () => {
 
             <article className="card">
               <div className="card-image">
-                <img src="/img reposteria/card1.png" alt="Magdalenas caseras" loading="lazy" />
+                <img src="img reposteria/card1.png" alt="Magdalenas caseras" loading="lazy" />
               </div>
               <div className="card-body">
                 <h3>Magdalenas caseras</h3>
@@ -38,7 +38,7 @@ const Reposteria: React.FC = () => {
 
             <article className="card">
               <div className="card-image">
-                <img src="/img reposteria/card2.png" alt="Brownie de chocolate" loading="lazy" />
+                <img src="img reposteria/card2.png" alt="Brownie de chocolate" loading="lazy" />
               </div>
               <div className="card-body">
                 <h3>Brownie de chocolate</h3>
@@ -49,7 +49,7 @@ const Reposteria: React.FC = () => {
 
             <article className="card">
               <div className="card-image">
-                <img src="/img reposteria/card3.png" alt="Tarta de queso" loading="lazy" />
+                <img src="img reposteria/card3.png" alt="Tarta de queso" loading="lazy" />
               </div>
               <div className="card-body">
                 <h3>Tarta de queso</h3>
@@ -60,7 +60,7 @@ const Reposteria: React.FC = () => {
 
             <article className="card">
               <div className="card-image">
-                <img src="/img reposteria/card4.png" alt="Galletas de mantequilla" loading="lazy" />
+                <img src="img reposteria/card4.png" alt="Galletas de mantequilla" loading="lazy" />
               </div>
               <div className="card-body">
                 <h3>Galletas de mantequilla</h3>
@@ -71,7 +71,7 @@ const Reposteria: React.FC = () => {
 
             <article className="card">
               <div className="card-image">
-                <img src="/img reposteria/card5.png" alt="Rollos de canela" loading="lazy" />
+                <img src="img reposteria/card5.png" alt="Rollos de canela" loading="lazy" />
               </div>
               <div className="card-body">
                 <h3>Rollos de canela</h3>
@@ -82,7 +82,7 @@ const Reposteria: React.FC = () => {
 
             <article className="card">
               <div className="card-image">
-                <img src="/img reposteria/card6.png" alt="Tarta de chocolate" loading="lazy" />
+                <img src="img reposteria/card6.png" alt="Tarta de chocolate" loading="lazy" />
               </div>
               <div className="card-body">
                 <h3>Tarta de chocolate</h3>
@@ -93,7 +93,7 @@ const Reposteria: React.FC = () => {
 
             <article className="card">
               <div className="card-image">
-                <img src="/img reposteria/card7.png" alt="Merengues artesanos" loading="lazy" />
+                <img src="img reposteria/card7.png" alt="Merengues artesanos" loading="lazy" />
               </div>
               <div className="card-body">
                 <h3>Merengues artesanos</h3>
@@ -104,7 +104,7 @@ const Reposteria: React.FC = () => {
 
             <article className="card">
               <div className="card-image">
-                <img src="/img reposteria/card8.png" alt="Pastas surtidas" loading="lazy" />
+                <img src="img reposteria/card8.png" alt="Pastas surtidas" loading="lazy" />
               </div>
               <div className="card-body">
                 <h3>Pastas surtidas</h3>
