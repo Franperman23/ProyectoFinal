@@ -7,6 +7,7 @@ import Panaderia from "./pages/Panaderia";
 import Contacto from "./pages/Contacto";
 import SobreNosotros from "./pages/SobreNosotros";
 import Bolleria from "./pages/Bolleria";
+import TartasPersonalizadas from "./pages/TartasPersonalizadas";
 
 const router = createBrowserRouter([
   {
@@ -34,6 +35,11 @@ const router = createBrowserRouter([
   {
     path: "/bolleria",
     element: <Bolleria />,
+  },
+
+  {
+    path: "/tartas-personalizadas",
+    element: <TartasPersonalizadas />,
   },
 ]);
 

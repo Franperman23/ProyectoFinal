@@ -5,7 +5,7 @@ const Footer: React.FC = () => {
     <footer className="footer">
       <div className="footer-inner">
         <div className="footer-column footer-brand">
-          <img src="/img general/logo.png" alt="Pastelería Lama" className="footer-logo" />
+          <img src="img general/logo.png" alt="Pastelería Lama" className="footer-logo" />
 
           <div className="footer-socials">
             <a href="https://www.instagram.com/pastelerialama/" target="_blank" rel="noopener noreferrer">
