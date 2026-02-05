@@ -11,6 +11,17 @@ import TartasPersonalizadas from "./pages/TartasPersonalizadas";
 import PasteleriaEventos from "./pages/PasteleriaEventos";
 import DescubrirProductos from "./pages/DescubrirProductos";  
 import Carrito from "./pages/Carrito";
+import LoginEmpleado from "./pages/empleados/LoginEmpleado";
+import EmpleadoDashBoard from "./pages/empleados/EmpleadoDashBoard";
+import Productos from "./pages/empleados/Productos";
+import ProductosCrear from "./pages/empleados/ProductosCrear";
+import ProductosEditar from "./pages/empleados/ProductosEditar";
+import Ingredientes from "./pages/empleados/Ingredientes";
+import IngredientesCrear from "./pages/empleados/IngredientesCrear";
+import IngredientesEditar from "./pages/empleados/IngredientesEditar";
+import Pedidos from "./pages/empleados/Pedidos";
+import RegistroHoras from "./pages/empleados/RegistroHoras";
+
 
 const router = createBrowserRouter([
   {
@@ -58,7 +69,57 @@ const router = createBrowserRouter([
   {
     path: "/cesta",
     element: <Carrito />,
-  }
+  },
+
+  {
+    path: "/empleados/login",
+    element: <LoginEmpleado />,
+  },
+
+  {
+    path: "/empleados",
+    element: <EmpleadoDashBoard />,
+  },
+
+  {
+    path: "/empleados/productos",
+    element: <Productos />,
+  },
+
+  {
+    path: "/empleados/productos/crear",
+    element: <ProductosCrear />,
+  },
+
+  {
+    path: "/empleados/productos/editar/:id",
+    element: <ProductosEditar />,
+  },
+
+  {
+    path: "/empleados/ingredientes",
+    element: <Ingredientes />,
+  },
+
+  {
+    path: "/empleados/ingredientes/crear",
+    element: <IngredientesCrear />,
+  },
+
+  {
+    path: "/empleados/ingredientes/editar/:id",
+    element: <IngredientesEditar />,
+  },
+
+  {
+    path: "/empleados/pedidos",
+    element: <Pedidos />,
+  },
+
+  {
+    path: "/empleados/registro-horas",
+    element: <RegistroHoras />,
+  },
 ]);
 
 export default router;

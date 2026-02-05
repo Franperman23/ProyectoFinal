@@ -1,0 +1,207 @@
+/* ================================
+   LAYOUT GENERAL
+================================ */
+
+.panel,
+.dashboard,
+.login-empleado {
+  max-width: 1100px;
+  margin: 40px auto;
+  padding: 20px;
+  font-family: "Inter", sans-serif;
+}
+
+.panel h2,
+.dashboard h2,
+.login-empleado h2 {
+  font-size: 2rem;
+  margin-bottom: 20px;
+  font-weight: 700;
+  color: #2c2c2c;
+}
+
+/* ================================
+   LOGIN EMPLEADOS
+================================ */
+
+.login-empleado {
+  max-width: 420px;
+  margin-top: 80px;
+  text-align: center;
+}
+
+.login-form input {
+  width: 100%;
+  padding: 14px;
+  margin-bottom: 18px;
+  border-radius: 10px;
+  border: 1px solid #ccc;
+  font-size: 1rem;
+}
+
+.login-form button {
+  width: 100%;
+  padding: 14px;
+  border-radius: 10px;
+  background: #ff6b6b;
+  color: white;
+  font-weight: 600;
+  border: none;
+  cursor: pointer;
+  transition: 0.2s ease;
+}
+
+.login-form button:hover {
+  background: #ff5252;
+}
+
+/* ================================
+   DASHBOARD EMPLEADOS
+================================ */
+
+.dashboard-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 25px;
+  margin-top: 30px;
+}
+
+.dashboard-grid .card {
+  background: #ffffff;
+  padding: 30px;
+  border-radius: 14px;
+  text-align: center;
+  font-size: 1.2rem;
+  font-weight: 600;
+  color: #444;
+  text-decoration: none;
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.08);
+  transition: 0.25s ease;
+}
+
+.dashboard-grid .card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 8px 22px rgba(0, 0, 0, 0.12);
+}
+
+/* ================================
+   TABLAS
+================================ */
+
+.tabla {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 25px;
+  background: #fff;
+  border-radius: 12px;
+  overflow: hidden;
+}
+
+.tabla th {
+  background: #f4f4f4;
+  padding: 14px;
+  text-align: left;
+  font-weight: 600;
+  color: #333;
+}
+
+.tabla td {
+  padding: 14px;
+  border-bottom: 1px solid #eee;
+}
+
+.tabla tr:hover {
+  background: #fafafa;
+}
+
+/* ================================
+   BOTONES
+================================ */
+
+.btn {
+  background: #ff6b6b;
+  color: white;
+  padding: 10px 18px;
+  border-radius: 10px;
+  border: none;
+  cursor: pointer;
+  font-weight: 600;
+  transition: 0.2s ease;
+  display: inline-block;
+}
+
+.btn:hover {
+  background: #ff5252;
+}
+
+.btn.small {
+  padding: 6px 12px;
+  font-size: 0.9rem;
+}
+
+.btn.danger {
+  background: #d9534f;
+}
+
+.btn.danger:hover {
+  background: #c9302c;
+}
+
+.btn.crear {
+  background: #4caf50;
+}
+
+.btn.crear:hover {
+  background: #43a047;
+}
+
+/* ================================
+   FORMULARIOS
+================================ */
+
+.form input,
+.form textarea {
+  width: 100%;
+  padding: 14px;
+  margin-bottom: 18px;
+  border-radius: 10px;
+  border: 1px solid #ccc;
+  font-size: 1rem;
+}
+
+.form textarea {
+  height: 140px;
+  resize: none;
+}
+
+/* ================================
+   REGISTRO HORARIO
+================================ */
+
+.registro-botones {
+  display: flex;
+  gap: 15px;
+  margin-bottom: 25px;
+}
+
+.registro-botones .btn {
+  flex: 1;
+}
+
+/* ================================
+   ESTILOS EXTRA
+================================ */
+
+.card {
+  background: #fff;
+  padding: 20px;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+}
+
+.empty {
+  text-align: center;
+  font-size: 1.2rem;
+  color: #777;
+  margin-top: 40px;
+}
