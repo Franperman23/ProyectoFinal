@@ -11,6 +11,7 @@ import TartasPersonalizadas from "./pages/TartasPersonalizadas";
 import PasteleriaEventos from "./pages/PasteleriaEventos";
 import DescubrirProductos from "./pages/DescubrirProductos";  
 import Carrito from "./pages/Carrito";
+
 import LoginEmpleado from "./pages/empleados/LoginEmpleado";
 import EmpleadoDashBoard from "./pages/empleados/EmpleadoDashBoard";
 import Productos from "./pages/empleados/Productos";
@@ -21,6 +22,15 @@ import IngredientesCrear from "./pages/empleados/IngredientesCrear";
 import IngredientesEditar from "./pages/empleados/IngredientesEditar";
 import Pedidos from "./pages/empleados/Pedidos";
 import RegistroHoras from "./pages/empleados/RegistroHoras";
+
+import LoginAdmin from "./pages/admin/LoginAdmin";
+import AdminDashboard from "./pages/admin/AdminDashBoard";
+import Empleados from "./pages/admin/Empleados";
+import EmpleadosCrear from "./pages/admin/EmpleadosCrear";
+import EmpleadosEditar from "./pages/admin/EmpleadosEditar";
+import PedidosAdmin from "./pages/admin/PedidosAdmin";
+import Beneficios from "./pages/admin/Beneficios";
+import RegistroGlobal from "./pages/admin/RegistroGlobal";
 
 
 const router = createBrowserRouter([
@@ -120,6 +130,46 @@ const router = createBrowserRouter([
     path: "/empleados/registro-horas",
     element: <RegistroHoras />,
   },
+
+  {
+    path: "/admin/login",
+    element: <LoginAdmin />,
+  },
+
+  {
+    path: "/admin",
+    element: <AdminDashboard />,
+  },
+
+  {
+    path: "/admin/empleados",
+    element: <Empleados />,
+  },
+
+  {
+    path: "/admin/empleados/crear",
+    element: <EmpleadosCrear />,
+  },
+
+  {
+    path: "/admin/empleados/editar/:id",
+    element: <EmpleadosEditar />,
+  },
+
+  {
+    path: "/admin/pedidos",
+    element: <PedidosAdmin />,
+  },
+
+  {
+    path: "/admin/beneficios",
+    element: <Beneficios />,
+  },
+
+  {
+    path: "/admin/registro-global",
+    element: <RegistroGlobal />,
+  }
 ]);
 
 export default router;

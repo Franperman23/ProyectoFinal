@@ -6,6 +6,7 @@ import './styles/base.css'
 import './styles/layout.css'
 import './styles/components.css'
 import "./styles/empleados.css";
+import "./styles/admin.css";
 
 
 createRoot(document.getElementById('root')!).render(
