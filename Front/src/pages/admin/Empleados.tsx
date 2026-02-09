@@ -1,8 +1,9 @@
 import React from "react";
+import AdminLayout from "../../components/admin/AdminLayout";
 
 const Empleados: React.FC = () => {
   return (
-    <main className="panel">
+    <AdminLayout>
       <h2>Empleados</h2>
 
       <a href="/admin/empleados/crear" className="btn crear">Crear empleado</a>
@@ -29,7 +30,7 @@ const Empleados: React.FC = () => {
           </tr>
         </tbody>
       </table>
-    </main>
+    </AdminLayout>
   );
 };
 

@@ -13,7 +13,7 @@ import DescubrirProductos from "./pages/DescubrirProductos";
 import Carrito from "./pages/Carrito";
 
 import LoginEmpleado from "./pages/empleados/LoginEmpleado";
-import EmpleadoDashBoard from "./pages/empleados/EmpleadoDashBoard";
+import EmpleadoDashBoard from "./pages/empleados/EmpleadoDashboard";
 import Productos from "./pages/empleados/Productos";
 import ProductosCrear from "./pages/empleados/ProductosCrear";
 import ProductosEditar from "./pages/empleados/ProductosEditar";
@@ -24,7 +24,7 @@ import Pedidos from "./pages/empleados/Pedidos";
 import RegistroHoras from "./pages/empleados/RegistroHoras";
 
 import LoginAdmin from "./pages/admin/LoginAdmin";
-import AdminDashboard from "./pages/admin/AdminDashBoard";
+import AdminDashboard from "./pages/admin/AdminDashboard";
 import Empleados from "./pages/admin/Empleados";
 import EmpleadosCrear from "./pages/admin/EmpleadosCrear";
 import EmpleadosEditar from "./pages/admin/EmpleadosEditar";

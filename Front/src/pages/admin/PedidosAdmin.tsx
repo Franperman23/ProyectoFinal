@@ -1,8 +1,9 @@
 import React from "react";
+import AdminLayout from "../../components/admin/AdminLayout";
 
 const PedidosAdmin: React.FC = () => {
   return (
-    <main className="panel">
+    <AdminLayout>
       <h2>Pedidos</h2>
 
       <table className="tabla">
@@ -28,7 +29,7 @@ const PedidosAdmin: React.FC = () => {
           </tr>
         </tbody>
       </table>
-    </main>
+    </AdminLayout>
   );
 };
 

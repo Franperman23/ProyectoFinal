@@ -1,8 +1,9 @@
 import React from "react";
+import EmpleadoLayout from "../../components/empleados/EmpleadoLayout";
 
 const ProductosCrear: React.FC = () => {
   return (
-    <main className="panel">
+    <EmpleadoLayout>
       <h2>Crear producto</h2>
 
       <form className="form">
@@ -11,7 +12,7 @@ const ProductosCrear: React.FC = () => {
         <textarea placeholder="Receta"></textarea>
         <button className="btn">Guardar</button>
       </form>
-    </main>
+    </EmpleadoLayout>
   );
 };
 

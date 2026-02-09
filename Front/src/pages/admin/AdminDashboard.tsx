@@ -1,8 +1,8 @@
-import React from "react";
+import AdminLayout from "../../components/admin/AdminLayout.tsx";
 
 const AdminDashboard: React.FC = () => {
   return (
-    <main className="dashboard">
+    <AdminLayout>
       <h2>Panel del administrador</h2>
 
       <div className="dashboard-grid">
@@ -13,7 +13,7 @@ const AdminDashboard: React.FC = () => {
         <a href="/admin/beneficios" className="card">Beneficios</a>
         <a href="/admin/registro-global" className="card">Registro horario global</a>
       </div>
-    </main>
+    </AdminLayout>
   );
 };
 

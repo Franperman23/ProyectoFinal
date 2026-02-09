@@ -1,8 +1,9 @@
 import React from "react";
+import EmpleadoLayout from "../../components/empleados/EmpleadoLayout";
 
 const RegistroHoras: React.FC = () => {
   return (
-    <main className="panel">
+    <EmpleadoLayout>
       <h2>Registro horario</h2>
 
       <div className="registro-botones">
@@ -29,7 +30,7 @@ const RegistroHoras: React.FC = () => {
           </tr>
         </tbody>
       </table>
-    </main>
+    </EmpleadoLayout>
   );
 };
 
