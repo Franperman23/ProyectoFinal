@@ -83,6 +83,13 @@ const Navbar: React.FC = () => {
               </Link>
             </li>
 
+            {/* LOGIN */}
+            <li>
+              <Link to="/login" className="login-btn">
+                Iniciar sesión
+              </Link>
+            </li>
+
           </ul>
         </nav>
       </div>

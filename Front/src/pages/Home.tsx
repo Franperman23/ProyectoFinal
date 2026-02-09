@@ -8,14 +8,14 @@ import Footer from "../components/Footer";
 
 const Home: React.FC = () => {
   return (
-    <>
+    <div className="home-page">
       <Navbar />
       <Hero />
       <Especialidades />
       <Why />
       <Pedidos />
       <Footer />
-    </>
+    </div>
   );
 };
 
