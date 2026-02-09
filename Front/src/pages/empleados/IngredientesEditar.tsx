@@ -1,8 +1,9 @@
 import React from "react";
+import EmpleadoLayout from "../../components/empleados/EmpleadoLayout";
 
 const IngredientesEditar: React.FC = () => {
   return (
-    <main className="panel">
+    <EmpleadoLayout>
       <h2>Editar ingrediente</h2>
 
       <form className="form">
@@ -11,7 +12,7 @@ const IngredientesEditar: React.FC = () => {
         <input type="text" defaultValue="Proveedor X" />
         <button className="btn">Actualizar</button>
       </form>
-    </main>
+    </EmpleadoLayout>
   );
 };
 

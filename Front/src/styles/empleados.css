@@ -1,207 +1,147 @@
-/* ================================
-   LAYOUT GENERAL
-================================ */
-
-.panel,
-.dashboard,
-.login-empleado {
-  max-width: 1100px;
-  margin: 40px auto;
-  padding: 20px;
+/* Layout general */
+.admin-layout {
+  display: flex;
+  min-height: 100vh;
+  background: #f3f4f6;
   font-family: "Inter", sans-serif;
 }
 
-.panel h2,
-.dashboard h2,
-.login-empleado h2 {
-  font-size: 2rem;
-  margin-bottom: 20px;
-  font-weight: 700;
-  color: #2c2c2c;
-}
-
-/* ================================
-   LOGIN EMPLEADOS
-================================ */
-
-.login-empleado {
-  max-width: 420px;
-  margin-top: 80px;
-  text-align: center;
-}
-
-.login-form input {
-  width: 100%;
-  padding: 14px;
-  margin-bottom: 18px;
-  border-radius: 10px;
-  border: 1px solid #ccc;
-  font-size: 1rem;
-}
-
-.login-form button {
-  width: 100%;
-  padding: 14px;
-  border-radius: 10px;
-  background: #ff6b6b;
+/* Sidebar */
+.admin-sidebar {
+  width: 230px;
+  background: #1f2937;
   color: white;
-  font-weight: 600;
-  border: none;
-  cursor: pointer;
-  transition: 0.2s ease;
+  padding: 25px 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 25px;
 }
 
-.login-form button:hover {
-  background: #ff5252;
+.admin-logo {
+  font-size: 22px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 1px;
 }
 
-/* ================================
-   DASHBOARD EMPLEADOS
-================================ */
+.admin-sidebar nav a {
+  color: #e5e7eb;
+  text-decoration: none;
+  padding: 10px 0;
+  display: block;
+  font-size: 15px;
+  transition: color 0.2s, padding-left 0.2s;
+}
 
+.admin-sidebar nav a:hover {
+  color: white;
+  padding-left: 5px;
+}
+
+/* Contenedor principal */
+.admin-main {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+/* Barra superior */
+.admin-navbar {
+  background: white;
+  padding: 18px 25px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 1px solid #e5e7eb;
+  font-size: 16px;
+  font-weight: 500;
+}
+
+/* Contenido */
+.admin-content {
+  padding: 35px;
+}
+
+/* Tarjetas del dashboard */
 .dashboard-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
   gap: 25px;
-  margin-top: 30px;
-}
-
-.dashboard-grid .card {
-  background: #ffffff;
-  padding: 30px;
-  border-radius: 14px;
-  text-align: center;
-  font-size: 1.2rem;
-  font-weight: 600;
-  color: #444;
-  text-decoration: none;
-  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.08);
-  transition: 0.25s ease;
-}
-
-.dashboard-grid .card:hover {
-  transform: translateY(-6px);
-  box-shadow: 0 8px 22px rgba(0, 0, 0, 0.12);
-}
-
-/* ================================
-   TABLAS
-================================ */
-
-.tabla {
-  width: 100%;
-  border-collapse: collapse;
   margin-top: 25px;
-  background: #fff;
+}
+
+.card {
+  background: white;
+  padding: 28px;
   border-radius: 12px;
-  overflow: hidden;
-}
-
-.tabla th {
-  background: #f4f4f4;
-  padding: 14px;
-  text-align: left;
+  box-shadow: 0 3px 8px rgba(0,0,0,0.08);
+  text-decoration: none;
+  color: #374151;
+  font-size: 18px;
   font-weight: 600;
-  color: #333;
+  transition: transform 0.2s, box-shadow 0.2s;
 }
 
-.tabla td {
-  padding: 14px;
-  border-bottom: 1px solid #eee;
+.card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 6px 14px rgba(0,0,0,0.12);
 }
 
-.tabla tr:hover {
-  background: #fafafa;
-}
-
-/* ================================
-   BOTONES
-================================ */
-
+/* Botones */
 .btn {
-  background: #ff6b6b;
+  background: #2563eb;
   color: white;
   padding: 10px 18px;
-  border-radius: 10px;
   border: none;
+  border-radius: 6px;
   cursor: pointer;
-  font-weight: 600;
-  transition: 0.2s ease;
-  display: inline-block;
+  font-size: 15px;
+  transition: background 0.2s, transform 0.1s;
 }
 
 .btn:hover {
-  background: #ff5252;
+  background: #1d4ed8;
 }
 
 .btn.small {
-  padding: 6px 12px;
-  font-size: 0.9rem;
+  padding: 7px 14px;
+  font-size: 14px;
 }
 
-.btn.danger {
-  background: #d9534f;
-}
-
-.btn.danger:hover {
-  background: #c9302c;
-}
-
-.btn.crear {
-  background: #4caf50;
-}
-
-.btn.crear:hover {
-  background: #43a047;
-}
-
-/* ================================
-   FORMULARIOS
-================================ */
-
-.form input,
-.form textarea {
+/* Tablas */
+.tabla {
   width: 100%;
-  padding: 14px;
-  margin-bottom: 18px;
-  border-radius: 10px;
-  border: 1px solid #ccc;
-  font-size: 1rem;
-}
-
-.form textarea {
-  height: 140px;
-  resize: none;
-}
-
-/* ================================
-   REGISTRO HORARIO
-================================ */
-
-.registro-botones {
-  display: flex;
-  gap: 15px;
-  margin-bottom: 25px;
-}
-
-.registro-botones .btn {
-  flex: 1;
-}
-
-/* ================================
-   ESTILOS EXTRA
-================================ */
-
-.card {
-  background: #fff;
-  padding: 20px;
+  border-collapse: collapse;
+  background: white;
   border-radius: 12px;
-  box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+  overflow: hidden;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.08);
 }
 
-.empty {
-  text-align: center;
-  font-size: 1.2rem;
-  color: #777;
-  margin-top: 40px;
+.tabla thead {
+  background: #f3f4f6;
+}
+
+.tabla th,
+.tabla td {
+  padding: 14px 18px;
+  text-align: left;
+  font-size: 15px;
+}
+
+.tabla tbody tr:nth-child(even) {
+  background: #fafafa;
+}
+
+.tabla tbody tr:hover {
+  background: #eef2ff;
+}
+
+.tabla th {
+  font-weight: 600;
+  color: #374151;
+}
+
+.tabla td {
+  color: #4b5563;
 }

@@ -1,8 +1,9 @@
 import React from "react";
+import AdminLayout from "../../components/admin/AdminLayout";
 
 const EmpleadosCrear: React.FC = () => {
   return (
-    <main className="panel">
+    <AdminLayout>
       <h2>Crear empleado</h2>
 
       <form className="form">
@@ -15,7 +16,7 @@ const EmpleadosCrear: React.FC = () => {
         </select>
         <button className="btn">Guardar</button>
       </form>
-    </main>
+    </AdminLayout>
   );
 };
 

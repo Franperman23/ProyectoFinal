@@ -1,8 +1,9 @@
 import React from "react";
+import AdminLayout from "../../components/admin/AdminLayout";
 
 const Beneficios: React.FC = () => {
   return (
-    <main className="panel">
+    <AdminLayout>
       <h2>Beneficios</h2>
 
       <div className="registro-botones">
@@ -14,7 +15,7 @@ const Beneficios: React.FC = () => {
       <div className="card">
         <h3>Total: 350 €</h3>
       </div>
-    </main>
+    </AdminLayout>
   );
 };
 

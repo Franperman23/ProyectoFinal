@@ -1,8 +1,9 @@
 import React from "react";
+import EmpleadoLayout from "../../components/empleados/EmpleadoLayout";
 
 const EmpleadoDashboard: React.FC = () => {
   return (
-    <main className="dashboard">
+    <EmpleadoLayout>
       <h2>Panel del empleado</h2>
 
       <div className="dashboard-grid">
@@ -11,7 +12,7 @@ const EmpleadoDashboard: React.FC = () => {
         <a href="/empleados/pedidos" className="card">Pedidos</a>
         <a href="/empleados/registro-horas" className="card">Registro horario</a>
       </div>
-    </main>
+    </EmpleadoLayout>
   );
 };
 

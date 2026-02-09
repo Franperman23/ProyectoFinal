@@ -1,8 +1,9 @@
 import React from "react";
+import EmpleadoLayout from "../../components/empleados/EmpleadoLayout";
 
 const Pedidos: React.FC = () => {
   return (
-    <main className="panel">
+    <EmpleadoLayout>
       <h2>Pedidos</h2>
 
       <table className="tabla">
@@ -28,7 +29,7 @@ const Pedidos: React.FC = () => {
           </tr>
         </tbody>
       </table>
-    </main>
+    </EmpleadoLayout>
   );
 };
 

@@ -1,8 +1,9 @@
 import React from "react";
+import EmpleadoLayout from "../../components/empleados/EmpleadoLayout";
 
 const Productos: React.FC = () => {
   return (
-    <main className="panel">
+    <EmpleadoLayout>
       <h2>Productos</h2>
 
       <a href="/empleados/productos/crear" className="btn crear">Crear producto</a>
@@ -27,7 +28,7 @@ const Productos: React.FC = () => {
           </tr>
         </tbody>
       </table>
-    </main>
+    </EmpleadoLayout>
   );
 };
 

@@ -1,33 +1,36 @@
 import React from "react";
+import AdminLayout from "../../components/admin/AdminLayout";
 
-const RegistroGlobal: React.FC = () => {
+const PedidosAdmin: React.FC = () => {
   return (
-    <main className="panel">
-      <h2>Registro horario global</h2>
+    <AdminLayout>
+      <h2>Pedidos</h2>
 
       <table className="tabla">
         <thead>
           <tr>
-            <th>Empleado</th>
-            <th>Fecha</th>
-            <th>Entrada</th>
-            <th>Salida</th>
-            <th>Total horas</th>
+            <th>ID</th>
+            <th>Cliente</th>
+            <th>Fecha entrega</th>
+            <th>Estado</th>
+            <th>Acción</th>
           </tr>
         </thead>
 
         <tbody>
           <tr>
-            <td>Juan Pérez</td>
-            <td>2026-02-05</td>
-            <td>08:00</td>
-            <td>16:00</td>
-            <td>8h</td>
+            <td>1</td>
+            <td>María López</td>
+            <td>2026-02-12</td>
+            <td>Pendiente</td>
+            <td>
+              <button className="btn small">Marcar como entregado</button>
+            </td>
           </tr>
         </tbody>
       </table>
-    </main>
+    </AdminLayout>
   );
 };
 
-export default RegistroGlobal;
+export default PedidosAdmin;
