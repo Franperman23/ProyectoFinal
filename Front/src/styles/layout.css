@@ -69,10 +69,10 @@
   color: var(--color-principal);
 }
 
-/* NAV MENU DERECHA (ALINEADO CON SOBRE NOSOTROS) */
+/* NAV MENU DERECHA */
 .navbar-right {
   position: absolute;
-  top: 50%;          /* antes 70%, ahora alineado al centro vertical */
+  top: 50%;
   right: 30px;
   transform: translateY(-50%);
   display: flex;
@@ -105,15 +105,14 @@
   color: var(--color-principal);
 }
 
-/* ICONO CESTA (SOLO IMAGEN) */
+/* ICONO CESTA */
 .cesta-icon {
-  height: 48px; /* tamaño más grande pero equilibrado */
+  height: 48px;
   width: auto;
   vertical-align: middle;
-  margin-top: -8px; /* lo baja visualmente para alinearlo con el resto del menú */
+  margin-top: -8px;
   transition: transform 0.2s ease;
 }
-
 
 .nav-menu a:hover .cesta-icon {
   transform: scale(1.1);
@@ -154,9 +153,19 @@
   display: block;
 }
 
-/* MAIN */
+/* MAIN — CORRECCIÓN CRÍTICA */
 main {
   padding-top: 140px;
+  background: #f5f1eb; /* fondo claro para TODAS las páginas */
+  min-height: 100vh;
+  position: relative;
+  z-index: 10; /* por encima del hero */
+}
+
+/* SOLO EL HOME DEBE SER TRANSPARENTE */
+.home-page main {
+  background: transparent !important;
+  z-index: auto;
 }
 
 /* CONTENEDORES GENERALES */
@@ -286,7 +295,6 @@ main {
 
 /* RESPONSIVE */
 @media (max-width: 900px) {
-
   .navbar-inner {
     flex-direction: column;
     padding-inline: 16px;

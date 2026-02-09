@@ -11,9 +11,10 @@ import TartasPersonalizadas from "./pages/TartasPersonalizadas";
 import PasteleriaEventos from "./pages/PasteleriaEventos";
 import DescubrirProductos from "./pages/DescubrirProductos";  
 import Carrito from "./pages/Carrito";
+import Login from "./pages/Login";
+import Registro from "./pages/Registro";
 
-import LoginEmpleado from "./pages/empleados/LoginEmpleado";
-import EmpleadoDashBoard from "./pages/empleados/EmpleadoDashboard";
+import EmpleadoDashboard from "./pages/empleados/EmpleadoDashBoard";
 import Productos from "./pages/empleados/Productos";
 import ProductosCrear from "./pages/empleados/ProductosCrear";
 import ProductosEditar from "./pages/empleados/ProductosEditar";
@@ -23,7 +24,6 @@ import IngredientesEditar from "./pages/empleados/IngredientesEditar";
 import Pedidos from "./pages/empleados/Pedidos";
 import RegistroHoras from "./pages/empleados/RegistroHoras";
 
-import LoginAdmin from "./pages/admin/LoginAdmin";
 import AdminDashboard from "./pages/admin/AdminDashboard";
 import Empleados from "./pages/admin/Empleados";
 import EmpleadosCrear from "./pages/admin/EmpleadosCrear";
@@ -82,13 +82,18 @@ const router = createBrowserRouter([
   },
 
   {
-    path: "/empleados/login",
-    element: <LoginEmpleado />,
+    path: "/login",
+    element: <Login />,
+  },
+
+  {
+    path: "/registro",
+    element: <Registro />
   },
 
   {
     path: "/empleados",
-    element: <EmpleadoDashBoard />,
+    element: <EmpleadoDashboard />,
   },
 
   {
@@ -129,11 +134,6 @@ const router = createBrowserRouter([
   {
     path: "/empleados/registro-horas",
     element: <RegistroHoras />,
-  },
-
-  {
-    path: "/admin/login",
-    element: <LoginAdmin />,
   },
 
   {
