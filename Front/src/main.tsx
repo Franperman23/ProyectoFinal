@@ -8,9 +8,12 @@ import './styles/components.css'
 import "./styles/empleados.css";
 import "./styles/admin.css";
 
+import { AuthProvider } from "./context/AuthContext";
 
 createRoot(document.getElementById('root')!).render(
   <StrictMode>
-    <App />
+    <AuthProvider>
+      <App />
+    </AuthProvider>
   </StrictMode>,
 )
