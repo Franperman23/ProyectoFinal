@@ -1,0 +1,46 @@
+package com.example.demo.controller;
+
+import java.util.List;
+import org.springframework.web.bind.annotation.*;
+import com.example.demo.model.Ingrediente;
+import com.example.demo.dto.IngredienteDTO; 
+import com.example.demo.service.IngredienteService;
+
+@RestController
+@RequestMapping("/api/ingredientes")
+public class IngredienteController {
+
+    private final IngredienteService ingredienteService;
+
+    public IngredienteController(IngredienteService ingredienteService) {
+        this.ingredienteService = ingredienteService;
+    }
+
+    
+    @PostMapping
+    public Ingrediente crearIngrediente(@RequestBody IngredienteDTO ingredienteDTO) {
+        return ingredienteService.guardarIngrediente(ingredienteDTO);
+    }
+
+    @GetMapping
+    public List<Ingrediente> listarIngredientes() {
+        return ingredienteService.listarIngredientes();
+    }
+
+    @GetMapping("/{id}")
+    public Ingrediente obtenerIngrediente(@PathVariable Integer id) {
+        return ingredienteService.obtenerIngredientePorId(id);
+    }
+
+    @PutMapping("/{id}")
+    public Ingrediente actualizarIngrediente(
+            @PathVariable Integer id,
+            @RequestBody Ingrediente ingrediente) {
+        return ingredienteService.actualizarIngrediente(id, ingrediente);
+    }
+
+    @DeleteMapping("/{id}")
+    public void eliminarIngrediente(@PathVariable Integer id) {
+        ingredienteService.eliminarIngrediente(id);
+    }
+}
