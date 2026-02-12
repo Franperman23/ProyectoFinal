@@ -1,8 +1,11 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useContext } from "react";
 import { Link } from "react-router-dom";
+import { AuthContext } from "../context/AuthContext";
 
 const Navbar: React.FC = () => {
   const [hidden, setHidden] = useState(false);
+  const { usuario, logout } = useContext(AuthContext);
+
   let lastScroll = 0;
 
   useEffect(() => {
@@ -26,7 +29,6 @@ const Navbar: React.FC = () => {
     <header className={`navbar ${hidden ? "navbar-hidden" : ""}`}>
       <div className="navbar-inner">
 
-        {/* IZQUIERDA: LOGO */}
         <div className="navbar-left">
           <Link to="/">
             <img
@@ -37,21 +39,17 @@ const Navbar: React.FC = () => {
           </Link>
         </div>
 
-        {/* CENTRO: NOMBRE */}
         <h1 className="brand-name">
           Pastelería <span>Lama</span>
         </h1>
 
-        {/* SOBRE NOSOTROS */}
         <Link to="/sobre-nosotros" className="sobre-link-center">
           Sobre nosotros
         </Link>
 
-        {/* DERECHA: MENÚ */}
         <nav className="navbar-right">
           <ul className="nav-menu">
 
-            {/* DROPDOWN PASTELERÍA */}
             <li className="dropdown">
               <span>Pastelería</span>
               <ul className="dropdown-menu">
@@ -62,17 +60,9 @@ const Navbar: React.FC = () => {
               </ul>
             </li>
 
-            {/* PANADERÍA */}
-            <li>
-              <Link to="/panaderia">Panadería</Link>
-            </li>
+            <li><Link to="/panaderia">Panadería</Link></li>
+            <li><Link to="/contacto">Contacto</Link></li>
 
-            {/* CONTACTO */}
-            <li>
-              <Link to="/contacto">Contacto</Link>
-            </li>
-
-            {/* CESTA */}
             <li>
               <Link to="/cesta">
                 <img
@@ -83,12 +73,23 @@ const Navbar: React.FC = () => {
               </Link>
             </li>
 
-            {/* LOGIN */}
-            <li>
-              <Link to="/login" className="login-btn">
-                Iniciar sesión
-              </Link>
-            </li>
+            {/* LOGIN / USUARIO */}
+            {!usuario ? (
+              <li>
+                <Link to="/login" className="login-btn">
+                  Iniciar sesión
+                </Link>
+              </li>
+            ) : (
+              <>
+                <li className="user-name">Hola, {usuario.nombre}</li>
+                <li>
+                  <button className="logout-btn" onClick={logout}>
+                    Cerrar sesión
+                  </button>
+                </li>
+              </>
+            )}
 
           </ul>
         </nav>

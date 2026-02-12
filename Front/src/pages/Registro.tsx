@@ -1,13 +1,32 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
+import { AuthContext } from "../context/AuthContext";
 
 export default function Registro() {
+  const { register } = useContext(AuthContext);
+
   const [nombre, setNombre] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [password2, setPassword2] = useState("");
+  const [msg, setMsg] = useState<string | null>(null);
+  const [error, setError] = useState<string | null>(null);
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+    setError(null);
+    setMsg(null);
+
+    if (password !== password2) {
+      setError("Las contraseñas no coinciden");
+      return;
+    }
+
+    try {
+      await register(nombre, email, password);
+      setMsg("Cuenta creada correctamente. Ahora puedes iniciar sesión.");
+    } catch (err: any) {
+      setError(err.message);
+    }
   };
 
   return (
@@ -47,6 +66,9 @@ export default function Registro() {
             onChange={(e) => setPassword2(e.target.value)}
             required
           />
+
+          {error && <p className="error">{error}</p>}
+          {msg && <p className="ok">{msg}</p>}
 
           <button type="submit" className="btn-login">
             Registrarme
