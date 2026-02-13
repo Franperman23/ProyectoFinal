@@ -1,10 +1,12 @@
 package com.example.demo.serviceimpl;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.example.demo.dto.ProductoDTO;
 import com.example.demo.model.Producto;
 import com.example.demo.repository.ProductoRepository;
 import com.example.demo.service.ProductoService;
@@ -15,18 +17,49 @@ public class ProductoServiceImpl implements ProductoService {
     @Autowired
     private ProductoRepository productoRepository;
 
-    @Override
-    public List<Producto> listarProductos() {
-        return productoRepository.findAll();
+    // ==========================
+    // ENTITY → DTO
+    // ==========================
+    private ProductoDTO convertirADTO(Producto producto) {
+        ProductoDTO dto = new ProductoDTO();
+        dto.setId(producto.getId());
+        dto.setNombre(producto.getNombre());
+        dto.setDescripcion(producto.getDescripcion());
+        dto.setPrecio(producto.getPrecio());
+        dto.setStock(producto.getStock());
+        return dto;
+    }
+
+    // ==========================
+    // DTO → ENTITY
+    // ==========================
+    private Producto convertirAEntity(ProductoDTO dto) {
+        Producto producto = new Producto();
+        producto.setId(dto.getId());
+        producto.setNombre(dto.getNombre());
+        producto.setDescripcion(dto.getDescripcion());
+        producto.setPrecio(dto.getPrecio());
+        producto.setStock(dto.getStock());
+        return producto;
     }
 
     @Override
-    public Producto guardarProducto(Producto producto) {
-        return productoRepository.save(producto);
+    public List<ProductoDTO> listarProductos() {
+        return productoRepository.findAll()
+                .stream()
+                .map(this::convertirADTO)
+                .collect(Collectors.toList());
     }
 
     @Override
-    public void eliminarProducto(Long id) {
+    public ProductoDTO guardarProducto(ProductoDTO productoDTO) {
+        Producto producto = convertirAEntity(productoDTO);
+        Producto guardado = productoRepository.save(producto);
+        return convertirADTO(guardado);
+    }
+
+    @Override
+    public void eliminarProducto(Integer id) {
         productoRepository.deleteById(id);
     }
 }

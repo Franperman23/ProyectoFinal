@@ -5,29 +5,28 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
-import com.example.demo.model.Producto;
+import com.example.demo.dto.ProductoDTO;
 import com.example.demo.service.ProductoService;
 
 @RestController
 @RequestMapping("/api/productos")
-@CrossOrigin(origins = "*") 
 public class ProductoController {
 
     @Autowired
     private ProductoService productoService;
 
     @GetMapping
-    public List<Producto> listar() {
+    public List<ProductoDTO> listar() {
         return productoService.listarProductos();
     }
 
     @PostMapping
-    public Producto guardar(@RequestBody Producto producto) {
-        return productoService.guardarProducto(producto);
+    public ProductoDTO guardar(@RequestBody ProductoDTO productoDTO) {
+        return productoService.guardarProducto(productoDTO);
     }
 
     @DeleteMapping("/{id}")
-    public void eliminar(@PathVariable Long id) {
+    public void eliminar(@PathVariable Integer id) {
         productoService.eliminarProducto(id);
     }
 }

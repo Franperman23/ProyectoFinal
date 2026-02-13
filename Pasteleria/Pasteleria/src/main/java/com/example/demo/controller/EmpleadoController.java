@@ -8,6 +8,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/api/empleados")
+ 
 public class EmpleadoController {
 
     private final EmpleadoService empleadoService;
@@ -22,7 +23,7 @@ public class EmpleadoController {
     }
 
     @GetMapping("/{id}")
-    public Empleado getEmpleadoById(@PathVariable Long id) {
+    public Empleado getEmpleadoById(@PathVariable Integer id) { 
         return empleadoService.findById(id);
     }
 
@@ -32,7 +33,7 @@ public class EmpleadoController {
     }
 
     @DeleteMapping("/{id}")
-    public void deleteEmpleado(@PathVariable Long id) {
+    public void deleteEmpleado(@PathVariable Integer id) { 
         empleadoService.deleteById(id);
     }
 }

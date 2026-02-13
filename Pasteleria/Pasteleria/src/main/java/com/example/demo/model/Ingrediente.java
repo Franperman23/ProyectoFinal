@@ -9,7 +9,7 @@ public class Ingrediente {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "ID_INGREDIENTE")
-    private Long idIngrediente;
+    private Integer idIngrediente; 
 
     @Column(name = "NOMBRE", nullable = false, length = 50)
     private String nombre;
@@ -27,18 +27,18 @@ public class Ingrediente {
     public Ingrediente() {
     }
 
-    public Ingrediente(Long idIngrediente, String nombre, Integer cantidad, Proveedor proveedor) {
+    public Ingrediente(Integer idIngrediente, String nombre, Integer cantidad, Proveedor proveedor) {
         this.idIngrediente = idIngrediente;
         this.nombre = nombre;
         this.cantidad = cantidad;
         this.proveedor = proveedor;
     }
 
-    public Long getIdIngrediente() {
+    public Integer getIdIngrediente() {
         return idIngrediente;
     }
 
-    public void setIdIngrediente(Long idIngrediente) {
+    public void setIdIngrediente(Integer idIngrediente) {
         this.idIngrediente = idIngrediente;
     }
 

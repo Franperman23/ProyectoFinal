@@ -1,44 +1,39 @@
 package com.example.demo.model;
 
 import jakarta.persistence.*;
+import com.fasterxml.jackson.annotation.JsonProperty;
 
 @Entity
-@Table(name = "cliente")
+@Table(name = "CLIENTE")
 public class Cliente {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "id_cliente")
-    private Long id;
+    @Column(name = "ID_CLIENTE")
+    private Integer id; 
 
-    @Column(nullable = false, length = 100)
+    @Column(name = "NOMBRE", nullable = false, length = 45)
     private String nombre;
 
-    @Column(length = 150)
+    @Column(name = "APELLIDOS", nullable = false, length = 80)
     private String apellidos;
 
-    @Column(nullable = false, unique = true, length = 150)
+    @Column(name = "EMAIL", nullable = false, length = 100)
     private String email;
 
-    @Column(nullable = false)
-    private String password;
-
-    @Column(length = 20)
+    @Column(name = "TELEFONO", nullable = false, length = 15)
     private String telefono;
 
-    @Column(length = 255)
-    private String direccion;
-
-    @Column(name = "activo")
-    private Boolean activo = true;
+    @Column(name = "CONTRASEÑA", nullable = false, length = 100)
+    @JsonProperty("password") 
+    private String password;
 
     public Cliente() {}
 
-
-    public Long getId() {
+    public Integer getId() {
     	return id; 
     }
-    public void setId(Long id) {
+    public void setId(Integer id) {
     	this.id = id; 
     }
 
@@ -63,13 +58,6 @@ public class Cliente {
     	this.email = email; 
     }
 
-    public String getPassword() {
-    	return password; 
-    }
-    public void setPassword(String password) {
-    	this.password = password; 
-    }
-
     public String getTelefono() {
     	return telefono; 
     }
@@ -77,17 +65,10 @@ public class Cliente {
     	this.telefono = telefono; 
     }
 
-    public String getDireccion() {
-    	return direccion; 
+    public String getPassword() {
+    	return password; 
     }
-    public void setDireccion(String direccion) {
-    	this.direccion = direccion; 
-    }
-
-    public Boolean getActivo() {
-    	return activo; 
-    }
-    public void setActivo(Boolean activo) {
-    	this.activo = activo; 
+    public void setPassword(String password) {
+    	this.password = password; 
     }
 }

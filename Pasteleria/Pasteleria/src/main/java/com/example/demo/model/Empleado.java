@@ -2,9 +2,9 @@ package com.example.demo.model;
 
 import jakarta.persistence.*;
 import com.fasterxml.jackson.annotation.JsonProperty;
-
+	
 @Entity
-@Table(name = "EMPLEADO") // En mayúsculas para coincidir exactamente con tu SQL
+@Table(name = "EMPLEADO")
 public class Empleado {
 
     @Id
@@ -21,7 +21,7 @@ public class Empleado {
     @Column(name = "EMAIL", nullable = false, unique = true, length = 100)
     private String email;
 
-    @Column(name = "TELEFONO", nullable = false, length = 15) // Marcado como NOT NULL según tu SQL
+    @Column(name = "TELEFONO", nullable = false, length = 15) 
     private String telefono;
 
     @Column(name = "ROL", nullable = false, length = 20)
