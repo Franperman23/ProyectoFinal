@@ -12,7 +12,9 @@ const Productos: React.FC = () => {
         <thead>
           <tr>
             <th>Nombre</th>
+            <th>Descripción</th>
             <th>Stock</th>
+            <th>tipo</th>
             <th>Acciones</th>
           </tr>
         </thead>
