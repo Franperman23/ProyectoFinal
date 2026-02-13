@@ -47,9 +47,7 @@ const DescubrirProductos: React.FC = () => {
           <div className="section-line"></div>
 
           <div className="grid fade-up">
-
-            {/* ---------------- PANADERÍA (8) ---------------- */}
-
+            
             {listaProductos.map((producto) => (
            
             <article className="card" key={producto.id}>
