@@ -8,7 +8,9 @@ const ProductosCrear: React.FC = () => {
     descripcion: "",
     precio: 0,
     imagen: "",
-    stock: 0
+    stock: 0,
+    receta: "",
+    tipo: "Reposteria"
   });
 
   async function handleSubmit(e: React.FormEvent) {
