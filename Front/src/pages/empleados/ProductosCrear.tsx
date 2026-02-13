@@ -45,9 +45,11 @@ const ProductosCrear: React.FC = () => {
       <form className="form" onSubmit={handleSubmit}>
         <input type="text" placeholder="Nombre" value={nuevoProducto.nombre} onChange={(e) => setNuevoProducto({...nuevoProducto, nombre: e.target.value})} />
         <input type="number" placeholder="Stock" value={nuevoProducto.stock} onChange={(e) => setNuevoProducto({...nuevoProducto, stock: parseInt(e.target.value) || 0})} />
-        <textarea placeholder="Receta" value={nuevoProducto.descripcion} onChange={(e) => setNuevoProducto({...nuevoProducto, descripcion: e.target.value})}></textarea>
+        <textarea placeholder="Descripcion" value={nuevoProducto.descripcion} onChange={(e) => setNuevoProducto({...nuevoProducto, descripcion: e.target.value})}></textarea>
+        <textarea placeholder="Receta" value={nuevoProducto.receta} onChange={(e) => setNuevoProducto({...nuevoProducto, receta: e.target.value})}></textarea>
         <input type="number" placeholder="Precio" value={nuevoProducto.precio} onChange={(e) => setNuevoProducto({...nuevoProducto, precio: parseFloat(e.target.value) || 0})} />
         <input type="text" placeholder="URL de imagen" value={nuevoProducto.imagen} onChange={(e) => setNuevoProducto({...nuevoProducto, imagen: e.target.value})} />
+        <select value={nuevoProducto.tipo} onChange={(e) => setNuevoProducto({...nuevoProducto, tipo: e.target.value as CrearProductoDTO["tipo"]})}></select>
         <button className="btn">Guardar</button>
       </form>
     </EmpleadoLayout>
