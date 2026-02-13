@@ -10,7 +10,7 @@ import com.example.demo.service.ClienteService;
 
 @RestController
 @RequestMapping("/api/clientes")
-@CrossOrigin(origins = "*")
+
 public class ClienteController {
 
     @Autowired

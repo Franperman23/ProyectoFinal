@@ -4,7 +4,6 @@ import com.example.demo.model.Empleado;
 import com.example.demo.repository.EmpleadoRepository;
 import com.example.demo.service.EmpleadoService;
 import org.springframework.stereotype.Service;
-
 import java.util.List;
 
 @Service
@@ -22,7 +21,7 @@ public class EmpleadoServiceImpl implements EmpleadoService {
     }
 
     @Override
-    public Empleado findById(Long id) {
+    public Empleado findById(Integer id) {
         return empleadoRepository.findById(id).orElse(null);
     }
 
@@ -32,7 +31,7 @@ public class EmpleadoServiceImpl implements EmpleadoService {
     }
 
     @Override
-    public void deleteById(Long id) {
+    public void deleteById(Integer id) {
         empleadoRepository.deleteById(id);
     }
 }
