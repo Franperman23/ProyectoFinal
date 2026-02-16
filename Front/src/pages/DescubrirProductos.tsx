@@ -4,10 +4,15 @@ import Footer from "../components/Footer";
 import Hero from "../components/Hero";
 import { CartContext } from "../context/CartContext";
 import type { ListarProductoDTO } from "../types/ListarProductoDTO";
+import { useNavigate } from "react-router-dom";
+
+// 🔹 Tipo extendido solo para este componente
+type ProductoConDemo = ListarProductoDTO & { demo?: boolean };
 
 const DescubrirProductos: React.FC = () => {
-  const [listaProductos, setListaProductos] = React.useState<ListarProductoDTO[]>([]);
+  const [listaProductos, setListaProductos] = React.useState<ProductoConDemo[]>([]);
   const { addToCart } = useContext(CartContext);
+  const navegar = useNavigate();
 
   async function fetchProductos() {
     try {
@@ -22,7 +27,7 @@ const DescubrirProductos: React.FC = () => {
       // -----------------------------
       // EJEMPLOS FIJOS — TARTAS PERSONALIZADAS
       // -----------------------------
-      const tartasEjemplo: ListarProductoDTO[] = [
+      const tartasEjemplo: ProductoConDemo[] = [
         {
           id: 9001,
           nombre: "Tarta Doraemon",
@@ -31,6 +36,7 @@ const DescubrirProductos: React.FC = () => {
           stock: 0,
           tipo: "Tartas personalizadas",
           imagen: "img tartas personalizadas/card1.png",
+          demo: true,
         },
         {
           id: 9002,
@@ -40,6 +46,7 @@ const DescubrirProductos: React.FC = () => {
           stock: 0,
           tipo: "Tartas personalizadas",
           imagen: "img tartas personalizadas/card2.png",
+          demo: true,
         },
         {
           id: 9003,
@@ -49,6 +56,7 @@ const DescubrirProductos: React.FC = () => {
           stock: 0,
           tipo: "Tartas personalizadas",
           imagen: "img tartas personalizadas/card3.png",
+          demo: true,
         },
         {
           id: 9004,
@@ -58,6 +66,7 @@ const DescubrirProductos: React.FC = () => {
           stock: 0,
           tipo: "Tartas personalizadas",
           imagen: "img tartas personalizadas/card4.png",
+          demo: true,
         },
         {
           id: 9005,
@@ -67,6 +76,7 @@ const DescubrirProductos: React.FC = () => {
           stock: 0,
           tipo: "Tartas personalizadas",
           imagen: "img tartas personalizadas/card5.png",
+          demo: true,
         },
         {
           id: 9006,
@@ -76,6 +86,7 @@ const DescubrirProductos: React.FC = () => {
           stock: 0,
           tipo: "Tartas personalizadas",
           imagen: "img tartas personalizadas/card6.png",
+          demo: true,
         },
         {
           id: 9007,
@@ -85,6 +96,7 @@ const DescubrirProductos: React.FC = () => {
           stock: 0,
           tipo: "Tartas personalizadas",
           imagen: "img tartas personalizadas/card7.png",
+          demo: true,
         },
         {
           id: 9008,
@@ -94,13 +106,14 @@ const DescubrirProductos: React.FC = () => {
           stock: 0,
           tipo: "Tartas personalizadas",
           imagen: "img tartas personalizadas/card8.png",
+          demo: true,
         },
       ];
 
       // -----------------------------
       // EJEMPLOS FIJOS — PASTELERÍA PARA EVENTOS
       // -----------------------------
-      const eventosEjemplo: ListarProductoDTO[] = [
+      const eventosEjemplo: ProductoConDemo[] = [
         {
           id: 9101,
           nombre: "Boda elegante",
@@ -109,6 +122,7 @@ const DescubrirProductos: React.FC = () => {
           stock: 0,
           tipo: "Pasteleria para eventos",
           imagen: "img pasteleria eventos/card1.png",
+          demo: true,
         },
         {
           id: 9102,
@@ -118,6 +132,7 @@ const DescubrirProductos: React.FC = () => {
           stock: 0,
           tipo: "Pasteleria para eventos",
           imagen: "img pasteleria eventos/card2.png",
+          demo: true,
         },
         {
           id: 9103,
@@ -127,6 +142,7 @@ const DescubrirProductos: React.FC = () => {
           stock: 0,
           tipo: "Pasteleria para eventos",
           imagen: "img pasteleria eventos/card3.png",
+          demo: true,
         },
         {
           id: 9104,
@@ -136,6 +152,7 @@ const DescubrirProductos: React.FC = () => {
           stock: 0,
           tipo: "Pasteleria para eventos",
           imagen: "img pasteleria eventos/card4.png",
+          demo: true,
         },
         {
           id: 9105,
@@ -145,6 +162,7 @@ const DescubrirProductos: React.FC = () => {
           stock: 0,
           tipo: "Pasteleria para eventos",
           imagen: "img pasteleria eventos/card5.png",
+          demo: true,
         },
         {
           id: 9106,
@@ -154,6 +172,7 @@ const DescubrirProductos: React.FC = () => {
           stock: 0,
           tipo: "Pasteleria para eventos",
           imagen: "img pasteleria eventos/card6.png",
+          demo: true,
         },
         {
           id: 9107,
@@ -163,6 +182,7 @@ const DescubrirProductos: React.FC = () => {
           stock: 0,
           tipo: "Pasteleria para eventos",
           imagen: "img pasteleria eventos/card7.png",
+          demo: true,
         },
         {
           id: 9108,
@@ -172,13 +192,26 @@ const DescubrirProductos: React.FC = () => {
           stock: 0,
           tipo: "Pasteleria para eventos",
           imagen: "img pasteleria eventos/card8.png",
+          demo: true,
         },
       ];
 
       // -----------------------------
+      // PRODUCTOS REALES DEL BACKEND
+      // -----------------------------
+      const productosReales: ProductoConDemo[] = data.map((p) => ({
+        ...p,
+        demo: false, // estos SÍ van al carrito
+      }));
+
+      // -----------------------------
       // UNIR EJEMPLOS + PRODUCTOS DEL BACKEND
       // -----------------------------
-      const todo = [...tartasEjemplo, ...eventosEjemplo, ...data];
+      const todo: ProductoConDemo[] = [
+        ...tartasEjemplo,
+        ...eventosEjemplo,
+        ...productosReales,
+      ];
 
       setListaProductos(todo);
     } catch (error) {
@@ -224,12 +257,23 @@ const DescubrirProductos: React.FC = () => {
                     <p className="price">{producto.precio.toFixed(2)} €</p>
                   )}
 
-                  <button
-                    className="btn add-cart"
-                    onClick={() => addToCart(producto)}
-                  >
-                    Añadir al carrito
-                  </button>
+                  {producto.demo ? (
+                    <button
+                      className="btn"
+                      onClick={() =>
+                        navegar("/contacto", { state: { producto: producto.nombre } })
+                      }
+                    >
+                      Hacer pedido
+                    </button>
+                  ) : (
+                    <button
+                      className="btn add-cart"
+                      onClick={() => addToCart(producto)}
+                    >
+                      Añadir al carrito
+                    </button>
+                  )}
                 </div>
               </article>
             ))}

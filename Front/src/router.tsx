@@ -1,4 +1,5 @@
 import { createBrowserRouter } from "react-router-dom";
+import ProtectedRoute from "./router/ProtectedRoute";
 
 // PÁGINAS
 import Home from "./pages/Home";
@@ -14,6 +15,7 @@ import Carrito from "./pages/Carrito";
 import Login from "./pages/Login";
 import Registro from "./pages/Registro";
 
+// EMPLEADOS
 import EmpleadoDashboard from "./pages/empleados/EmpleadoDashBoard";
 import Productos from "./pages/empleados/Productos";
 import ProductosCrear from "./pages/empleados/ProductosCrear";
@@ -24,6 +26,7 @@ import IngredientesEditar from "./pages/empleados/IngredientesEditar";
 import Pedidos from "./pages/empleados/Pedidos";
 import RegistroHoras from "./pages/empleados/RegistroHoras";
 
+// ADMIN
 import AdminDashboard from "./pages/admin/AdminDashboard";
 import Empleados from "./pages/admin/Empleados";
 import EmpleadosCrear from "./pages/admin/EmpleadosCrear";
@@ -32,144 +35,151 @@ import PedidosAdmin from "./pages/admin/PedidosAdmin";
 import Beneficios from "./pages/admin/Beneficios";
 import RegistroGlobal from "./pages/admin/RegistroGlobal";
 
-
 const router = createBrowserRouter([
-  {
-    path: "/",
-    element: <Home />,
-  },
-  {
-    path: "/reposteria",
-    element: <Reposteria />,
-  },
-  {
-    path: "/panaderia",
-    element: <Panaderia />,
-  },
-  {
-    path: "/contacto",
-    element: <Contacto />,
-  },
+  { path: "/", element: <Home /> },
+  { path: "/reposteria", element: <Reposteria /> },
+  { path: "/panaderia", element: <Panaderia /> },
+  { path: "/contacto", element: <Contacto /> },
+  { path: "/sobre-nosotros", element: <SobreNosotros /> },
+  { path: "/bolleria", element: <Bolleria /> },
+  { path: "/tartas-personalizadas", element: <TartasPersonalizadas /> },
+  { path: "/pasteleria-eventos", element: <PasteleriaEventos /> },
+  { path: "/descubrir-productos", element: <DescubrirProductos /> },
+  { path: "/cesta", element: <Carrito /> },
+  { path: "/login", element: <Login /> },
+  { path: "/registro", element: <Registro /> },
 
-  {
-    path: "/sobre-nosotros",
-    element: <SobreNosotros />,
-  },
-
-  {
-    path: "/bolleria",
-    element: <Bolleria />,
-  },
-
-  {
-    path: "/tartas-personalizadas",
-    element: <TartasPersonalizadas />,
-  },
-
-  {
-    path: "/pasteleria-eventos",
-    element: <PasteleriaEventos />,
-  },
-
-  {
-    path: "/descubrir-productos",
-    element: <DescubrirProductos />,
-  },
-
-  {
-    path: "/cesta",
-    element: <Carrito />,
-  },
-
-  {
-    path: "/login",
-    element: <Login />,
-  },
-
-  {
-    path: "/registro",
-    element: <Registro />
-  },
-
+  // EMPLEADOS
   {
     path: "/empleados",
-    element: <EmpleadoDashboard />,
+    element: (
+      <ProtectedRoute role="EMPLEADO">
+        <EmpleadoDashboard />
+      </ProtectedRoute>
+    ),
   },
-
   {
     path: "/empleados/productos",
-    element: <Productos />,
+    element: (
+      <ProtectedRoute role="EMPLEADO">
+        <Productos />
+      </ProtectedRoute>
+    ),
   },
-
   {
     path: "/empleados/productos/crear",
-    element: <ProductosCrear />,
+    element: (
+      <ProtectedRoute role="EMPLEADO">
+        <ProductosCrear />
+      </ProtectedRoute>
+    ),
   },
-
   {
     path: "/empleados/productos/editar/:id",
-    element: <ProductosEditar />,
+    element: (
+      <ProtectedRoute role="EMPLEADO">
+        <ProductosEditar />
+      </ProtectedRoute>
+    ),
   },
-
   {
     path: "/empleados/ingredientes",
-    element: <Ingredientes />,
+    element: (
+      <ProtectedRoute role="EMPLEADO">
+        <Ingredientes />
+      </ProtectedRoute>
+    ),
   },
-
   {
     path: "/empleados/ingredientes/crear",
-    element: <IngredientesCrear />,
+    element: (
+      <ProtectedRoute role="EMPLEADO">
+        <IngredientesCrear />
+      </ProtectedRoute>
+    ),
   },
-
   {
     path: "/empleados/ingredientes/editar/:id",
-    element: <IngredientesEditar />,
+    element: (
+      <ProtectedRoute role="EMPLEADO">
+        <IngredientesEditar />
+      </ProtectedRoute>
+    ),
   },
-
   {
     path: "/empleados/pedidos",
-    element: <Pedidos />,
+    element: (
+      <ProtectedRoute role="EMPLEADO">
+        <Pedidos />
+      </ProtectedRoute>
+    ),
   },
-
   {
     path: "/empleados/registro-horas",
-    element: <RegistroHoras />,
+    element: (
+      <ProtectedRoute role="EMPLEADO">
+        <RegistroHoras />
+      </ProtectedRoute>
+    ),
   },
 
+  // ADMIN
   {
     path: "/admin",
-    element: <AdminDashboard />,
+    element: (
+      <ProtectedRoute role="ADMIN">
+        <AdminDashboard />
+      </ProtectedRoute>
+    ),
   },
-
   {
     path: "/admin/empleados",
-    element: <Empleados />,
+    element: (
+      <ProtectedRoute role="ADMIN">
+        <Empleados />
+      </ProtectedRoute>
+    ),
   },
-
   {
     path: "/admin/empleados/crear",
-    element: <EmpleadosCrear />,
+    element: (
+      <ProtectedRoute role="ADMIN">
+        <EmpleadosCrear />
+      </ProtectedRoute>
+    ),
   },
-
   {
     path: "/admin/empleados/editar/:id",
-    element: <EmpleadosEditar />,
+    element: (
+      <ProtectedRoute role="ADMIN">
+        <EmpleadosEditar />
+      </ProtectedRoute>
+    ),
   },
-
   {
     path: "/admin/pedidos",
-    element: <PedidosAdmin />,
+    element: (
+      <ProtectedRoute role="ADMIN">
+        <PedidosAdmin />
+      </ProtectedRoute>
+    ),
   },
-
   {
     path: "/admin/beneficios",
-    element: <Beneficios />,
+    element: (
+      <ProtectedRoute role="ADMIN">
+        <Beneficios />
+      </ProtectedRoute>
+    ),
   },
-
   {
     path: "/admin/registro-global",
-    element: <RegistroGlobal />,
-  }
+    element: (
+      <ProtectedRoute role="ADMIN">
+        <RegistroGlobal />
+      </ProtectedRoute>
+    ),
+  },
 ]);
 
 export default router;

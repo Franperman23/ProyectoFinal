@@ -1,34 +1,91 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import AdminLayout from "../../components/admin/AdminLayout";
 
+interface Pedido {
+  id: number;
+  fecha: string;
+  recoger: string;
+  total: number;
+  usuario: { nombre: string };
+  estado: string;
+}
+
 const PedidosAdmin: React.FC = () => {
+  const [pedidos, setPedidos] = useState<Pedido[]>([]);
+
+  const cargarPedidos = () => {
+    fetch("http://localhost:8080/api/pedidos")
+      .then((res) => res.json())
+      .then((data) => setPedidos(data));
+  };
+
+  useEffect(() => {
+    cargarPedidos();
+  }, []);
+
+  const marcarEntregado = (id: number) => {
+    fetch(`http://localhost:8080/api/pedidos/${id}/entregado`, {
+      method: "PUT",
+    }).then(() => cargarPedidos());
+  };
+
+  const eliminarPedido = (id: number) => {
+    if (!confirm("¿Seguro que quieres eliminar este pedido?")) return;
+
+    fetch(`http://localhost:8080/api/pedidos/${id}`, {
+      method: "DELETE",
+    }).then(() => cargarPedidos());
+  };
+
   return (
     <AdminLayout>
       <h2>Pedidos</h2>
 
-      <table className="tabla">
-        <thead>
-          <tr>
-            <th>ID</th>
-            <th>Cliente</th>
-            <th>Fecha entrega</th>
-            <th>Estado</th>
-            <th>Acción</th>
-          </tr>
-        </thead>
+      {pedidos.length === 0 ? (
+        <p>No hay pedidos registrados.</p>
+      ) : (
+        <table className="tabla">
+          <thead>
+            <tr>
+              <th>ID</th>
+              <th>Cliente</th>
+              <th>Fecha recogida</th>
+              <th>Total</th>
+              <th>Estado</th>
+              <th>Acción</th>
+            </tr>
+          </thead>
 
-        <tbody>
-          <tr>
-            <td>1</td>
-            <td>María López</td>
-            <td>2026-02-12</td>
-            <td>Pendiente</td>
-            <td>
-              <button className="btn small">Marcar como entregado</button>
-            </td>
-          </tr>
-        </tbody>
-      </table>
+          <tbody>
+            {pedidos.map((p) => (
+              <tr key={p.id}>
+                <td>{p.id}</td>
+                <td>{p.usuario?.nombre}</td>
+                <td>{p.recoger}</td>
+                <td>{p.total} €</td>
+                <td>{p.estado}</td>
+                <td style={{ display: "flex", gap: "10px" }}>
+                  {p.estado === "Pendiente" ? (
+                    <button className="btn small" onClick={() => marcarEntregado(p.id)}>
+                      Entregado
+                    </button>
+                  ) : (
+                    <span style={{ color: "green", fontWeight: 600 }}>✔ Entregado</span>
+                  )}
+
+                  <button
+                    className="btn small"
+                    style={{ background: "#b91c1c" }}
+                    onClick={() => eliminarPedido(p.id)}
+                  >
+                    Eliminar
+                  </button>
+                </td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      )}
     </AdminLayout>
   );
 };

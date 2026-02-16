@@ -1,8 +1,8 @@
 package com.example.demo.serviceimpl;
 
-import com.example.demo.model.Empleado;
+import com.example.demo.model.Usuario;
+import com.example.demo.repository.UsuarioRepository;
 import com.example.demo.model.Registro;
-import com.example.demo.repository.EmpleadoRepository;
 import com.example.demo.repository.RegistroRepository;
 import com.example.demo.service.RegistroService;
 import org.springframework.stereotype.Service;
@@ -18,20 +18,21 @@ import java.util.List;
 public class RegistroServiceImpl implements RegistroService {
 
     private final RegistroRepository registroRepo;
-    private final EmpleadoRepository empleadoRepo;
+    private final UsuarioRepository usuarioRepo;
 
-    public RegistroServiceImpl(RegistroRepository registroRepo, EmpleadoRepository empleadoRepo) {
+    public RegistroServiceImpl(RegistroRepository registroRepo, UsuarioRepository usuarioRepo) {
         this.registroRepo = registroRepo;
-        this.empleadoRepo = empleadoRepo;
+        this.usuarioRepo = usuarioRepo;
     }
 
     @Override
-    public Registro ficharEntrada(Integer empleadoId) {
-        Empleado empleado = empleadoRepo.findById(empleadoId)
-                .orElseThrow(() -> new RuntimeException("Empleado no encontrado"));
+    public Registro ficharEntrada(Integer usuarioId) {
+
+        Usuario usuario = usuarioRepo.findById(usuarioId)
+                .orElseThrow(() -> new RuntimeException("Usuario no encontrado"));
 
         Registro registro = new Registro();
-        registro.setEmpleado(empleado);
+        registro.setUsuario(usuario);
         registro.setFecha(LocalDate.now());
         registro.setHoraEntrada(LocalTime.now());
 
@@ -40,6 +41,7 @@ public class RegistroServiceImpl implements RegistroService {
 
     @Override
     public Registro ficharSalida(Integer registroId) {
+
         Registro registro = registroRepo.findById(registroId)
                 .orElseThrow(() -> new RuntimeException("Registro no encontrado"));
 
@@ -56,8 +58,8 @@ public class RegistroServiceImpl implements RegistroService {
     }
 
     @Override
-    public List<Registro> obtenerRegistrosPorEmpleado(Integer empleadoId) {
-        return registroRepo.findByEmpleadoIdEmpleado(empleadoId);
+    public List<Registro> obtenerRegistrosPorEmpleado(Integer usuarioId) {
+        return registroRepo.findByUsuarioId(usuarioId);
     }
 
     @Override

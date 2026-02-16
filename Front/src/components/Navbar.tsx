@@ -29,6 +29,7 @@ const Navbar: React.FC = () => {
     <header className={`navbar ${hidden ? "navbar-hidden" : ""}`}>
       <div className="navbar-inner">
 
+        {/* LOGO */}
         <div className="navbar-left">
           <Link to="/">
             <img
@@ -39,6 +40,7 @@ const Navbar: React.FC = () => {
           </Link>
         </div>
 
+        {/* NOMBRE */}
         <h1 className="brand-name">
           Pastelería <span>Lama</span>
         </h1>
@@ -47,6 +49,7 @@ const Navbar: React.FC = () => {
           Sobre nosotros
         </Link>
 
+        {/* MENÚ */}
         <nav className="navbar-right">
           <ul className="nav-menu">
 
@@ -73,7 +76,7 @@ const Navbar: React.FC = () => {
               </Link>
             </li>
 
-            {/* LOGIN / USUARIO */}
+            {/* LOGIN / LOGOUT */}
             {!usuario ? (
               <li>
                 <Link to="/login" className="login-btn">
@@ -82,11 +85,11 @@ const Navbar: React.FC = () => {
               </li>
             ) : (
               <>
-                <li className="user-name">Hola, {usuario.nombre}</li>
                 <li>
-                  <button className="logout-btn" onClick={logout}>
+                  <button className="btn small" onClick={logout}>
                     Cerrar sesión
                   </button>
+
                 </li>
               </>
             )}

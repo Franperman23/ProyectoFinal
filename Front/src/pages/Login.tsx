@@ -15,9 +15,9 @@ export default function Login() {
 
     try {
       await login(email, password);
-      window.location.href = "/";
+      // la redirección ya la hace login según rol
     } catch (err: any) {
-      setError(err.message);
+      setError(err.message || "Error al iniciar sesión");
     }
   };
 
@@ -28,7 +28,7 @@ export default function Login() {
 
         <form className="login-form" onSubmit={handleSubmit}>
           <input
-            type="email"
+            type="text"
             placeholder="Correo electrónico"
             value={email}
             onChange={(e) => setEmail(e.target.value)}

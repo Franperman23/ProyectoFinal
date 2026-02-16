@@ -1,7 +1,10 @@
-import React from "react";
+import React, { useContext } from "react";
 import "../../styles/admin.css";
+import { AuthContext } from "../../context/AuthContext";
 
 export default function AdminLayout({ children }: { children: React.ReactNode }) {
+  const { logout } = useContext(AuthContext);
+
   return (
     <div className="admin-layout">
       <aside className="admin-sidebar">
@@ -21,7 +24,10 @@ export default function AdminLayout({ children }: { children: React.ReactNode })
       <div className="admin-main">
         <header className="admin-navbar">
           <span>Panel de administración</span>
-          <button className="btn small">Cerrar sesión</button>
+
+          <button className="btn small" onClick={logout}>
+            Cerrar sesión
+          </button>
         </header>
 
         <div className="admin-content">{children}</div>

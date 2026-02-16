@@ -8,5 +8,5 @@ import java.util.List;
 @Repository
 public interface RegistroRepository extends JpaRepository<Registro, Integer> {
 
-    List<Registro> findByEmpleadoIdEmpleado(Integer idEmpleado);
+    List<Registro> findByUsuarioId(Integer usuarioId);
 }
