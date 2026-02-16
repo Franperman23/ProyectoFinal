@@ -10,6 +10,7 @@ import com.example.demo.service.ProductoService;
 
 @RestController
 @RequestMapping("/api/productos")
+@CrossOrigin(origins = "*")
 public class ProductoController {
 
     @Autowired
@@ -20,8 +21,23 @@ public class ProductoController {
         return productoService.listarProductos();
     }
 
+    @GetMapping("/{id}")
+    public ProductoDTO obtener(@PathVariable Integer id) {
+        return productoService.listarProductos()
+                .stream()
+                .filter(p -> p.getId().equals(id))
+                .findFirst()
+                .orElse(null);
+    }
+
     @PostMapping
     public ProductoDTO guardar(@RequestBody ProductoDTO productoDTO) {
+        return productoService.guardarProducto(productoDTO);
+    }
+
+    @PutMapping("/{id}")
+    public ProductoDTO actualizar(@PathVariable Integer id, @RequestBody ProductoDTO productoDTO) {
+        productoDTO.setId(id);
         return productoService.guardarProducto(productoDTO);
     }
 

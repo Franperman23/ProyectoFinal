@@ -3,5 +3,8 @@ export type ListarProductoDTO = {
   nombre: string;
   descripcion: string;
   precio: number;
+  stock: number;
+  receta: string;
+  tipo: string;
   imagen: string;
 };

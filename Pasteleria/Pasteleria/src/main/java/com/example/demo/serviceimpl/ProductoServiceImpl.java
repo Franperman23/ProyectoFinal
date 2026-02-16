@@ -17,9 +17,7 @@ public class ProductoServiceImpl implements ProductoService {
     @Autowired
     private ProductoRepository productoRepository;
 
-    // ==========================
     // ENTITY → DTO
-    // ==========================
     private ProductoDTO convertirADTO(Producto producto) {
         ProductoDTO dto = new ProductoDTO();
         dto.setId(producto.getId());
@@ -27,12 +25,13 @@ public class ProductoServiceImpl implements ProductoService {
         dto.setDescripcion(producto.getDescripcion());
         dto.setPrecio(producto.getPrecio());
         dto.setStock(producto.getStock());
+        dto.setReceta(producto.getReceta());
+        dto.setTipo(producto.getTipoProducto());
+        dto.setImagen(producto.getImagen());
         return dto;
     }
 
-    // ==========================
     // DTO → ENTITY
-    // ==========================
     private Producto convertirAEntity(ProductoDTO dto) {
         Producto producto = new Producto();
         producto.setId(dto.getId());
@@ -40,6 +39,9 @@ public class ProductoServiceImpl implements ProductoService {
         producto.setDescripcion(dto.getDescripcion());
         producto.setPrecio(dto.getPrecio());
         producto.setStock(dto.getStock());
+        producto.setReceta(dto.getReceta());
+        producto.setTipoProducto(dto.getTipo());
+        producto.setImagen(dto.getImagen());
         return producto;
     }
 

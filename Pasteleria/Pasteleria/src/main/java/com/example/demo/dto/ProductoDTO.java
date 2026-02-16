@@ -7,6 +7,9 @@ public class ProductoDTO {
     private String descripcion;
     private Double precio;
     private Integer stock;
+    private String receta;
+    private String tipo;
+    private String imagen;
 
     public ProductoDTO() {}
 
@@ -24,4 +27,13 @@ public class ProductoDTO {
 
     public Integer getStock() { return stock; }
     public void setStock(Integer stock) { this.stock = stock; }
+
+    public String getReceta() { return receta; }
+    public void setReceta(String receta) { this.receta = receta; }
+
+    public String getTipo() { return tipo; }
+    public void setTipo(String tipo) { this.tipo = tipo; }
+
+    public String getImagen() { return imagen; }
+    public void setImagen(String imagen) { this.imagen = imagen; }
 }

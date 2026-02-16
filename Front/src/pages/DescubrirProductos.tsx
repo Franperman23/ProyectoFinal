@@ -7,15 +7,16 @@ import type { ListarProductoDTO } from "../types/ListarProductoDTO";
 
 const DescubrirProductos: React.FC = () => {
   const [listaProductos, setListaProductos] = React.useState<ListarProductoDTO[]>([]);
-
   const { addToCart } = useContext(CartContext);
 
   async function fetchProductos() {
     try {
-      const response = await fetch("/api/productos");
+      const response = await fetch("http://localhost:8080/api/productos");
+
       if (!response.ok) {
         throw new Error("Error al cargar los productos");
       }
+
       const data: ListarProductoDTO[] = await response.json();
       setListaProductos(data);
     } catch (error) {
@@ -47,24 +48,26 @@ const DescubrirProductos: React.FC = () => {
           <div className="section-line"></div>
 
           <div className="grid fade-up">
-            
             {listaProductos.map((producto) => (
-           
-            <article className="card" key={producto.id}>
-              <div className="card-image">
-                <img src={producto.imagen} alt={producto.nombre} loading="lazy" />
-              </div>
-              <div className="card-body">
-                <h3>{producto.nombre}</h3>
-                <p>{producto.descripcion}</p>
-                <p className="price">{producto.precio.toFixed(2)} €</p>
-                <button className="btn add-cart"
-                  onClick={() => addToCart(producto)}
-                >Añadir al carrito</button>
-              </div>
-            </article>
+              <article className="card" key={producto.id}>
+                <div className="card-image">
+                  <img src={producto.imagen} alt={producto.nombre} loading="lazy" />
+                </div>
+
+                <div className="card-body">
+                  <h3>{producto.nombre}</h3>
+                  <p>{producto.descripcion}</p>
+                  <p className="price">{producto.precio.toFixed(2)} €</p>
+
+                  <button
+                    className="btn add-cart"
+                    onClick={() => addToCart(producto)}
+                  >
+                    Añadir al carrito
+                  </button>
+                </div>
+              </article>
             ))}
-            
           </div>
         </section>
       </main>
