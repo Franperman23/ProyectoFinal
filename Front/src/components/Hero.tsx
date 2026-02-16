@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import { Link } from "react-router-dom";
 
 interface HeroProps {
   title?: string;
@@ -49,7 +50,7 @@ const Hero: React.FC<HeroProps> = ({
         <p className="hero-text">{text}</p>
 
         {/* BOTÓN FIJO PARA TODAS LAS PÁGINAS */}
-        <a href="/descubrir-productos" className="btn">Descubrir productos</a>
+        <Link to="/descubrir-productos" className="btn">Descubrir productos</Link>
       </div>
     </section>
   );
