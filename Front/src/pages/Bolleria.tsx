@@ -1,11 +1,33 @@
-import React, { useContext } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import Navbar from "../components/Navbar";
 import Footer from "../components/Footer";
 import Hero from "../components/Hero";
 import { CartContext } from "../context/CartContext";
+import type { ListarProductoDTO } from "../types/ListarProductoDTO";
 
 const Bolleria: React.FC = () => {
   const { addToCart } = useContext(CartContext);
+  const [productos, setProductos] = useState<ListarProductoDTO[]>([]);
+
+  async function fetchProductos() {
+    try {
+      const response = await fetch("http://localhost:8080/api/productos");
+      if (!response.ok) throw new Error("Error al cargar productos");
+
+      const data: ListarProductoDTO[] = await response.json();
+
+      // Filtrar solo bollería
+      const filtrados = data.filter((p) => p.tipo === "Bolleria");
+
+      setProductos(filtrados);
+    } catch (error) {
+      console.error("Error:", error);
+    }
+  }
+
+  useEffect(() => {
+    fetchProductos();
+  }, []);
 
   return (
     <>
@@ -27,215 +49,36 @@ const Bolleria: React.FC = () => {
           <div className="section-line"></div>
 
           <div className="grid fade-up">
+            {productos.length === 0 && (
+              <p style={{ textAlign: "center", width: "100%" }}>
+                No hay productos de bollería disponibles.
+              </p>
+            )}
 
-            {/* 1 */}
-            <article className="card">
-              <div className="card-image">
-                <img src="img bolleria/card1.png" alt="Croissant artesano" loading="lazy" />
-              </div>
-              <div className="card-body">
-                <h3>Croissant artesano</h3>
-                <p>Hojaldre crujiente y mantequilla de primera calidad.</p>
-                <p className="price">1.50 €</p>
+            {productos.map((producto) => (
+              <article className="card" key={producto.id}>
+                <div className="card-image">
+                  <img
+                    src={producto.imagen}
+                    alt={producto.nombre}
+                    loading="lazy"
+                  />
+                </div>
 
-                <button
-                  className="btn add-cart"
-                  onClick={() =>
-                    addToCart({
-                      id: 101,
-                      nombre: "Croissant artesano",
-                      precio: 1.5,
-                      imagen: "img bolleria/card1.png",
-                    })
-                  }
-                >
-                  Añadir al carrito
-                </button>
-              </div>
-            </article>
+                <div className="card-body">
+                  <h3>{producto.nombre}</h3>
+                  <p>{producto.descripcion}</p>
+                  <p className="price">{producto.precio.toFixed(2)} €</p>
 
-            {/* 2 */}
-            <article className="card">
-              <div className="card-image">
-                <img src="img bolleria/card2.png" alt="Napolitana de chocolate" loading="lazy" />
-              </div>
-              <div className="card-body">
-                <h3>Napolitana de chocolate</h3>
-                <p>Rellena de chocolate fundido y hojaldre dorado.</p>
-                <p className="price">1.80 €</p>
-
-                <button
-                  className="btn add-cart"
-                  onClick={() =>
-                    addToCart({
-                      id: 102,
-                      nombre: "Napolitana de chocolate",
-                      precio: 1.8,
-                      imagen: "img bolleria/card2.png",
-                    })
-                  }
-                >
-                  Añadir al carrito
-                </button>
-              </div>
-            </article>
-
-            {/* 3 */}
-            <article className="card">
-              <div className="card-image">
-                <img src="img bolleria/card3.png" alt="Ensaimada" loading="lazy" />
-              </div>
-              <div className="card-body">
-                <h3>Ensaimada</h3>
-                <p>Tierna, esponjosa y con azúcar glas por encima.</p>
-                <p className="price">2.00 €</p>
-
-                <button
-                  className="btn add-cart"
-                  onClick={() =>
-                    addToCart({
-                      id: 103,
-                      nombre: "Ensaimada",
-                      precio: 2.0,
-                      imagen: "img bolleria/card3.png",
-                    })
-                  }
-                >
-                  Añadir al carrito
-                </button>
-              </div>
-            </article>
-
-            {/* 4 */}
-            <article className="card">
-              <div className="card-image">
-                <img src="img bolleria/card4.png" alt="Caracola de pasas" loading="lazy" />
-              </div>
-              <div className="card-body">
-                <h3>Caracola de pasas</h3>
-                <p>Hojaldre suave con crema pastelera y pasas.</p>
-                <p className="price">1.70 €</p>
-
-                <button
-                  className="btn add-cart"
-                  onClick={() =>
-                    addToCart({
-                      id: 104,
-                      nombre: "Caracola de pasas",
-                      precio: 1.7,
-                      imagen: "img bolleria/card4.png",
-                    })
-                  }
-                >
-                  Añadir al carrito
-                </button>
-              </div>
-            </article>
-
-            {/* 5 */}
-            <article className="card">
-              <div className="card-image">
-                <img src="img bolleria/card5.png" alt="Caña de crema" loading="lazy" />
-              </div>
-              <div className="card-body">
-                <h3>Caña de crema</h3>
-                <p>Rellena de crema suave y cubierta de azúcar.</p>
-                <p className="price">1.60 €</p>
-
-                <button
-                  className="btn add-cart"
-                  onClick={() =>
-                    addToCart({
-                      id: 105,
-                      nombre: "Caña de crema",
-                      precio: 1.6,
-                      imagen: "img bolleria/card5.png",
-                    })
-                  }
-                >
-                  Añadir al carrito
-                </button>
-              </div>
-            </article>
-
-            {/* 6 */}
-            <article className="card">
-              <div className="card-image">
-                <img src="img bolleria/card6.png" alt="Croissant de chocolate" loading="lazy" />
-              </div>
-              <div className="card-body">
-                <h3>Croissant de chocolate</h3>
-                <p>Perfecto para los amantes del cacao.</p>
-                <p className="price">1.90 €</p>
-
-                <button
-                  className="btn add-cart"
-                  onClick={() =>
-                    addToCart({
-                      id: 106,
-                      nombre: "Croissant de chocolate",
-                      precio: 1.9,
-                      imagen: "img bolleria/card6.png",
-                    })
-                  }
-                >
-                  Añadir al carrito
-                </button>
-              </div>
-            </article>
-
-            {/* 7 */}
-            <article className="card">
-              <div className="card-image">
-                <img src="img bolleria/card7.png" alt="Berlinas rellenas" loading="lazy" />
-              </div>
-              <div className="card-body">
-                <h3>Berlinas rellenas</h3>
-                <p>Suaves, esponjosas y con un corazón de crema o chocolate.</p>
-                <p className="price">2.20 €</p>
-
-                <button
-                  className="btn add-cart"
-                  onClick={() =>
-                    addToCart({
-                      id: 107,
-                      nombre: "Berlinas rellenas",
-                      precio: 2.2,
-                      imagen: "img bolleria/card7.png",
-                    })
-                  }
-                >
-                  Añadir al carrito
-                </button>
-              </div>
-            </article>
-
-            {/* 8 */}
-            <article className="card">
-              <div className="card-image">
-                <img src="img bolleria/card8.png" alt="Hojaldre de manzana" loading="lazy" />
-              </div>
-              <div className="card-body">
-                <h3>Hojaldre de manzana</h3>
-                <p>Láminas de hojaldre dorado con manzana caramelizada.</p>
-                <p className="price">2.10 €</p>
-
-                <button
-                  className="btn add-cart"
-                  onClick={() =>
-                    addToCart({
-                      id: 108,
-                      nombre: "Hojaldre de manzana",
-                      precio: 2.1,
-                      imagen: "img bolleria/card8.png",
-                    })
-                  }
-                >
-                  Añadir al carrito
-                </button>
-              </div>
-            </article>
-
+                  <button
+                    className="btn add-cart"
+                    onClick={() => addToCart(producto)}
+                  >
+                    Añadir al carrito
+                  </button>
+                </div>
+              </article>
+            ))}
           </div>
         </section>
       </main>
