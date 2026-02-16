@@ -1,89 +1,54 @@
 package com.example.demo.model;
 
 import jakarta.persistence.*;
-import java.time.LocalDateTime;
-import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 @Table(name = "PEDIDO")
+@JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
 public class Pedido {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "ID_PEDIDO")
     private Integer id;
 
-    @Column(name = "FECHA_PEDIDO", nullable = false)
-    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss") 
-    private LocalDateTime fechaPedido;
+    private String fecha;
+    private String recoger;
+    private Double total;
 
-    @Column(name = "FECHA_RECOGIDA", nullable = false)
-    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
-    private LocalDateTime fechaRecogida;
+    private String estado = "Pendiente";
 
-    @Column(name = "ESTADO", length = 15, nullable = false)
-    private String estado;
+    @ManyToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name = "usuario_id")
+    @JsonIgnoreProperties({"password", "email"})
+    private Usuario usuario;
 
-    @Column(name = "PRECIO_TOTAL", nullable = false)
-    private Double precioTotal;
+    @OneToMany(mappedBy = "pedido", fetch = FetchType.EAGER)
+    @JsonIgnoreProperties({"pedido"})
+    private List<PedidoProducto> productos = new ArrayList<>();
 
-    @Column(name = "OBSERVACIONES", length = 250)
-    private String observaciones;
+    public Pedido() {}
 
-    @ManyToOne
-    @JoinColumn(name = "CLIENTE_ID_CLIENTE", nullable = false)
-    private Cliente cliente;
+    public Integer getId() { return id; }
+    public void setId(Integer id) { this.id = id; }
 
-    public Pedido() {
-        this.fechaPedido = LocalDateTime.now();
-    }
+    public String getFecha() { return fecha; }
+    public void setFecha(String fecha) { this.fecha = fecha; }
 
-    public Integer getId() {
-    	return id; 
-    }
-    public void setId(Integer id) {
-    	this.id = id; 
-    }
+    public String getRecoger() { return recoger; }
+    public void setRecoger(String recoger) { this.recoger = recoger; }
 
-    public LocalDateTime getFechaPedido() {
-    	return fechaPedido; 
-    }
-    public void setFechaPedido(LocalDateTime fechaPedido) {
-    	this.fechaPedido = fechaPedido; 
-    }
+    public Double getTotal() { return total; }
+    public void setTotal(Double total) { this.total = total; }
 
-    public LocalDateTime getFechaRecogida() {
-    	return fechaRecogida; 
-    }
-    public void setFechaRecogida(LocalDateTime fechaRecogida) {
-    	this.fechaRecogida = fechaRecogida; 
-    }
+    public String getEstado() { return estado; }
+    public void setEstado(String estado) { this.estado = estado; }
 
-    public String getEstado() {
-    	return estado; 
-    }
-    public void setEstado(String estado) {
-    	this.estado = estado; 
-    }
+    public Usuario getUsuario() { return usuario; }
+    public void setUsuario(Usuario usuario) { this.usuario = usuario; }
 
-    public Double getPrecioTotal() {
-    	return precioTotal; 
-    }
-    public void setPrecioTotal(Double precioTotal) {
-    	this.precioTotal = precioTotal; 
-    }
-
-    public String getObservaciones() {
-    	return observaciones; 
-    }
-    public void setObservaciones(String observaciones) {
-    	this.observaciones = observaciones;
-    }
-
-    public Cliente getCliente() {
-    	return cliente; 
-    }
-    public void setCliente(Cliente cliente) {
-    	this.cliente = cliente; 
-    }
+    public List<PedidoProducto> getProductos() { return productos; }
+    public void setProductos(List<PedidoProducto> productos) { this.productos = productos; }
 }

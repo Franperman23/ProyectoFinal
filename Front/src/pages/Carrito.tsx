@@ -1,25 +1,19 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useContext } from "react";
 import Navbar from "../components/Navbar";
 import Footer from "../components/Footer";
+import { AuthContext } from "../context/AuthContext";
 
 interface ItemCarrito {
-  id: number;
+  productoId: number;
   nombre: string;
   imagen: string;
   precio: number;
   cantidad: number;
 }
 
-interface Pedido {
-  id: number;
-  fecha: string;
-  recoger: string;
-  productos: ItemCarrito[];
-  total: number;
-}
-
 const Carrito: React.FC = () => {
   const [carrito, setCarrito] = useState<ItemCarrito[]>([]);
+  const { usuario } = useContext(AuthContext);
 
   useEffect(() => {
     const data = localStorage.getItem("carrito");
@@ -27,7 +21,7 @@ const Carrito: React.FC = () => {
       const parsed = JSON.parse(data);
 
       const saneado: ItemCarrito[] = parsed.map((item: any) => ({
-        id: Number(item.id),
+        productoId: Number(item.productoId ?? item.id), // ← ACEPTA AMBOS FORMATOS
         nombre: item.nombre,
         imagen: item.imagen,
         precio: Number(item.precio) || 0,
@@ -43,25 +37,31 @@ const Carrito: React.FC = () => {
     localStorage.setItem("carrito", JSON.stringify(items));
   };
 
-  const aumentar = (id: number) => {
+  const aumentar = (productoId: number) => {
     const actualizado = carrito.map((item) =>
-      item.id === id ? { ...item, cantidad: item.cantidad + 1 } : item
+      item.productoId === productoId
+        ? { ...item, cantidad: item.cantidad + 1 }
+        : item
     );
     guardarCarrito(actualizado);
   };
 
-  const disminuir = (id: number) => {
+  const disminuir = (productoId: number) => {
     const actualizado = carrito
       .map((item) =>
-        item.id === id ? { ...item, cantidad: item.cantidad - 1 } : item
+        item.productoId === productoId
+          ? { ...item, cantidad: item.cantidad - 1 }
+          : item
       )
       .filter((item) => item.cantidad > 0);
 
     guardarCarrito(actualizado);
   };
 
-  const eliminar = (id: number) => {
-    const actualizado = carrito.filter((item) => item.id !== id);
+  const eliminar = (productoId: number) => {
+    const actualizado = carrito.filter(
+      (item) => item.productoId !== productoId
+    );
     guardarCarrito(actualizado);
   };
 
@@ -74,32 +74,47 @@ const Carrito: React.FC = () => {
     0
   );
 
-  const finalizarPedido = () => {
+  const finalizarPedido = async () => {
+    if (!usuario) {
+      alert("Debes iniciar sesión para realizar un pedido.");
+      window.location.href = "/login";
+      return;
+    }
+
     if (carrito.length === 0) {
       alert("Tu carrito está vacío.");
       return;
     }
 
-    const pedidosGuardados: Pedido[] = JSON.parse(
-      localStorage.getItem("pedidos") || "[]"
-    );
-
     const hoy = new Date();
     const manana = new Date(hoy.getTime() + 24 * 60 * 60 * 1000);
 
-    const nuevoPedido: Pedido = {
-      id: Date.now(),
+    const pedido = {
       fecha: hoy.toLocaleDateString(),
       recoger: manana.toLocaleDateString(),
-      productos: carrito,
       total,
+      usuario: { id: usuario.id },
+      productos: carrito.map((p) => ({
+        productoId: p.productoId,
+        nombre: p.nombre,
+        imagen: p.imagen,
+        precio: p.precio,
+        cantidad: p.cantidad,
+      })),
     };
 
-    pedidosGuardados.push(nuevoPedido);
-    localStorage.setItem("pedidos", JSON.stringify(pedidosGuardados));
+    const res = await fetch("http://localhost:8080/api/pedidos", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(pedido),
+    });
 
-    alert("¡Pedido realizado! Podrás recogerlo mañana de forma física en la Pastelería.");
+    if (!res.ok) {
+      alert("Error al realizar el pedido");
+      return;
+    }
 
+    alert("¡Pedido realizado correctamente!");
     vaciar();
   };
 
@@ -121,7 +136,7 @@ const Carrito: React.FC = () => {
           <div className="carrito-layout">
             <div className="carrito-lista">
               {carrito.map((item) => (
-                <article className="carrito-item" key={item.id}>
+                <article className="carrito-item" key={item.productoId}>
                   <img src={item.imagen} alt={item.nombre} />
 
                   <div className="info">
@@ -135,14 +150,18 @@ const Carrito: React.FC = () => {
                     </p>
 
                     <div className="cantidad">
-                      <button onClick={() => disminuir(item.id)}>-</button>
+                      <button onClick={() => disminuir(item.productoId)}>
+                        -
+                      </button>
                       <span>{item.cantidad}</span>
-                      <button onClick={() => aumentar(item.id)}>+</button>
+                      <button onClick={() => aumentar(item.productoId)}>
+                        +
+                      </button>
                     </div>
 
                     <button
                       className="btn eliminar"
-                      onClick={() => eliminar(item.id)}
+                      onClick={() => eliminar(item.productoId)}
                     >
                       Eliminar
                     </button>
@@ -162,8 +181,18 @@ const Carrito: React.FC = () => {
               <button className="btn vaciar" onClick={vaciar}>
                 Vaciar carrito
               </button>
-              <button className="btn finalizar" onClick={finalizarPedido}>
-                Finalizar pedido
+
+              <button
+                className="btn finalizar"
+                onClick={() => {
+                  if (!usuario) {
+                    window.location.href = "/login";
+                    return;
+                  }
+                  finalizarPedido();
+                }}
+              >
+                {usuario ? "Finalizar pedido" : "Inicia sesión para comprar"}
               </button>
             </aside>
           </div>

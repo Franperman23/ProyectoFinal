@@ -1,66 +1,40 @@
 import React, { useEffect, useState } from "react";
 import EmpleadoLayout from "../../components/empleados/EmpleadoLayout";
 
-interface ItemCarrito {
-  id: number;
-  nombre: string;
-  imagen: string;
-  precio: number;
-  cantidad: number;
-}
-
 interface Pedido {
   id: number;
   fecha: string;
   recoger: string;
-  productos: ItemCarrito[];
   total: number;
-  estado: "Pendiente" | "Entregado";
+  usuario: { nombre: string };
+  estado: string;
 }
 
 const Pedidos: React.FC = () => {
   const [pedidos, setPedidos] = useState<Pedido[]>([]);
 
-  // Cargar pedidos al iniciar
+  const cargarPedidos = () => {
+    fetch("http://localhost:8080/api/pedidos")
+      .then((res) => res.json())
+      .then((data) => setPedidos(data));
+  };
+
   useEffect(() => {
-    const data = localStorage.getItem("pedidos");
-    if (data) {
-      const parsed = JSON.parse(data);
-
-      // Normalizamos el estado para evitar errores de TypeScript
-      const saneado: Pedido[] = parsed.map((p: any) => ({
-        ...p,
-        estado:
-          p.estado === "Pendiente" || p.estado === "Entregado"
-            ? p.estado
-            : "Pendiente",
-      }));
-
-      setPedidos(saneado);
-    }
+    cargarPedidos();
   }, []);
 
-  // Guardar pedidos en localStorage
-  const guardarPedidos = (lista: Pedido[]) => {
-    setPedidos(lista);
-    localStorage.setItem("pedidos", JSON.stringify(lista));
-  };
-
-  // Marcar pedido como entregado
   const marcarEntregado = (id: number) => {
-    const actualizado: Pedido[] = pedidos.map((p) =>
-      p.id === id ? { ...p, estado: "Entregado" } : p
-    );
-
-    guardarPedidos(actualizado);
+    fetch(`http://localhost:8080/api/pedidos/${id}/entregado`, {
+      method: "PUT",
+    }).then(() => cargarPedidos());
   };
 
-  // Eliminar pedido
   const eliminarPedido = (id: number) => {
     if (!confirm("¿Seguro que quieres eliminar este pedido?")) return;
 
-    const actualizado = pedidos.filter((p) => p.id !== id);
-    guardarPedidos(actualizado);
+    fetch(`http://localhost:8080/api/pedidos/${id}`, {
+      method: "DELETE",
+    }).then(() => cargarPedidos());
   };
 
   return (
@@ -74,7 +48,7 @@ const Pedidos: React.FC = () => {
           <thead>
             <tr>
               <th>ID</th>
-              <th>Fecha pedido</th>
+              <th>Cliente</th>
               <th>Fecha recogida</th>
               <th>Total</th>
               <th>Estado</th>
@@ -86,22 +60,17 @@ const Pedidos: React.FC = () => {
             {pedidos.map((p) => (
               <tr key={p.id}>
                 <td>{p.id}</td>
-                <td>{p.fecha}</td>
+                <td>{p.usuario?.nombre}</td>
                 <td>{p.recoger}</td>
-                <td>{p.total.toFixed(2)} €</td>
+                <td>{p.total} €</td>
                 <td>{p.estado}</td>
                 <td style={{ display: "flex", gap: "10px" }}>
                   {p.estado === "Pendiente" ? (
-                    <button
-                      className="btn small"
-                      onClick={() => marcarEntregado(p.id)}
-                    >
-                      Marcar como entregado
+                    <button className="btn small" onClick={() => marcarEntregado(p.id)}>
+                      Entregado
                     </button>
                   ) : (
-                    <span style={{ color: "green", fontWeight: 600 }}>
-                      ✔ Entregado
-                    </span>
+                    <span style={{ color: "green", fontWeight: 600 }}>✔ Entregado</span>
                   )}
 
                   <button
