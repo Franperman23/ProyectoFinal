@@ -4,7 +4,7 @@ export type ListarProductoDTO = {
   descripcion: string;
   precio: number;
   stock: number;
-  receta: string;
+  receta?: string;
   tipo: string;
   imagen: string;
 };
