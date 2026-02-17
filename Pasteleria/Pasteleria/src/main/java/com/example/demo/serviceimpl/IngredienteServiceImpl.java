@@ -3,39 +3,29 @@ package com.example.demo.serviceimpl;
 import java.util.List;
 import org.springframework.stereotype.Service;
 import com.example.demo.model.Ingrediente;
-import com.example.demo.model.Proveedor;
 import com.example.demo.dto.IngredienteDTO; 
-import com.example.demo.exception.ResourceNotFoundException;
 import com.example.demo.repository.IngredienteRepository;
-import com.example.demo.repository.ProveedorRepository;
 import com.example.demo.service.IngredienteService;
 
 @Service
 public class IngredienteServiceImpl implements IngredienteService {
 
     private final IngredienteRepository ingredienteRepository;
-    private final ProveedorRepository proveedorRepository;
 
-    public IngredienteServiceImpl(
-            IngredienteRepository ingredienteRepository,
-            ProveedorRepository proveedorRepository) {
+    public IngredienteServiceImpl(IngredienteRepository ingredienteRepository) {
         this.ingredienteRepository = ingredienteRepository;
-        this.proveedorRepository = proveedorRepository;
     }
 
     @Override
     public Ingrediente guardarIngrediente(IngredienteDTO dto) {
-
-        Proveedor proveedor = proveedorRepository.findById(dto.getProveedorId())
-                .orElseThrow(() -> new ResourceNotFoundException("El proveedor con ID " + dto.getProveedorId() + " no existe."));
-
         Ingrediente ingrediente = new Ingrediente();
         ingrediente.setNombre(dto.getNombre());
         ingrediente.setCantidad(dto.getCantidad());
-        ingrediente.setProveedor(proveedor);
-
+        // Nos aseguramos de que siempre haya un valor para evitar el error de MySQL
+        ingrediente.setProveedor(dto.getProveedor() != null ? dto.getProveedor() : "Pendiente");
         return ingredienteRepository.save(ingrediente);
     }
+
     @Override
     public List<Ingrediente> listarIngredientes() {
         return ingredienteRepository.findAll();
@@ -48,16 +38,12 @@ public class IngredienteServiceImpl implements IngredienteService {
 
     @Override
     public Ingrediente actualizarIngrediente(Integer id, Ingrediente ingrediente) {
-        Ingrediente existente = ingredienteRepository.findById(id).orElse(null);
-
-        if (existente != null) {
+        return ingredienteRepository.findById(id).map(existente -> {
             existente.setNombre(ingrediente.getNombre());
             existente.setCantidad(ingrediente.getCantidad());
             existente.setProveedor(ingrediente.getProveedor());
             return ingredienteRepository.save(existente);
-        }
-
-        return null;
+        }).orElse(null);
     }
 
     @Override
