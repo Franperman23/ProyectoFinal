@@ -1,36 +1,16 @@
-import React from "react";
-import AdminLayout from "../../components/admin/AdminLayout";
+import React from 'react';
+// Ajustado: sube a src, entra en components/admin
+import AdminLayout from '../../components/admin/AdminLayout'; 
+import RegistroHorarioGlobal from '../../components/admin/RegistroHorarioGlobal';
 
-const PedidosAdmin: React.FC = () => {
-  return (
-    <AdminLayout>
-      <h2>Pedidos</h2>
-
-      <table className="tabla">
-        <thead>
-          <tr>
-            <th>ID</th>
-            <th>Cliente</th>
-            <th>Fecha entrega</th>
-            <th>Estado</th>
-            <th>Acción</th>
-          </tr>
-        </thead>
-
-        <tbody>
-          <tr>
-            <td>1</td>
-            <td>María López</td>
-            <td>2026-02-12</td>
-            <td>Pendiente</td>
-            <td>
-              <button className="btn small">Marcar como entregado</button>
-            </td>
-          </tr>
-        </tbody>
-      </table>
-    </AdminLayout>
-  );
+const RegistroGlobal: React.FC = () => {
+    return (
+        <AdminLayout>
+            <div className="container-fluid py-2">
+                <RegistroHorarioGlobal />
+            </div>
+        </AdminLayout>
+    );
 };
 
-export default PedidosAdmin;
+export default RegistroGlobal;
