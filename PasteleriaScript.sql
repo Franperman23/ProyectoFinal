@@ -101,4 +101,16 @@ CREATE TABLE BENEFICIOS (
     CONSTRAINT PK_BENEFICIOS PRIMARY KEY (ID_BENEFICIOS)
 );
 
+-- ============================
+-- TABLA MENSAJE
+-- ============================
+CREATE TABLE mensaje (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    nombre VARCHAR(255),
+    email VARCHAR(255),
+    telefono VARCHAR(255),
+    mensaje TEXT,
+    fecha VARCHAR(255),
+    leido BOOLEAN
+);
 ALTER TABLE REGISTRO MODIFY HORA_SALIDA TIME NULL;
