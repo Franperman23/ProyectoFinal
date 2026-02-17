@@ -31,7 +31,6 @@ public class RegistroServiceImpl implements RegistroService {
         Usuario usuario = usuarioRepo.findById(usuarioId)
                 .orElseThrow(() -> new RuntimeException("Usuario no encontrado"));
 
-        // Comprobación de seguridad: evitar múltiples entradas abiertas
         List<Registro> hoy = registroRepo.findByUsuarioId(usuarioId);
         boolean yaFichado = hoy.stream().anyMatch(r -> r.getHoraSalida() == null);
         if (yaFichado) throw new RuntimeException("Ya tienes una entrada activa");
@@ -40,8 +39,6 @@ public class RegistroServiceImpl implements RegistroService {
         registro.setUsuario(usuario);
         registro.setFecha(LocalDate.now());
         registro.setHoraEntrada(LocalTime.now());
-        
-        // Inicializamos con 0 para que la columna no esté nula si la BD lo requiere
         registro.setHorasTrabajadas(BigDecimal.ZERO.setScale(2, RoundingMode.HALF_UP)); 
 
         return registroRepo.save(registro);
@@ -61,7 +58,6 @@ public class RegistroServiceImpl implements RegistroService {
 
         if (registro.getHoraEntrada() != null) {
             Duration duracion = Duration.between(registro.getHoraEntrada(), salida);
-            // Convertimos minutos a formato decimal (ej: 30 min = 0.50 horas)
             double horasDecimas = duracion.toMinutes() / 60.0;
             registro.setHorasTrabajadas(new BigDecimal(horasDecimas).setScale(2, RoundingMode.HALF_UP));
         }
@@ -76,6 +72,7 @@ public class RegistroServiceImpl implements RegistroService {
 
     @Override
     public List<Registro> obtenerTodos() {
-        return registroRepo.findAll();
+        // Actualizado para que el Admin vea lo más nuevo arriba
+        return registroRepo.findAllByOrderByFechaDesc();
     }
 }
