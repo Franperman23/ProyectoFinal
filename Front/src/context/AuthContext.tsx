@@ -59,9 +59,15 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
     setToken(data.token);
     setUsuario(user);
 
+    // Guardamos la sesión
     localStorage.setItem("token", data.token);
     localStorage.setItem("usuario", JSON.stringify(user));
+    
+    // GUARDADO CLAVE PARA REGISTRO DE HORAS:
+    // Guardamos el ID por separado para facilitar el acceso desde otros componentes
+    localStorage.setItem("usuarioId", user.id.toString());
 
+    // Redirecciones según rol
     if (user.rol === "ADMIN") {
       window.location.href = "/admin";
     } else if (user.rol === "EMPLEADO") {
@@ -87,8 +93,10 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
   const logout = () => {
     setToken(null);
     setUsuario(null);
+    // Limpiamos todo el rastro en localStorage
     localStorage.removeItem("token");
     localStorage.removeItem("usuario");
+    localStorage.removeItem("usuarioId"); 
     window.location.href = "/";
   };
 

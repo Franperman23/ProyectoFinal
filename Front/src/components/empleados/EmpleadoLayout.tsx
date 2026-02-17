@@ -1,7 +1,12 @@
-import React from "react";
+import React, { useContext } from "react";
 import "../../styles/empleados.css";
+// Importamos el contexto para acceder a la función logout
+import { AuthContext } from "../../context/AuthContext";
 
 export default function EmpleadoLayout({ children }: { children: React.ReactNode }) {
+  // Extraemos la función logout del contexto
+  const { logout } = useContext(AuthContext);
+
   return (
     <div className="admin-layout">
       <aside className="admin-sidebar">
@@ -19,7 +24,10 @@ export default function EmpleadoLayout({ children }: { children: React.ReactNode
       <div className="admin-main">
         <header className="admin-navbar">
           <span>Panel del empleado</span>
-          <button className="btn small">Cerrar sesión</button>
+          {/* Añadimos el evento onClick para cerrar sesión */}
+          <button className="btn small" onClick={logout}>
+            Cerrar sesión
+          </button>
         </header>
 
         <div className="admin-content">{children}</div>
