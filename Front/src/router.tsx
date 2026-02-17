@@ -10,7 +10,7 @@ import SobreNosotros from "./pages/SobreNosotros";
 import Bolleria from "./pages/Bolleria";
 import TartasPersonalizadas from "./pages/TartasPersonalizadas";
 import PasteleriaEventos from "./pages/PasteleriaEventos";
-import DescubrirProductos from "./pages/DescubrirProductos";  
+import DescubrirProductos from "./pages/DescubrirProductos";
 import Carrito from "./pages/Carrito";
 import Login from "./pages/Login";
 import Registro from "./pages/Registro";
@@ -25,6 +25,7 @@ import IngredientesCrear from "./pages/empleados/IngredientesCrear";
 import IngredientesEditar from "./pages/empleados/IngredientesEditar";
 import Pedidos from "./pages/empleados/Pedidos";
 import RegistroHoras from "./pages/empleados/RegistroHoras";
+import Mensajes from "./pages/empleados/Mensajes"; 
 
 // ADMIN
 import AdminDashboard from "./pages/admin/AdminDashboard";
@@ -120,6 +121,15 @@ const router = createBrowserRouter([
     element: (
       <ProtectedRoute role="EMPLEADO">
         <RegistroHoras />
+      </ProtectedRoute>
+    ),
+  },
+
+  {
+    path: "/empleados/mensajes",
+    element: (
+      <ProtectedRoute role="EMPLEADO">
+        <Mensajes />
       </ProtectedRoute>
     ),
   },

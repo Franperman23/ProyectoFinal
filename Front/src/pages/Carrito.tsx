@@ -21,7 +21,7 @@ const Carrito: React.FC = () => {
       const parsed = JSON.parse(data);
 
       const saneado: ItemCarrito[] = parsed.map((item: any) => ({
-        productoId: Number(item.productoId ?? item.id), // ← ACEPTA AMBOS FORMATOS
+        productoId: Number(item.id),
         nombre: item.nombre,
         imagen: item.imagen,
         precio: Number(item.precio) || 0,
@@ -103,18 +103,30 @@ const Carrito: React.FC = () => {
       })),
     };
 
-    const res = await fetch("http://localhost:8080/api/pedidos", {
+    // LLAMADA AL BACKEND QUE DEVUELVE EL PDF
+    const res = await fetch("http://localhost:8080/api/pedidos/pdf", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify(pedido),
     });
 
     if (!res.ok) {
-      alert("Error al realizar el pedido");
+      alert("Error al generar el PDF del pedido");
       return;
     }
 
-    alert("¡Pedido realizado correctamente!");
+    // DESCARGA AUTOMÁTICA DEL PDF
+    const blob = await res.blob();
+    const url = window.URL.createObjectURL(blob);
+
+    const a = document.createElement("a");
+    a.href = url;
+    a.download = "pedido.pdf";
+    a.click();
+
+    window.URL.revokeObjectURL(url);
+
+    alert("¡Pedido realizado y PDF descargado!");
     vaciar();
   };
 

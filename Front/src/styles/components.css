@@ -290,9 +290,7 @@
   z-index: 50;
 }
 
-/* ============================
-   CARRITO — ESTILOS MEJORADOS
-   ============================ */
+/* CARRITO */
 
 .carrito-container {
   max-width: 1200px;
@@ -401,4 +399,67 @@
   width: 100%;
   text-align: center;
   border-radius: 10px;
+}
+
+/* ============================
+   FORMULARIO DE CONTACTO
+   ============================ */
+
+.contacto-wrapper form {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  margin-top: 10px;
+}
+
+.contacto-wrapper label {
+  font-weight: 600;
+  color: #444;
+  margin-bottom: -4px;
+  font-size: 1rem;
+}
+
+.contacto-wrapper input,
+.contacto-wrapper textarea {
+  width: 100%;
+  padding: 12px 14px;
+  border-radius: 10px;
+  border: 1px solid #e0d6c8;
+  background: #fdfaf6;
+  font-size: 1rem;
+  color: #2b2b2b;
+  transition: border 0.2s, box-shadow 0.2s;
+}
+
+.contacto-wrapper input:focus,
+.contacto-wrapper textarea:focus {
+  border-color: var(--color-principal);
+  box-shadow: 0 0 0 3px rgba(184, 138, 99, 0.25);
+  outline: none;
+}
+
+.contacto-wrapper textarea {
+  resize: vertical;
+  min-height: 120px;
+}
+
+/* Botón original del frontend */
+.contacto-wrapper .btn {
+  display: inline-block;
+  padding: 12px 30px;
+  background: var(--color-principal);
+  color: #fff;
+  border-radius: 999px;
+  text-decoration: none;
+  font-weight: 600;
+  font-size: 1rem;
+  border: none;
+  cursor: pointer;
+  transition: 0.3s;
+  margin-top: 10px;
+}
+
+.contacto-wrapper .btn:hover {
+  background: #9c734f;
+  transform: translateY(-2px);
 }
