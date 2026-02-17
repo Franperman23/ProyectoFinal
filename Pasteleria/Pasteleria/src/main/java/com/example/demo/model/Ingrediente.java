@@ -17,52 +17,25 @@ public class Ingrediente {
     @Column(name = "CANTIDAD", nullable = false)
     private Integer cantidad;
 
-    @ManyToOne
-    @JoinColumn(
-        name = "PROVEEDOR_ID_PROVEEDOR",
-        nullable = false
-    )
-    private Proveedor proveedor;
+    // Ahora es un simple String, sin relaciones con otras tablas
+    @Column(name = "PROVEEDOR", nullable = false, length = 100)
+    private String proveedor; 
 
-    public Ingrediente() {
-    }
+    public Ingrediente() {}
 
-    public Ingrediente(Integer idIngrediente, String nombre, Integer cantidad, Proveedor proveedor) {
+    public Ingrediente(Integer idIngrediente, String nombre, Integer cantidad, String proveedor) {
         this.idIngrediente = idIngrediente;
         this.nombre = nombre;
         this.cantidad = cantidad;
         this.proveedor = proveedor;
     }
 
-    public Integer getIdIngrediente() {
-        return idIngrediente;
-    }
-
-    public void setIdIngrediente(Integer idIngrediente) {
-        this.idIngrediente = idIngrediente;
-    }
-
-    public String getNombre() {
-        return nombre;
-    }
-
-    public void setNombre(String nombre) {
-        this.nombre = nombre;
-    }
-
-    public Integer getCantidad() {
-        return cantidad;
-    }
-
-    public void setCantidad(Integer cantidad) {
-        this.cantidad = cantidad;
-    }
-
-    public Proveedor getProveedor() {
-        return proveedor;
-    }
-
-    public void setProveedor(Proveedor proveedor) {
-        this.proveedor = proveedor;
-    }
+    public Integer getIdIngrediente() { return idIngrediente; }
+    public void setIdIngrediente(Integer idIngrediente) { this.idIngrediente = idIngrediente; }
+    public String getNombre() { return nombre; }
+    public void setNombre(String nombre) { this.nombre = nombre; }
+    public Integer getCantidad() { return cantidad; }
+    public void setCantidad(Integer cantidad) { this.cantidad = cantidad; }
+    public String getProveedor() { return proveedor; }
+    public void setProveedor(String proveedor) { this.proveedor = proveedor; }
 }
