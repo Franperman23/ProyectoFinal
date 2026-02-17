@@ -33,6 +33,7 @@ import EmpleadosCrear from "./pages/admin/EmpleadosCrear";
 import EmpleadosEditar from "./pages/admin/EmpleadosEditar";
 import PedidosAdmin from "./pages/admin/PedidosAdmin";
 import Beneficios from "./pages/admin/Beneficios";
+import CrearBeneficios from "./pages/admin/CrearBeneficios"; // <--- NUEVO: Importar el formulario
 import RegistroGlobal from "./pages/admin/RegistroGlobal";
 
 const router = createBrowserRouter([
@@ -172,6 +173,16 @@ const router = createBrowserRouter([
       </ProtectedRoute>
     ),
   },
+  // --- NUEVA RUTA PARA CREAR BENEFICIOS ---
+  {
+    path: "/admin/beneficios/crear",
+    element: (
+      <ProtectedRoute role="ADMIN">
+        <CrearBeneficios />
+      </ProtectedRoute>
+    ),
+  },
+  // ----------------------------------------
   {
     path: "/admin/registro-global",
     element: (
