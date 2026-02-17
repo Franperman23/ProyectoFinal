@@ -94,3 +94,16 @@ CREATE TABLE PEDIDO_PRODUCTO (
     CONSTRAINT FK_PEDIDO_PRODUCTO_PEDIDO FOREIGN KEY (PEDIDO_ID) REFERENCES PEDIDO(ID)
 );
 ALTER TABLE REGISTRO MODIFY HORA_SALIDA TIME NULL;
+
+-- ============================
+-- TABLA MENSAJE
+-- ============================
+CREATE TABLE mensaje (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    nombre VARCHAR(255),
+    email VARCHAR(255),
+    telefono VARCHAR(255),
+    mensaje TEXT,
+    fecha VARCHAR(255),
+    leido BOOLEAN
+);
