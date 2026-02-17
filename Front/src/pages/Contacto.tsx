@@ -1,9 +1,39 @@
-import React from "react";
+import React, { useState } from "react";
 import Navbar from "../components/Navbar";
 import Footer from "../components/Footer";
 import Hero from "../components/Hero";
 
 const Contacto: React.FC = () => {
+  const [form, setForm] = useState({
+    nombre: "",
+    email: "",
+    telefono: "",
+    mensaje: "",
+  });
+
+  const handleChange = (
+    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
+  ) => {
+    setForm({ ...form, [e.target.name]: e.target.value });
+  };
+
+  const enviarFormulario = async (e: React.FormEvent) => {
+    e.preventDefault();
+
+    const res = await fetch("http://localhost:8080/api/mensajes", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(form),
+    });
+
+    if (res.ok) {
+      alert("Mensaje enviado correctamente. ¡Gracias por contactarnos!");
+      setForm({ nombre: "", email: "", telefono: "", mensaje: "" });
+    } else {
+      alert("Hubo un error al enviar el mensaje.");
+    }
+  };
+
   return (
     <>
       <Navbar />
@@ -18,7 +48,10 @@ const Contacto: React.FC = () => {
         <section className="contacto-wrapper" id="form-contacto">
           <div className="section-header">
             <h2>Envíanos un mensaje</h2>
-            <p>Cuéntanos qué necesitas y nos pondremos en contacto contigo lo antes posible.</p>
+            <p>
+              Cuéntanos qué necesitas y nos pondremos en contacto contigo lo
+              antes posible.
+            </p>
           </div>
 
           <div className="section-line"></div>
@@ -35,20 +68,15 @@ const Contacto: React.FC = () => {
             <div className="why-item" style={{ minHeight: "auto" }}>
               <h3>Formulario de contacto</h3>
 
-              <form action="#" method="POST">
+              <form onSubmit={enviarFormulario}>
                 <label htmlFor="nombre">Nombre</label>
                 <input
                   id="nombre"
                   type="text"
                   name="nombre"
+                  value={form.nombre}
+                  onChange={handleChange}
                   required
-                  style={{
-                    width: "100%",
-                    padding: "10px",
-                    marginBottom: "12px",
-                    borderRadius: "8px",
-                    border: "1px solid #ddd",
-                  }}
                 />
 
                 <label htmlFor="email">Email</label>
@@ -56,14 +84,9 @@ const Contacto: React.FC = () => {
                   id="email"
                   type="email"
                   name="email"
+                  value={form.email}
+                  onChange={handleChange}
                   required
-                  style={{
-                    width: "100%",
-                    padding: "10px",
-                    marginBottom: "12px",
-                    borderRadius: "8px",
-                    border: "1px solid #ddd",
-                  }}
                 />
 
                 <label htmlFor="telefono">Teléfono (opcional)</label>
@@ -71,13 +94,8 @@ const Contacto: React.FC = () => {
                   id="telefono"
                   type="tel"
                   name="telefono"
-                  style={{
-                    width: "100%",
-                    padding: "10px",
-                    marginBottom: "12px",
-                    borderRadius: "8px",
-                    border: "1px solid #ddd",
-                  }}
+                  value={form.telefono}
+                  onChange={handleChange}
                 />
 
                 <label htmlFor="mensaje">Mensaje</label>
@@ -85,14 +103,9 @@ const Contacto: React.FC = () => {
                   id="mensaje"
                   name="mensaje"
                   rows={5}
+                  value={form.mensaje}
+                  onChange={handleChange}
                   required
-                  style={{
-                    width: "100%",
-                    padding: "10px",
-                    marginBottom: "16px",
-                    borderRadius: "8px",
-                    border: "1px solid #ddd",
-                  }}
                 ></textarea>
 
                 <button type="submit" className="btn">
