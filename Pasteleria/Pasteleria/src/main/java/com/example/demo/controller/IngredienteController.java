@@ -15,36 +15,43 @@ import com.example.demo.dto.IngredienteDTO;
 import com.example.demo.model.Ingrediente;
 import com.example.demo.service.IngredienteService;
 
+/* CONTROLADOR DE INGREDIENTES */
 @RestController
 @RequestMapping("/api/ingredientes")
 public class IngredienteController {
 
+    /* INYECCIÓN DE SERVICIO */
     private final IngredienteService ingredienteService;
 
     public IngredienteController(IngredienteService ingredienteService) {
         this.ingredienteService = ingredienteService;
     }
 
+    /* CREAR INGREDIENTE */
     @PostMapping
     public Ingrediente crear(@RequestBody IngredienteDTO dto) {
         return ingredienteService.guardarIngrediente(dto);
     }
 
+    /* LISTAR INGREDIENTES */
     @GetMapping
     public List<Ingrediente> listar() {
         return ingredienteService.listarIngredientes();
     }
 
+    /* OBTENER INGREDIENTE POR ID */
     @GetMapping("/{id}")
     public Ingrediente obtener(@PathVariable Integer id) {
         return ingredienteService.obtenerIngredientePorId(id);
     }
 
+    /* ACTUALIZAR INGREDIENTE */
     @PutMapping("/{id}")
     public Ingrediente actualizar(@PathVariable Integer id, @RequestBody Ingrediente ingrediente) {
         return ingredienteService.actualizarIngrediente(id, ingrediente);
     }
 
+    /* ELIMINAR INGREDIENTE */
     @DeleteMapping("/{id}")
     public void eliminar(@PathVariable Integer id) {
         ingredienteService.eliminarIngrediente(id);

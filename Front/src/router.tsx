@@ -183,7 +183,6 @@ const router = createBrowserRouter([
       </ProtectedRoute>
     ),
   },
-  // --- NUEVA RUTA PARA CREAR BENEFICIOS ---
   {
     path: "/admin/beneficios/crear",
     element: (
@@ -192,7 +191,6 @@ const router = createBrowserRouter([
       </ProtectedRoute>
     ),
   },
-  // ----------------------------------------
   {
     path: "/admin/registro-global",
     element: (

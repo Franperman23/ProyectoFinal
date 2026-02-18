@@ -11,13 +11,15 @@ import com.example.demo.model.Producto;
 import com.example.demo.repository.ProductoRepository;
 import com.example.demo.service.ProductoService;
 
+/* Servicio que gestiona las operaciones relacionadas con productos */
 @Service
 public class ProductoServiceImpl implements ProductoService {
 
+    /* Repositorio para acceder a la tabla PRODUCTO */
     @Autowired
     private ProductoRepository productoRepository;
 
-    // ENTITY → DTO
+    /* Convierte una entidad Producto a un DTO */
     private ProductoDTO convertirADTO(Producto producto) {
         ProductoDTO dto = new ProductoDTO();
         dto.setId(producto.getId());
@@ -31,7 +33,7 @@ public class ProductoServiceImpl implements ProductoService {
         return dto;
     }
 
-    // DTO → ENTITY
+    /* Convierte un DTO a una entidad Producto */
     private Producto convertirAEntity(ProductoDTO dto) {
         Producto producto = new Producto();
         producto.setId(dto.getId());
@@ -45,6 +47,7 @@ public class ProductoServiceImpl implements ProductoService {
         return producto;
     }
 
+    /* Devuelve todos los productos convertidos a DTO */
     @Override
     public List<ProductoDTO> listarProductos() {
         return productoRepository.findAll()
@@ -53,6 +56,7 @@ public class ProductoServiceImpl implements ProductoService {
                 .collect(Collectors.toList());
     }
 
+    /* Guarda un producto y devuelve su DTO */
     @Override
     public ProductoDTO guardarProducto(ProductoDTO productoDTO) {
         Producto producto = convertirAEntity(productoDTO);
@@ -60,6 +64,7 @@ public class ProductoServiceImpl implements ProductoService {
         return convertirADTO(guardado);
     }
 
+    /* Elimina un producto por su ID */
     @Override
     public void eliminarProducto(Integer id) {
         productoRepository.deleteById(id);

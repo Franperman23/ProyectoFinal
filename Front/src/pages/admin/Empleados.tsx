@@ -2,6 +2,7 @@ import React, { useEffect, useState, useContext } from "react";
 import AdminLayout from "../../components/admin/AdminLayout";
 import { AuthContext } from "../../context/AuthContext";
 
+// Interfaz que define cómo es un empleado dentro de la aplicación.
 interface Empleado {
   id: number;
   nombre: string;
@@ -10,17 +11,25 @@ interface Empleado {
 }
 
 const Empleados: React.FC = () => {
+
+  // Obtengo el token del contexto para acceder a rutas protegidas.
   const { token } = useContext(AuthContext);
+
+  // Estado donde guardo la lista de empleados.
   const [empleados, setEmpleados] = useState<Empleado[]>([]);
+
+  // Estado para mostrar errores si el backend falla.
   const [error, setError] = useState<string | null>(null);
 
+  // useEffect que carga los empleados al montar el componente.
   useEffect(() => {
     fetch("http://localhost:8080/api/admin/usuarios", {
       headers: {
-        Authorization: `Bearer ${token}`,
+        Authorization: `Bearer ${token}`, // Token JWT
       },
     })
       .then(async (res) => {
+        // Si la respuesta no es OK, muestro error.
         if (!res.ok) {
           const text = await res.text();
           console.error("Error del backend:", text);
@@ -30,6 +39,7 @@ const Empleados: React.FC = () => {
         return res.json();
       })
       .then((data) => {
+        // Verifico que el backend devolvió un array.
         if (Array.isArray(data)) {
           setEmpleados(data);
         } else {
@@ -43,6 +53,7 @@ const Empleados: React.FC = () => {
       });
   }, [token]);
 
+  // FUNCIÓN PARA ELIMINAR UN EMPLEADO
   const eliminarEmpleado = async (id: number) => {
     if (!confirm("¿Seguro que quieres eliminar este empleado?")) return;
 
@@ -53,19 +64,24 @@ const Empleados: React.FC = () => {
       },
     });
 
+    // Actualizo la lista quitando el empleado eliminado.
     setEmpleados(empleados.filter((e) => e.id !== id));
   };
 
   return (
     <AdminLayout>
+      {/* Título principal */}
       <h2>Empleados</h2>
 
+      {/* Botón para crear un nuevo empleado */}
       <a href="/admin/empleados/crear" className="btn crear">
         Crear empleado
       </a>
 
+      {/* Mensaje de error si algo falla */}
       {error && <p style={{ color: "red" }}>{error}</p>}
 
+      {/* TABLA DE EMPLEADOS */}
       <table className="tabla">
         <thead>
           <tr>
@@ -83,12 +99,15 @@ const Empleados: React.FC = () => {
               <td>{emp.email}</td>
               <td>{emp.rol}</td>
               <td>
+                {/* Botón para editar */}
                 <a
                   href={`/admin/empleados/editar/${emp.id}`}
                   className="btn small"
                 >
                   Editar
                 </a>
+
+                {/* Botón para eliminar */}
                 <button
                   className="btn small danger"
                   onClick={() => eliminarEmpleado(emp.id)}

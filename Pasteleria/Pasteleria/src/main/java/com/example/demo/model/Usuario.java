@@ -31,7 +31,6 @@ public class Usuario {
         this.rol = rol;
     }
 
-    // GETTERS Y SETTERS
 
     public Integer getId() {
         return id;

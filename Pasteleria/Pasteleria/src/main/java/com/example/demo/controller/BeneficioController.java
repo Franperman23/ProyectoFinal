@@ -8,24 +8,29 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
+/* CONTROLADOR DE BENEFICIOS (ADMIN) */
 @RestController
 @RequestMapping("/api/admin/beneficios")
 @CrossOrigin(origins = "http://localhost:5173")
 public class BeneficioController {
 
+    /* INYECCIÓN DE SERVICIO */
     @Autowired
     private BeneficioService beneficioService;
 
+    /* LISTAR BENEFICIOS */
     @GetMapping
     public List<Beneficio> obtenerTodos() {
         return beneficioService.listarTodos();
     }
 
+    /* CREAR BENEFICIO */
     @PostMapping
     public ResponseEntity<Beneficio> crearBeneficio(@RequestBody Beneficio beneficio) {
         return ResponseEntity.ok(beneficioService.guardar(beneficio));
     }
 
+    /* ELIMINAR BENEFICIO */
     @DeleteMapping("/{id}")
     public ResponseEntity<Void> eliminarBeneficio(@PathVariable Integer id) {
         beneficioService.eliminar(id);

@@ -15,33 +15,39 @@ import org.springframework.web.bind.annotation.PathVariable;
 
 import java.util.List;
 
+/* CONTROLADOR ADMIN */
 @RestController
 @RequestMapping("/api/admin/usuarios")
 @CrossOrigin(origins = "http://localhost:5173")
 public class AdminController {
 
+    /* INYECCIÓN DE SERVICIO */
     private final UsuarioService usuarioService;
 
     public AdminController(UsuarioService usuarioService) {
         this.usuarioService = usuarioService;
     }
 
+    /* LISTAR USUARIOS */
     @GetMapping
     public List<Usuario> listar() {
         return usuarioService.findAll();
     }
 
+    /* CREAR USUARIO */
     @PostMapping
     public Usuario crear(@RequestBody Usuario usuario) {
         return usuarioService.save(usuario);
     }
 
+    /* ACTUALIZAR USUARIO */
     @PutMapping("/{id}")
     public Usuario actualizar(@PathVariable Integer id, @RequestBody Usuario usuario) {
         usuario.setId(id);
         return usuarioService.save(usuario);
     }
 
+    /* ELIMINAR USUARIO */
     @DeleteMapping("/{id}")
     public void eliminar(@PathVariable Integer id) {
         usuarioService.deleteById(id);

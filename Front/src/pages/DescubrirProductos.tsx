@@ -6,14 +6,20 @@ import { CartContext } from "../context/CartContext";
 import type { ListarProductoDTO } from "../types/ListarProductoDTO";
 import { useNavigate } from "react-router-dom";
 
-// 🔹 Tipo extendido solo para este componente
+// Tipo extendido para añadir la propiedad "demo" a los productos de ejemplo.
 type ProductoConDemo = ListarProductoDTO & { demo?: boolean };
 
 const DescubrirProductos: React.FC = () => {
+  // Estado donde guardo todos los productos (reales + ejemplos).
   const [listaProductos, setListaProductos] = React.useState<ProductoConDemo[]>([]);
+
+  // Obtengo la función para añadir productos al carrito.
   const { addToCart } = useContext(CartContext);
+
+  // Hook para navegar entre páginas.
   const navegar = useNavigate();
 
+  // Función que obtiene los productos reales y añade los ejemplos.
   async function fetchProductos() {
     try {
       const response = await fetch("http://localhost:8080/api/productos");
@@ -24,9 +30,7 @@ const DescubrirProductos: React.FC = () => {
 
       const data: ListarProductoDTO[] = await response.json();
 
-      // -----------------------------
       // EJEMPLOS FIJOS — TARTAS PERSONALIZADAS
-      // -----------------------------
       const tartasEjemplo: ProductoConDemo[] = [
         {
           id: 9001,
@@ -110,9 +114,7 @@ const DescubrirProductos: React.FC = () => {
         },
       ];
 
-      // -----------------------------
       // EJEMPLOS FIJOS — PASTELERÍA PARA EVENTOS
-      // -----------------------------
       const eventosEjemplo: ProductoConDemo[] = [
         {
           id: 9101,
@@ -196,38 +198,38 @@ const DescubrirProductos: React.FC = () => {
         },
       ];
 
-      // -----------------------------
       // PRODUCTOS REALES DEL BACKEND
-      // -----------------------------
       const productosReales: ProductoConDemo[] = data.map((p) => ({
         ...p,
-        demo: false, // estos SÍ van al carrito
+        demo: false, // estos sí se pueden añadir al carrito
       }));
 
-      // -----------------------------
       // UNIR EJEMPLOS + PRODUCTOS DEL BACKEND
-      // -----------------------------
       const todo: ProductoConDemo[] = [
         ...tartasEjemplo,
         ...eventosEjemplo,
         ...productosReales,
       ];
 
+      // Guardo la lista completa en el estado.
       setListaProductos(todo);
     } catch (error) {
       console.error("Error al cargar los productos:", error);
     }
   }
 
+  // Cargar productos al montar el componente.
   React.useEffect(() => {
     fetchProductos();
   }, []);
 
   return (
     <>
+      {/* Barra de navegación */}
       <Navbar />
 
       <main>
+        {/* Sección principal con imagen y texto */}
         <Hero
           title="Descubrir productos"
           subtitle="Explora todo lo que ofrecemos"
@@ -242,6 +244,7 @@ const DescubrirProductos: React.FC = () => {
 
           <div className="section-line"></div>
 
+          {/* Grid de productos */}
           <div className="grid fade-up">
             {listaProductos.map((producto) => (
               <article className="card" key={producto.id}>
@@ -253,10 +256,12 @@ const DescubrirProductos: React.FC = () => {
                   <h3>{producto.nombre}</h3>
                   <p>{producto.descripcion}</p>
 
+                  {/* Solo muestro precio si es un producto real */}
                   {producto.precio > 0 && (
                     <p className="price">{producto.precio.toFixed(2)} €</p>
                   )}
 
+                  {/* Si es demo: botón de contacto */}
                   {producto.demo ? (
                     <button
                       className="btn"
@@ -267,6 +272,7 @@ const DescubrirProductos: React.FC = () => {
                       Hacer pedido
                     </button>
                   ) : (
+                    /* Si es real: añadir al carrito */
                     <button
                       className="btn add-cart"
                       onClick={() => addToCart(producto)}
@@ -281,6 +287,7 @@ const DescubrirProductos: React.FC = () => {
         </section>
       </main>
 
+      {/* Pie de página */}
       <Footer />
     </>
   );

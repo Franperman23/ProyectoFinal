@@ -6,9 +6,11 @@ import Hero from "../components/Hero";
 const SobreNosotros: React.FC = () => {
   return (
     <>
+      {/* Barra de navegación superior */}
       <Navbar />
 
       <main>
+        {/* Sección principal con imagen destacada y texto */}
         <Hero
           title="Pasión por lo artesanal"
           subtitle="Nuestra historia"
@@ -28,6 +30,7 @@ const SobreNosotros: React.FC = () => {
 
           <div className="section-line"></div>
 
+          {/* Tres bloques explicativos */}
           <div className="grid">
             <div className="why-item">
               <h3>Tradición familiar</h3>
@@ -66,6 +69,7 @@ const SobreNosotros: React.FC = () => {
             </p>
           </div>
 
+          {/* Tres bloques explicativos del obrador */}
           <div className="why-grid">
             <div className="why-item">
               <h3>Hecho a mano</h3>
@@ -95,6 +99,7 @@ const SobreNosotros: React.FC = () => {
         </section>
       </main>
 
+      {/* Pie de página */}
       <Footer />
     </>
   );
