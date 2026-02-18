@@ -4,23 +4,34 @@ import AdminLayout from "../../components/admin/AdminLayout";
 import { AuthContext } from "../../context/AuthContext";
 
 const CrearBeneficios: React.FC = () => {
+
+    // Obtengo el token del contexto para acceder a rutas protegidas.
     const { token } = useContext(AuthContext);
+
+    // Hook para redirigir al usuario después de guardar.
     const navigate = useNavigate();
     
-    // Estados iniciales
+    // Estado inicial de la fecha: por defecto el día actual en formato YYYY-MM-DD.
     const [fecha, setFecha] = useState(new Date().toISOString().split('T')[0]);
+
+    // Estado para la ganancia introducida por el usuario.
     const [ganancia, setGanancia] = useState("");
+
+    // Estado para mostrar "Guardando..." mientras se envía el formulario.
     const [cargando, setCargando] = useState(false);
 
+    // FUNCIÓN PRINCIPAL DEL FORMULARIO
     const handleSubmit = async (e: React.FormEvent) => {
-        e.preventDefault();
+        e.preventDefault(); // Evita recargar la página.
         setCargando(true);
 
+        // Datos que enviamos al backend.
         const data = { 
             fecha: fecha, 
             ganancia: parseFloat(ganancia) 
         };
 
+        // Petición POST protegida con token JWT.
         try {
             const res = await fetch("/api/admin/beneficios", {
                 method: "POST",
@@ -31,6 +42,7 @@ const CrearBeneficios: React.FC = () => {
                 body: JSON.stringify(data)
             });
 
+            // Si todo va bien, redirijo a la lista de beneficios.
             if (res.ok) {
                 navigate("/admin/beneficios");
             } else {
@@ -44,45 +56,57 @@ const CrearBeneficios: React.FC = () => {
         }
     };
 
-    // Estilos rápidos para asegurar que se vea bien
+    // Estilos rápidos para mejorar la presentación del formulario.
     const estiloCampo = { marginBottom: '20px', display: 'flex', flexDirection: 'column' as const };
     const estiloLabel = { fontWeight: 'bold', marginBottom: '8px', color: '#555' };
     const estiloInput = { padding: '10px', borderRadius: '5px', border: '1px solid #ccc', fontSize: '1rem' };
 
     return (
         <AdminLayout>
+            {/* Contenedor centrado para el formulario */}
             <div style={{ maxWidth: '500px', margin: '0 auto', padding: '20px' }}>
                 <h2 style={{ marginBottom: '25px', color: '#333' }}>Registrar Ganancia Diaria</h2>
                 
-                <form onSubmit={handleSubmit} style={{ background: '#f9f9f9', padding: '25px', borderRadius: '10px', boxShadow: '0 2px 10px rgba(0,0,0,0.1)' }}>
-                    
+                {/* FORMULARIO */}
+                <form
+                    onSubmit={handleSubmit}
+                    style={{
+                        background: '#f9f9f9',
+                        padding: '25px',
+                        borderRadius: '10px',
+                        boxShadow: '0 2px 10px rgba(0,0,0,0.1)'
+                    }}
+                >
+                    {/* Campo FECHA */}
                     <div style={estiloCampo}>
                         <label style={estiloLabel}>Fecha del día:</label>
                         <input 
-                            type="date" 
+                            type="date"
                             style={estiloInput}
-                            value={fecha} 
-                            onChange={e => setFecha(e.target.value)} 
-                            required 
+                            value={fecha}
+                            onChange={e => setFecha(e.target.value)}
+                            required
                         />
                     </div>
 
+                    {/* Campo GANANCIA */}
                     <div style={estiloCampo}>
                         <label style={estiloLabel}>Total Ganado (€):</label>
                         <input 
-                            type="number" 
-                            step="0.01" 
+                            type="number"
+                            step="0.01"
                             style={estiloInput}
                             placeholder="Ej: 155.50"
-                            value={ganancia} 
-                            onChange={e => setGanancia(e.target.value)} 
-                            required 
+                            value={ganancia}
+                            onChange={e => setGanancia(e.target.value)}
+                            required
                         />
                     </div>
 
+                    {/* Botones */}
                     <div style={{ display: 'flex', gap: '10px', marginTop: '10px' }}>
                         <button 
-                            type="submit" 
+                            type="submit"
                             className="btn crear"
                             disabled={cargando}
                             style={{ flex: 1, padding: '12px', cursor: cargando ? 'not-allowed' : 'pointer' }}
@@ -91,7 +115,7 @@ const CrearBeneficios: React.FC = () => {
                         </button>
                         
                         <button 
-                            type="button" 
+                            type="button"
                             className="btn danger"
                             onClick={() => navigate("/admin/beneficios")}
                             style={{ flex: 1, padding: '12px' }}

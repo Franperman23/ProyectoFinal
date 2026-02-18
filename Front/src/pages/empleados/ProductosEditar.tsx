@@ -4,20 +4,27 @@ import { useParams } from "react-router-dom";
 import type { CrearProductoDTO } from "../../types/CrearProductoDTO";
 
 const ProductosEditar: React.FC = () => {
+
+  // Obtengo el ID del producto desde la URL.
   const { id } = useParams();
+
+  // Estado donde guardo los datos del producto cargado.
   const [producto, setProducto] = useState<CrearProductoDTO | null>(null);
 
+  // 1. Cargar los datos actuales del producto al entrar
   useEffect(() => {
     async function cargar() {
       const res = await fetch(`/api/productos/${id}`);
       const data = await res.json();
-      setProducto(data);
+      setProducto(data); // Guardo los datos en el estado
     }
     cargar();
   }, [id]);
 
+  // Si aún no se han cargado los datos, muestro un mensaje de carga.
   if (!producto) return <EmpleadoLayout>Cargando...</EmpleadoLayout>;
 
+  // 2. Manejar el envío del formulario (PUT)
   async function handleSubmit(e: React.FormEvent) {
     e.preventDefault();
 
@@ -32,9 +39,13 @@ const ProductosEditar: React.FC = () => {
 
   return (
     <EmpleadoLayout>
+      {/* Título principal */}
       <h2>Editar producto</h2>
 
+      {/* FORMULARIO */}
       <form className="form" onSubmit={handleSubmit}>
+
+        {/* Campo NOMBRE */}
         <input
           type="text"
           value={producto.nombre}
@@ -43,6 +54,7 @@ const ProductosEditar: React.FC = () => {
           }
         />
 
+        {/* Campo DESCRIPCIÓN */}
         <textarea
           value={producto.descripcion}
           onChange={(e) =>
@@ -50,6 +62,7 @@ const ProductosEditar: React.FC = () => {
           }
         ></textarea>
 
+        {/* Campo RECETA */}
         <textarea
           value={producto.receta}
           onChange={(e) =>
@@ -57,6 +70,7 @@ const ProductosEditar: React.FC = () => {
           }
         ></textarea>
 
+        {/* Campo PRECIO */}
         <input
           type="number"
           value={producto.precio}
@@ -68,6 +82,7 @@ const ProductosEditar: React.FC = () => {
           }
         />
 
+        {/* Campo STOCK */}
         <input
           type="number"
           value={producto.stock}
@@ -79,6 +94,7 @@ const ProductosEditar: React.FC = () => {
           }
         />
 
+        {/* Campo IMAGEN */}
         <input
           type="text"
           value={producto.imagen}
@@ -87,6 +103,7 @@ const ProductosEditar: React.FC = () => {
           }
         />
 
+        {/* Campo TIPO */}
         <select
           value={producto.tipo}
           onChange={(e) =>
@@ -103,6 +120,7 @@ const ProductosEditar: React.FC = () => {
           <option value="Pasteleria para eventos">Pastelería para eventos</option>
         </select>
 
+        {/* Botón de actualizar */}
         <button className="btn">Actualizar</button>
       </form>
     </EmpleadoLayout>

@@ -4,6 +4,7 @@ import Footer from "../components/Footer";
 import Hero from "../components/Hero";
 
 const Contacto: React.FC = () => {
+  // Estado del formulario con los campos básicos.
   const [form, setForm] = useState({
     nombre: "",
     email: "",
@@ -11,21 +12,26 @@ const Contacto: React.FC = () => {
     mensaje: "",
   });
 
+  // Maneja los cambios en los inputs y actualiza el estado del formulario.
   const handleChange = (
     e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
   ) => {
+    // Copio el estado actual y actualizo solo el campo modificado.
     setForm({ ...form, [e.target.name]: e.target.value });
   };
 
+  // Función que envía el formulario al backend.
   const enviarFormulario = async (e: React.FormEvent) => {
-    e.preventDefault();
+    e.preventDefault(); // Evita recargar la página.
 
+      // Envío de datos al backend mediante POST.
     const res = await fetch("/api/mensajes", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify(form),
     });
 
+    // Si todo va bien, muestro mensaje y limpio el formulario.
     if (res.ok) {
       alert("Mensaje enviado correctamente. ¡Gracias por contactarnos!");
       setForm({ nombre: "", email: "", telefono: "", mensaje: "" });
@@ -36,9 +42,11 @@ const Contacto: React.FC = () => {
 
   return (
     <>
+      {/* Barra de navegación */}
       <Navbar />
 
       <main>
+        {/* Sección principal con título e imagen */}
         <Hero
           title="Contacto"
           subtitle="Estamos aquí para ayudarte"
@@ -56,6 +64,7 @@ const Contacto: React.FC = () => {
 
           <div className="section-line"></div>
 
+          {/* Contenedor principal del formulario y la información */}
           <div
             className="grid"
             style={{
@@ -64,11 +73,12 @@ const Contacto: React.FC = () => {
               alignItems: "flex-start",
             }}
           >
-            {/* FORMULARIO */}
+            {/* FORMULARIO DE CONTACTO */}
             <div className="why-item" style={{ minHeight: "auto" }}>
               <h3>Formulario de contacto</h3>
 
               <form onSubmit={enviarFormulario}>
+                {/* Campo nombre */}
                 <label htmlFor="nombre">Nombre</label>
                 <input
                   id="nombre"
@@ -79,6 +89,7 @@ const Contacto: React.FC = () => {
                   required
                 />
 
+                {/* Campo email */}
                 <label htmlFor="email">Email</label>
                 <input
                   id="email"
@@ -89,6 +100,7 @@ const Contacto: React.FC = () => {
                   required
                 />
 
+                {/* Campo teléfono opcional */}
                 <label htmlFor="telefono">Teléfono (opcional)</label>
                 <input
                   id="telefono"
@@ -98,6 +110,7 @@ const Contacto: React.FC = () => {
                   onChange={handleChange}
                 />
 
+                {/* Campo mensaje */}
                 <label htmlFor="mensaje">Mensaje</label>
                 <textarea
                   id="mensaje"
@@ -108,13 +121,14 @@ const Contacto: React.FC = () => {
                   required
                 ></textarea>
 
+                {/* Botón de envío */}
                 <button type="submit" className="btn">
                   Enviar mensaje
                 </button>
               </form>
             </div>
 
-            {/* BLOQUE INFO */}
+            {/* BLOQUE DE INFORMACIÓN DE CONTACTO */}
             <div className="why-item" style={{ minHeight: "auto" }}>
               <h3>También puedes contactarnos en</h3>
               <p>
@@ -147,6 +161,7 @@ const Contacto: React.FC = () => {
         </section>
       </main>
 
+      {/* Pie de página */}
       <Footer />
     </>
   );

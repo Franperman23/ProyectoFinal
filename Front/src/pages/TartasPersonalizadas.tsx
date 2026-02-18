@@ -5,8 +5,10 @@ import Hero from "../components/Hero";
 import type { ListarProductoDTO } from "../types/ListarProductoDTO";
 
 const TartasPersonalizadas: React.FC = () => {
+  // Estado donde guardo los productos creados por empleados.
   const [productos, setProductos] = useState<ListarProductoDTO[]>([]);
 
+  // Función que obtiene todos los productos del backend.
   async function fetchProductos() {
     try {
       const response = await fetch("/api/productos");
@@ -14,26 +16,30 @@ const TartasPersonalizadas: React.FC = () => {
 
       const data: ListarProductoDTO[] = await response.json();
 
-      // Filtrar solo tartas personalizadas creadas por empleados
+      // Filtrar solo los productos cuyo tipo sea "Tartas personalizadas".
       const filtrados = data.filter(
         (p) => p.tipo === "Tartas personalizadas"
       );
 
+      // Guardar los productos filtrados en el estado.
       setProductos(filtrados);
     } catch (error) {
       console.error("Error:", error);
     }
   }
 
+  // Cargar productos al montar el componente.
   useEffect(() => {
     fetchProductos();
   }, []);
 
   return (
     <>
+      {/* Barra de navegación */}
       <Navbar />
 
       <main>
+        {/* Sección principal con imagen y texto */}
         <Hero
           title="Tartas personalizadas"
           subtitle="Diseñadas a tu gusto"
@@ -51,9 +57,11 @@ const TartasPersonalizadas: React.FC = () => {
 
           <div className="section-line"></div>
 
+          {/* Grid de productos */}
           <div className="grid fade-up">
 
-            {/* EJEMPLOS FIJOS — con tus rutas originales */}
+            {/* EJEMPLOS FIJOS */}
+
             <article className="card">
               <div className="card-image">
                 <img src="img tartas personalizadas/card1.png" alt="Tarta Doraemon" />
@@ -159,6 +167,7 @@ const TartasPersonalizadas: React.FC = () => {
             </article>
 
             {/* PRODUCTOS CREADOS POR EMPLEADOS */}
+
             {productos.map((producto) => (
               <article className="card" key={producto.id}>
                 <div className="card-image">
@@ -182,6 +191,7 @@ const TartasPersonalizadas: React.FC = () => {
         </section>
       </main>
 
+      {/* Pie de página */}
       <Footer />
     </>
   );

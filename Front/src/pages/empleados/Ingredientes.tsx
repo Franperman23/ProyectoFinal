@@ -2,14 +2,18 @@ import React, { useEffect, useState } from "react";
 import EmpleadoLayout from "../../components/empleados/EmpleadoLayout";
 import type { IngredienteDTO } from "../../types/IngredienteDTO";
 
-// Definimos una interfaz para el objeto que viene con ID de la base de datos
+// Extiendo el DTO para incluir el ID que viene desde la base de datos.
 type Ingrediente = IngredienteDTO & { idIngrediente: number };
 
 const Ingredientes: React.FC = () => {
+
+  // Estado donde guardo la lista de ingredientes.
   const [ingredientes, setIngredientes] = useState<Ingrediente[]>([]);
+
+  // Estado para mostrar un mensaje de carga.
   const [cargando, setCargando] = useState(true);
 
-  // Función para obtener los datos del servidor
+  // FUNCIÓN PARA CARGAR LOS INGREDIENTES DESDE EL BACKEND
   const cargarIngredientes = async () => {
     try {
       const response = await fetch("/api/ingredientes");
@@ -26,20 +30,22 @@ const Ingredientes: React.FC = () => {
     }
   };
 
-  // Se ejecuta al cargar el componente
+  // useEffect que carga los ingredientes al montar el componente.
   useEffect(() => {
     cargarIngredientes();
   }, []);
 
-  // Función para eliminar (opcional, pero recomendada)
+  // FUNCIÓN PARA ELIMINAR UN INGREDIENTE
   const eliminarIngrediente = async (id: number) => {
     if (!confirm("¿Seguro que quieres eliminarlo?")) return;
-    
+
     try {
       const response = await fetch(`/api/ingredientes/${id}`, {
         method: "DELETE",
       });
+
       if (response.ok) {
+        // Actualizo la lista quitando el ingrediente eliminado.
         setIngredientes(ingredientes.filter(ing => ing.idIngrediente !== id));
       }
     } catch (error) {
@@ -49,10 +55,15 @@ const Ingredientes: React.FC = () => {
 
   return (
     <EmpleadoLayout>
+      {/* Título principal */}
       <h2>Ingredientes</h2>
 
-      <a href="/empleados/ingredientes/crear" className="btn crear">Crear ingrediente</a>
+      {/* Botón para crear un nuevo ingrediente */}
+      <a href="/empleados/ingredientes/crear" className="btn crear">
+        Crear ingrediente
+      </a>
 
+      {/* TABLA DE INGREDIENTES */}
       <table className="tabla">
         <thead>
           <tr>
@@ -64,10 +75,19 @@ const Ingredientes: React.FC = () => {
         </thead>
 
         <tbody>
+          {/* Si está cargando, muestro mensaje */}
           {cargando ? (
-            <tr><td colSpan={4}>Cargando ingredientes...</td></tr>
+            <tr>
+              <td colSpan={4}>Cargando ingredientes...</td>
+            </tr>
+
+          // Si no hay ingredientes, muestro mensaje
           ) : ingredientes.length === 0 ? (
-            <tr><td colSpan={4}>No hay ingredientes registrados.</td></tr>
+            <tr>
+              <td colSpan={4}>No hay ingredientes registrados.</td>
+            </tr>
+
+          // Si hay ingredientes, los muestro en la tabla
           ) : (
             ingredientes.map((ing) => (
               <tr key={ing.idIngrediente}>
@@ -75,9 +95,17 @@ const Ingredientes: React.FC = () => {
                 <td>{ing.cantidad}</td>
                 <td>{ing.proveedor}</td>
                 <td>
-                  <a href={`/empleados/ingredientes/editar/${ing.idIngrediente}`} className="btn small">Editar</a>
-                  <button 
-                    onClick={() => eliminarIngrediente(ing.idIngrediente)} 
+                  {/* Botón para editar */}
+                  <a
+                    href={`/empleados/ingredientes/editar/${ing.idIngrediente}`}
+                    className="btn small"
+                  >
+                    Editar
+                  </a>
+
+                  {/* Botón para eliminar */}
+                  <button
+                    onClick={() => eliminarIngrediente(ing.idIngrediente)}
                     className="btn small danger"
                   >
                     Eliminar

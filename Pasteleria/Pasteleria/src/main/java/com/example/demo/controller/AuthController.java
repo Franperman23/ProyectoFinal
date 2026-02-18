@@ -7,18 +7,20 @@ import org.springframework.web.bind.annotation.*;
 import java.util.HashMap;
 import java.util.Map;
 
+/* CONTROLADOR DE AUTENTICACIÓN */
 @RestController
 @RequestMapping("/api/auth")
 @CrossOrigin(origins = "*")
 public class AuthController {
 
+    /* INYECCIÓN DE SERVICIO */
     private final UsuarioService usuarioService;
 
     public AuthController(UsuarioService usuarioService) {
         this.usuarioService = usuarioService;
     }
 
-    // LOGIN
+    /* LOGIN */
     @PostMapping("/login")
     public Map<String, Object> login(@RequestBody Map<String, String> body) {
 
@@ -31,18 +33,17 @@ public class AuthController {
             throw new RuntimeException("Credenciales incorrectas");
         }
 
-        // Respuesta exacta que espera el frontend para guardar el usuario en localStorage
         Map<String, Object> response = new HashMap<>();
         response.put("id", usuario.getId());
         response.put("nombre", usuario.getNombre());
         response.put("email", usuario.getEmail());
         response.put("rol", usuario.getRol());
-        response.put("token", "FAKE_TOKEN"); 
+        response.put("token", "FAKE_TOKEN");
 
         return response;
     }
 
-    // REGISTRO (solo clientes)
+    /* REGISTRO (CLIENTES) */
     @PostMapping("/register")
     public Usuario register(@RequestBody Map<String, String> body) {
 

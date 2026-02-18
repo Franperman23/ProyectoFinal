@@ -2,10 +2,12 @@ package com.example.demo.controller;
 
 import org.springframework.web.bind.annotation.*;
 
+/* CONTROLADOR DE CONTACTO */
 @RestController
 @RequestMapping("/api/contacto")
 public class ContactoController {
 
+    /* RECIBIR MENSAJE */
     @PostMapping
     public String recibirMensaje(@RequestBody ContactoRequest req) {
 
@@ -15,23 +17,17 @@ public class ContactoController {
         System.out.println("Teléfono: " + req.getTelefono());
         System.out.println("Mensaje: " + req.getMensaje());
 
-        // Aquí podrías:
-        // - Guardarlo en BD
-        // - Enviarlo por email
-        // - Notificar a un admin
-        // - Lo que quieras
-
         return "Mensaje recibido correctamente";
     }
 }
 
+/* DTO DE CONTACTO */
 class ContactoRequest {
     private String nombre;
     private String email;
     private String telefono;
     private String mensaje;
 
-    // Getters y setters
     public String getNombre() { return nombre; }
     public void setNombre(String nombre) { this.nombre = nombre; }
 

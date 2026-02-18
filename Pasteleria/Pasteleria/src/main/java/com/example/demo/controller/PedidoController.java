@@ -1,3 +1,4 @@
+/* IMPORTS */
 package com.example.demo.controller;
 
 import com.example.demo.model.Pedido;
@@ -17,10 +18,12 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
+/* CONTROLADOR DE PEDIDOS */
 @RestController
 @RequestMapping("/api/pedidos")
 public class PedidoController {
 
+    /* INYECCIÓN DE DEPENDENCIAS */
     private final PedidoRepository pedidoRepo;
     private final PedidoProductoRepository itemRepo;
     private final UsuarioService usuarioService;
@@ -36,33 +39,30 @@ public class PedidoController {
         this.usuarioService = usuarioService;
     }
 
+    /* LISTAR PEDIDOS */
     @GetMapping
     public List<Pedido> listarPedidos() {
         return pedidoRepo.findAll();
     }
 
-    // 👉 Endpoint para crear pedido y devolver el PDF
+    /* CREAR PEDIDO Y DEVOLVER PDF */
     @PostMapping("/pdf")
     public ResponseEntity<byte[]> crearPedidoYDevolverPdf(@RequestBody Pedido pedido) {
 
         System.out.println("🔥 ENTRANDO EN crearPedidoYDevolverPdf()");
         System.out.println("📝 [PEDIDO] Recibido nuevo pedido del usuario ID: " + pedido.getUsuario().getId());
 
-        // Cargar usuario real desde BD
         Usuario u = usuarioService.findById(pedido.getUsuario().getId());
         pedido.setUsuario(u);
 
-        // Calcular total por seguridad en backend
         double total = pedido.getProductos().stream()
                 .mapToDouble(p -> p.getPrecio() * p.getCantidad())
                 .sum();
         pedido.setTotal(total);
 
-        // Guardar pedido
         Pedido guardado = pedidoRepo.save(pedido);
         System.out.println("💾 [PEDIDO] Pedido guardado con ID: " + guardado.getId());
 
-        // Asociar productos al pedido
         for (PedidoProducto item : pedido.getProductos()) {
             item.setPedido(guardado);
         }
@@ -90,6 +90,7 @@ public class PedidoController {
         }
     }
 
+    /* MARCAR PEDIDO COMO ENTREGADO */
     @PutMapping("/{id}/entregado")
     public Pedido marcarEntregado(@PathVariable Integer id) {
         Pedido p = pedidoRepo.findById(id).orElse(null);
@@ -99,6 +100,7 @@ public class PedidoController {
         return pedidoRepo.save(p);
     }
 
+    /* ELIMINAR PEDIDO */
     @DeleteMapping("/{id}")
     public void eliminarPedido(@PathVariable Integer id) {
         itemRepo.deleteAll(itemRepo.findByPedidoId(id));

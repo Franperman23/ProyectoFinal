@@ -8,6 +8,7 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
+/* Clase principal que inicia la aplicación Spring Boot */
 @SpringBootApplication
 public class PasteleriaApplication {
 
@@ -15,6 +16,7 @@ public class PasteleriaApplication {
         SpringApplication.run(PasteleriaApplication.class, args);
     }
 
+    /* Crea un usuario ADMIN por defecto si no existe */
     @Bean
     CommandLineRunner initAdmin(UsuarioRepository usuarioRepo) {
         return args -> {

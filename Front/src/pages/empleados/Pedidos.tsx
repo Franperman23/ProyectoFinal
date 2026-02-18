@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import EmpleadoLayout from "../../components/empleados/EmpleadoLayout";
 
+// Interfaz que define cómo es un pedido dentro de la aplicación.
 interface Pedido {
   id: number;
   fecha: string;
@@ -11,24 +12,30 @@ interface Pedido {
 }
 
 const Pedidos: React.FC = () => {
+
+  // Estado donde guardo la lista de pedidos.
   const [pedidos, setPedidos] = useState<Pedido[]>([]);
 
+  // FUNCIÓN PARA CARGAR LOS PEDIDOS DESDE EL BACKEND
   const cargarPedidos = () => {
     fetch("/api/pedidos")
       .then((res) => res.json())
       .then((data) => setPedidos(data));
   };
 
+  // useEffect que carga los pedidos al montar el componente.
   useEffect(() => {
     cargarPedidos();
   }, []);
 
+  // FUNCIÓN PARA MARCAR UN PEDIDO COMO ENTREGADO
   const marcarEntregado = (id: number) => {
     fetch(`/api/pedidos/${id}/entregado`, {
       method: "PUT",
-    }).then(() => cargarPedidos());
+    }).then(() => cargarPedidos()); // Recargo la lista
   };
 
+  // FUNCIÓN PARA ELIMINAR UN PEDIDO
   const eliminarPedido = (id: number) => {
     if (!confirm("¿Seguro que quieres eliminar este pedido?")) return;
 
@@ -39,11 +46,14 @@ const Pedidos: React.FC = () => {
 
   return (
     <EmpleadoLayout>
+      {/* Título principal */}
       <h2>Pedidos</h2>
 
+      {/* Si no hay pedidos, muestro un mensaje */}
       {pedidos.length === 0 ? (
         <p>No hay pedidos registrados.</p>
       ) : (
+        // TABLA DE PEDIDOS
         <table className="tabla">
           <thead>
             <tr>
@@ -64,15 +74,26 @@ const Pedidos: React.FC = () => {
                 <td>{p.recoger}</td>
                 <td>{p.total} €</td>
                 <td>{p.estado}</td>
+
+                {/* Acciones: entregar o eliminar */}
                 <td style={{ display: "flex", gap: "10px" }}>
+
+                  {/* Si el pedido está pendiente, muestro botón para marcar como entregado */}
                   {p.estado === "Pendiente" ? (
-                    <button className="btn small" onClick={() => marcarEntregado(p.id)}>
+                    <button
+                      className="btn small"
+                      onClick={() => marcarEntregado(p.id)}
+                    >
                       Entregado
                     </button>
                   ) : (
-                    <span style={{ color: "green", fontWeight: 600 }}>✔ Entregado</span>
+                    // Si ya está entregado, muestro un check verde
+                    <span style={{ color: "green", fontWeight: 600 }}>
+                      ✔ Entregado
+                    </span>
                   )}
 
+                  {/* Botón para eliminar pedido */}
                   <button
                     className="btn small"
                     style={{ background: "#b91c1c" }}

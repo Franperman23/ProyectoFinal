@@ -3,19 +3,23 @@ import EmpleadoLayout from "../../components/empleados/EmpleadoLayout";
 import type { CrearProductoDTO } from "../../types/CrearProductoDTO";
 
 const ProductosCrear: React.FC = () => {
+
+  // Estado inicial del formulario basado en el DTO.
   const [nuevoProducto, setNuevoProducto] = React.useState<CrearProductoDTO>({
     nombre: "",
     descripcion: "",
     precio: 0,
     stock: 0,
     receta: "",
-    tipo: "Reposteria",
+    tipo: "Reposteria", // Valor por defecto
     imagen: ""
   });
 
+  // FUNCIÓN PRINCIPAL DEL FORMULARIO
   async function handleSubmit(e: React.FormEvent) {
-    e.preventDefault();
-
+    e.preventDefault(); // Evita recargar la página
+     
+    // Envío la petición POST al backend
     try {
       const result = await fetch("/api/productos", {
         method: "POST",
@@ -25,6 +29,7 @@ const ProductosCrear: React.FC = () => {
         body: JSON.stringify(nuevoProducto),
       });
 
+      // Si hay error, lo muestro
       if (!result.ok) {
         alert("Error al crear el producto");
         return;
@@ -32,6 +37,7 @@ const ProductosCrear: React.FC = () => {
 
       alert("Producto creado correctamente");
 
+      // Reseteo el formulario
       setNuevoProducto({
         nombre: "",
         descripcion: "",
@@ -41,6 +47,7 @@ const ProductosCrear: React.FC = () => {
         tipo: "Reposteria",
         imagen: ""
       });
+
     } catch (error) {
       alert("Error al conectar con el servidor");
     }
@@ -48,10 +55,13 @@ const ProductosCrear: React.FC = () => {
 
   return (
     <EmpleadoLayout>
+      {/* Título principal */}
       <h2>Crear producto</h2>
 
+      {/* FORMULARIO */}
       <form className="form" onSubmit={handleSubmit}>
 
+        {/* Campo NOMBRE */}
         <label>Nombre</label>
         <input
           type="text"
@@ -62,6 +72,7 @@ const ProductosCrear: React.FC = () => {
           required
         />
 
+        {/* Campo DESCRIPCIÓN */}
         <label>Descripción</label>
         <textarea
           value={nuevoProducto.descripcion}
@@ -71,6 +82,7 @@ const ProductosCrear: React.FC = () => {
           required
         ></textarea>
 
+        {/* Campo RECETA */}
         <label>Receta</label>
         <textarea
           value={nuevoProducto.receta}
@@ -80,6 +92,7 @@ const ProductosCrear: React.FC = () => {
           required
         ></textarea>
 
+        {/* Campo PRECIO */}
         <label>Precio (€)</label>
         <input
           type="number"
@@ -93,6 +106,7 @@ const ProductosCrear: React.FC = () => {
           required
         />
 
+        {/* Campo STOCK */}
         <label>Stock</label>
         <input
           type="number"
@@ -106,6 +120,7 @@ const ProductosCrear: React.FC = () => {
           required
         />
 
+        {/* Campo IMAGEN */}
         <label>URL de imagen</label>
         <input
           type="text"
@@ -115,6 +130,7 @@ const ProductosCrear: React.FC = () => {
           }
         />
 
+        {/* Campo TIPO */}
         <label>Tipo de producto</label>
         <select
           value={nuevoProducto.tipo}
@@ -132,6 +148,7 @@ const ProductosCrear: React.FC = () => {
           <option value="Pasteleria para eventos">Pastelería para eventos</option>
         </select>
 
+        {/* Botón de guardar */}
         <button className="btn">Guardar</button>
       </form>
     </EmpleadoLayout>
