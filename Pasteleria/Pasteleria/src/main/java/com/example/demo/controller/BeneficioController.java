@@ -11,7 +11,6 @@ import java.util.List;
 /* CONTROLADOR DE BENEFICIOS (ADMIN) */
 @RestController
 @RequestMapping("/api/admin/beneficios")
-@CrossOrigin(origins = "http://localhost:5173")
 public class BeneficioController {
 
     /* INYECCIÓN DE SERVICIO */

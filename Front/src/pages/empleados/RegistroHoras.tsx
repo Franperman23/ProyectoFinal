@@ -21,10 +21,9 @@ const RegistroHoras: React.FC = () => {
       return;
     }
 
+    // Petición GET al backend para obtener los registros del empleado.
     try {
-      // Petición GET al backend para obtener los registros del empleado.
-      const res = await fetch(`http://localhost:8080/api/registros/empleado/${usuarioId}`);
-
+      const res = await fetch(`/api/registros/empleado/${usuarioId}`);
       if (res.ok) {
         const data = await res.json();
         setRegistros(data);
@@ -54,7 +53,7 @@ const RegistroHoras: React.FC = () => {
     if (!usuarioId) return alert("Sesión no válida");
 
     try {
-      const res = await fetch(`http://localhost:8080/api/registros/entrada/${usuarioId}`, {
+      const res = await fetch(`/api/registros/entrada/${usuarioId}`, {
         method: "POST"
       });
 
@@ -75,7 +74,7 @@ const RegistroHoras: React.FC = () => {
     if (!registroActivoId) return alert("No hay una entrada activa");
 
     try {
-      const res = await fetch(`http://localhost:8080/api/registros/salida/${registroActivoId}`, {
+      const res = await fetch(`/api/registros/salida/${registroActivoId}`, {
         method: "PUT"
       });
 

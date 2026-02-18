@@ -16,8 +16,7 @@ const Ingredientes: React.FC = () => {
   // FUNCIÓN PARA CARGAR LOS INGREDIENTES DESDE EL BACKEND
   const cargarIngredientes = async () => {
     try {
-      const response = await fetch("http://localhost:8080/api/ingredientes");
-
+      const response = await fetch("/api/ingredientes");
       if (response.ok) {
         const datos = await response.json();
         setIngredientes(datos);
@@ -41,7 +40,7 @@ const Ingredientes: React.FC = () => {
     if (!confirm("¿Seguro que quieres eliminarlo?")) return;
 
     try {
-      const response = await fetch(`http://localhost:8080/api/ingredientes/${id}`, {
+      const response = await fetch(`/api/ingredientes/${id}`, {
         method: "DELETE",
       });
 

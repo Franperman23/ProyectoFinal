@@ -2,10 +2,8 @@ services:
   # 1. Base de Datos (MySQL)
   db:
     image: mysql:8.0
-    container_name: db-pasteleria
     environment:
       MYSQL_ROOT_PASSWORD: root
-      MYSQL_DATABASE: pasteleria
     volumes:
       - ./PasteleriaScript.sql:/docker-entrypoint-initdb.d/setup.sql:ro
     healthcheck:
@@ -13,15 +11,12 @@ services:
       interval: 5s
       timeout: 5s
       retries: 10
-    ports:
-      - "3306:3306"
 
   # 2. Backend (Spring Boot)
   backend:
     build: ./Pasteleria/Pasteleria
-    container_name: backend-pasteleria
     environment:
-      - SPRING_DATASOURCE_URL=jdbc:mysql://db:3306/pasteleria?allowPublicKeyRetrieval=true&useSSL=false
+      - SPRING_DATASOURCE_URL=jdbc:mysql://db:3306/PASTELERIA?allowPublicKeyRetrieval=true&useSSL=false
       - SPRING_DATASOURCE_USERNAME=root
       - SPRING_DATASOURCE_PASSWORD=root
       - SPRING_JPA_HIBERNATE_DDL_AUTO=update

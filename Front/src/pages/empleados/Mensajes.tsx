@@ -19,7 +19,7 @@ const Mensajes: React.FC = () => {
 
   // FUNCIÓN PARA CARGAR LOS MENSAJES DESDE EL BACKEND
   const cargarMensajes = async () => {
-    const res = await fetch("http://localhost:8080/api/mensajes");
+    const res = await fetch("/api/mensajes");
     const data = await res.json();
     setMensajes(data);
   };
@@ -31,7 +31,7 @@ const Mensajes: React.FC = () => {
 
   // FUNCIÓN PARA MARCAR UN MENSAJE COMO LEÍDO
   const marcarLeido = async (id: number) => {
-    await fetch(`http://localhost:8080/api/mensajes/${id}/leido`, {
+    await fetch(`/api/mensajes/${id}/leido`, {
       method: "PUT",
     });
     cargarMensajes(); // Recargo la lista
@@ -39,7 +39,7 @@ const Mensajes: React.FC = () => {
 
   // FUNCIÓN PARA ELIMINAR UN MENSAJE
   const eliminar = async (id: number) => {
-    await fetch(`http://localhost:8080/api/mensajes/${id}`, {
+    await fetch(`/api/mensajes/${id}`, {
       method: "DELETE",
     });
     cargarMensajes(); // Recargo la lista

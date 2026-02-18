@@ -14,7 +14,7 @@ const ProductosEditar: React.FC = () => {
   // 1. Cargar los datos actuales del producto al entrar
   useEffect(() => {
     async function cargar() {
-      const res = await fetch(`http://localhost:8080/api/productos/${id}`);
+      const res = await fetch(`/api/productos/${id}`);
       const data = await res.json();
       setProducto(data); // Guardo los datos en el estado
     }
@@ -28,7 +28,7 @@ const ProductosEditar: React.FC = () => {
   async function handleSubmit(e: React.FormEvent) {
     e.preventDefault();
 
-    await fetch(`http://localhost:8080/api/productos/${id}`, {
+    await fetch(`/api/productos/${id}`, {
       method: "PUT",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify(producto),

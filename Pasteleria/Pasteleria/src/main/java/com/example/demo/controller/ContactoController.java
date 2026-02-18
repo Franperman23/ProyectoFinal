@@ -5,7 +5,6 @@ import org.springframework.web.bind.annotation.*;
 /* CONTROLADOR DE CONTACTO */
 @RestController
 @RequestMapping("/api/contacto")
-@CrossOrigin(origins = "http://localhost:5173")
 public class ContactoController {
 
     /* RECIBIR MENSAJE */

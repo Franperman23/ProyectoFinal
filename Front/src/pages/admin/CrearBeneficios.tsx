@@ -31,9 +31,9 @@ const CrearBeneficios: React.FC = () => {
             ganancia: parseFloat(ganancia) 
         };
 
+        // Petición POST protegida con token JWT.
         try {
-            // Petición POST protegida con token JWT.
-            const res = await fetch("http://localhost:8080/api/admin/beneficios", {
+            const res = await fetch("/api/admin/beneficios", {
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json",

@@ -121,8 +121,8 @@ const Carrito: React.FC = () => {
       })),
     };
 
-    // Llamada al backend que devuelve un PDF.
-    const res = await fetch("http://localhost:8080/api/pedidos/pdf", {
+    // LLAMADA AL BACKEND QUE DEVUELVE EL PDF
+    const res = await fetch("/api/pedidos/pdf", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify(pedido),

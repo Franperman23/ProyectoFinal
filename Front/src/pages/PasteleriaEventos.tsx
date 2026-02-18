@@ -11,7 +11,7 @@ const PasteleriaEventos: React.FC = () => {
   // Función que obtiene todos los productos del backend.
   async function fetchProductos() {
     try {
-      const response = await fetch("http://localhost:8080/api/productos");
+      const response = await fetch("/api/productos");
       if (!response.ok) throw new Error("Error al cargar productos");
 
       const data: ListarProductoDTO[] = await response.json();

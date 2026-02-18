@@ -24,8 +24,8 @@ const Contacto: React.FC = () => {
   const enviarFormulario = async (e: React.FormEvent) => {
     e.preventDefault(); // Evita recargar la página.
 
-    // Envío de datos al backend mediante POST.
-    const res = await fetch("http://localhost:8080/api/mensajes", {
+      // Envío de datos al backend mediante POST.
+    const res = await fetch("/api/mensajes", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify(form),

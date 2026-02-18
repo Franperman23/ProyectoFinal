@@ -16,9 +16,9 @@ const EmpleadosCrear: React.FC = () => {
   // FUNCIÓN PARA CREAR UN EMPLEADO
   const crearEmpleado = async (e: React.FormEvent) => {
     e.preventDefault(); // Evita recargar la página
-
+   
     // Envío la petición al backend
-    const res = await fetch("http://localhost:8080/api/admin/usuarios", {
+    const res = await fetch("/api/admin/usuarios", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",

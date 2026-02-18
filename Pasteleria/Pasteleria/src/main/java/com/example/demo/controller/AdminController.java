@@ -18,7 +18,6 @@ import java.util.List;
 /* CONTROLADOR ADMIN */
 @RestController
 @RequestMapping("/api/admin/usuarios")
-@CrossOrigin(origins = "http://localhost:5173")
 public class AdminController {
 
     /* INYECCIÓN DE SERVICIO */

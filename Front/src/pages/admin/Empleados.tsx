@@ -23,7 +23,7 @@ const Empleados: React.FC = () => {
 
   // useEffect que carga los empleados al montar el componente.
   useEffect(() => {
-    fetch("http://localhost:8080/api/admin/usuarios", {
+    fetch("/api/admin/usuarios", {
       headers: {
         Authorization: `Bearer ${token}`, // Token JWT
       },
@@ -57,7 +57,7 @@ const Empleados: React.FC = () => {
   const eliminarEmpleado = async (id: number) => {
     if (!confirm("¿Seguro que quieres eliminar este empleado?")) return;
 
-    await fetch(`http://localhost:8080/api/admin/usuarios/${id}`, {
+    await fetch(`/api/admin/usuarios/${id}`, {
       method: "DELETE",
       headers: {
         Authorization: `Bearer ${token}`,

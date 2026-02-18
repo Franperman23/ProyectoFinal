@@ -10,7 +10,6 @@ import java.util.List;
 /* CONTROLADOR DE MENSAJES */
 @RestController
 @RequestMapping("/api/mensajes")
-@CrossOrigin(origins = "http://localhost:5173")
 public class MensajeController {
 
     /* INYECCIÓN DE REPOSITORIO */

@@ -18,7 +18,7 @@ const PedidosAdmin: React.FC = () => {
 
   // FUNCIÓN PARA CARGAR LOS PEDIDOS DESDE EL BACKEND
   const cargarPedidos = () => {
-    fetch("http://localhost:8080/api/pedidos")
+    fetch("/api/pedidos")
       .then((res) => res.json())
       .then((data) => setPedidos(data));
   };
@@ -30,7 +30,7 @@ const PedidosAdmin: React.FC = () => {
 
   // FUNCIÓN PARA MARCAR UN PEDIDO COMO ENTREGADO
   const marcarEntregado = (id: number) => {
-    fetch(`http://localhost:8080/api/pedidos/${id}/entregado`, {
+    fetch(`/api/pedidos/${id}/entregado`, {
       method: "PUT",
     }).then(() => cargarPedidos()); // Recargo la lista
   };
@@ -39,7 +39,7 @@ const PedidosAdmin: React.FC = () => {
   const eliminarPedido = (id: number) => {
     if (!confirm("¿Seguro que quieres eliminar este pedido?")) return;
 
-    fetch(`http://localhost:8080/api/pedidos/${id}`, {
+    fetch(`/api/pedidos/${id}`, {
       method: "DELETE",
     }).then(() => cargarPedidos());
   };

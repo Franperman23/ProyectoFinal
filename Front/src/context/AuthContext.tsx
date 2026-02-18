@@ -56,9 +56,8 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
 
   // FUNCIÓN LOGIN
   const login = async (email: string, password: string) => {
-
     // Envío la petición al backend para iniciar sesión.
-    const res = await fetch("http://localhost:8080/api/auth/login", {
+    const res = await fetch("/api/auth/login", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({ email, password }),
@@ -100,7 +99,7 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
 
   // FUNCIÓN REGISTER
   const register = async (nombre: string, email: string, password: string) => {
-    const res = await fetch("http://localhost:8080/api/auth/register", {
+    const res = await fetch("/api/auth/register", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({ nombre, email, password }),

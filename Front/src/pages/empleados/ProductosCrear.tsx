@@ -18,10 +18,10 @@ const ProductosCrear: React.FC = () => {
   // FUNCIÓN PRINCIPAL DEL FORMULARIO
   async function handleSubmit(e: React.FormEvent) {
     e.preventDefault(); // Evita recargar la página
-
+     
+    // Envío la petición POST al backend
     try {
-      // Envío la petición POST al backend
-      const result = await fetch("http://localhost:8080/api/productos", {
+      const result = await fetch("/api/productos", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",

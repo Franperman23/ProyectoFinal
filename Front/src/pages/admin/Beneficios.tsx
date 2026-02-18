@@ -21,8 +21,8 @@ const Beneficios: React.FC = () => {
 
     // FUNCIÓN PARA CARGAR LOS DATOS DESDE EL BACKEND
     const cargarDatos = () => {
-        fetch("http://localhost:8080/api/admin/beneficios", {
-            headers: { Authorization: `Bearer ${token}` } // Token JWT
+        fetch("/api/admin/beneficios", {
+            headers: { Authorization: `Bearer ${token}` }
         })
         .then(res => res.json())
         .then(data => setBeneficios(data))
@@ -37,8 +37,12 @@ const Beneficios: React.FC = () => {
     // FUNCIÓN PARA ELIMINAR UN REGISTRO DE BENEFICIO
     const eliminar = async (id: number) => {
         if (!confirm("¿Eliminar este registro de ganancia?")) return;
+<<<<<<< HEAD
+        await fetch(`api/admin/beneficios/${id}`, {
+=======
 
         await fetch(`http://localhost:8080/api/admin/beneficios/${id}`, {
+>>>>>>> main
             method: "DELETE",
             headers: { Authorization: `Bearer ${token}` }
         });

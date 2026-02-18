@@ -30,7 +30,7 @@ const RegistroHorarioGlobal: React.FC = () => {
     // useEffect se ejecuta al montar el componente.
     // Aquí hago la petición al backend para obtener todos los registros horarios.
     useEffect(() => {
-        fetch("http://localhost:8080/api/registros", {
+        fetch("/api/registros", {
             headers: {
                 // Envío el token JWT en la cabecera Authorization.
                 Authorization: `Bearer ${token}`,

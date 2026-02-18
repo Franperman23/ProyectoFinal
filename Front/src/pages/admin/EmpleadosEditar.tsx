@@ -22,7 +22,7 @@ const EmpleadosEditar: React.FC = () => {
 
   // CARGO LOS DATOS DEL EMPLEADO AL MONTAR EL COMPONENTE
   useEffect(() => {
-    fetch(`http://localhost:8080/api/admin/usuarios/${id}`, {
+    fetch(`/api/admin/usuarios/${id}`, {
       headers: {
         Authorization: `Bearer ${token}`, // Token JWT
       },
@@ -62,7 +62,7 @@ const EmpleadosEditar: React.FC = () => {
     }
 
     // Petición PUT al backend.
-    const res = await fetch(`http://localhost:8080/api/admin/usuarios/${id}`, {
+    const res = await fetch(`/api/admin/usuarios/${id}`, {
       method: "PUT",
       headers: {
         "Content-Type": "application/json",
