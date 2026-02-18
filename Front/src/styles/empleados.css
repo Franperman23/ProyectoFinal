@@ -62,7 +62,7 @@
   padding: 35px;
 }
 
-/* TARJETAS DEL DASHBOARD (RENOMBRADAS) */
+/* TARJETAS DEL DASHBOARD */
 .admin-card {
   background: white;
   padding: 28px;
@@ -176,7 +176,7 @@
   border: 1px solid #d1d5db;
   font-size: 1rem;
   background: #f9fafb;
-  color: #2b2b2b; /* ← TEXTO VISIBLE */
+  color: #2b2b2b; 
   transition: border 0.2s, box-shadow 0.2s;
 }
 

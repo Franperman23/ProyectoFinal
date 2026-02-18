@@ -3,6 +3,7 @@ import Navbar from "../components/Navbar";
 import Footer from "../components/Footer";
 import { AuthContext } from "../context/AuthContext";
 
+// Interfaz que define cómo se guarda cada producto dentro del carrito.
 interface ItemCarrito {
   productoId: number;
   nombre: string;
@@ -12,14 +13,20 @@ interface ItemCarrito {
 }
 
 const Carrito: React.FC = () => {
+  // Estado donde guardo los productos del carrito.
   const [carrito, setCarrito] = useState<ItemCarrito[]>([]);
+
+  // Obtengo el usuario desde el contexto (si está logueado).
   const { usuario } = useContext(AuthContext);
 
+  // Al cargar el componente, recupero el carrito desde localStorage.
   useEffect(() => {
     const data = localStorage.getItem("carrito");
+
     if (data) {
       const parsed = JSON.parse(data);
 
+      // Saneo los datos para asegurar que tienen el formato correcto.
       const saneado: ItemCarrito[] = parsed.map((item: any) => ({
         productoId: Number(item.id),
         nombre: item.nombre,
@@ -32,11 +39,13 @@ const Carrito: React.FC = () => {
     }
   }, []);
 
+  // Guarda el carrito tanto en el estado como en localStorage.
   const guardarCarrito = (items: ItemCarrito[]) => {
     setCarrito(items);
     localStorage.setItem("carrito", JSON.stringify(items));
   };
 
+  // Aumenta la cantidad de un producto.
   const aumentar = (productoId: number) => {
     const actualizado = carrito.map((item) =>
       item.productoId === productoId
@@ -46,6 +55,7 @@ const Carrito: React.FC = () => {
     guardarCarrito(actualizado);
   };
 
+  // Disminuye la cantidad de un producto (si llega a 0, se elimina).
   const disminuir = (productoId: number) => {
     const actualizado = carrito
       .map((item) =>
@@ -58,6 +68,7 @@ const Carrito: React.FC = () => {
     guardarCarrito(actualizado);
   };
 
+  // Elimina un producto del carrito.
   const eliminar = (productoId: number) => {
     const actualizado = carrito.filter(
       (item) => item.productoId !== productoId
@@ -65,30 +76,37 @@ const Carrito: React.FC = () => {
     guardarCarrito(actualizado);
   };
 
+  // Vacía completamente el carrito.
   const vaciar = () => {
     guardarCarrito([]);
   };
 
+  // Calcula el total del carrito sumando precio * cantidad.
   const total = carrito.reduce(
     (acc, item) => acc + item.cantidad * item.precio,
     0
   );
 
+  // Función para finalizar el pedido y generar el PDF.
   const finalizarPedido = async () => {
+    // Si no está logueado, lo envío al login.
     if (!usuario) {
       alert("Debes iniciar sesión para realizar un pedido.");
       window.location.href = "/login";
       return;
     }
 
+    // Si el carrito está vacío, no se puede finalizar.
     if (carrito.length === 0) {
       alert("Tu carrito está vacío.");
       return;
     }
 
+    // Fechas de hoy y mañana para el pedido.
     const hoy = new Date();
     const manana = new Date(hoy.getTime() + 24 * 60 * 60 * 1000);
 
+    // Construyo el objeto pedido que espera el backend.
     const pedido = {
       fecha: hoy.toLocaleDateString(),
       recoger: manana.toLocaleDateString(),
@@ -103,7 +121,7 @@ const Carrito: React.FC = () => {
       })),
     };
 
-    // LLAMADA AL BACKEND QUE DEVUELVE EL PDF
+    // Llamada al backend que devuelve un PDF.
     const res = await fetch("http://localhost:8080/api/pedidos/pdf", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
@@ -115,7 +133,7 @@ const Carrito: React.FC = () => {
       return;
     }
 
-    // DESCARGA AUTOMÁTICA DEL PDF
+    // Descargo el PDF automáticamente.
     const blob = await res.blob();
     const url = window.URL.createObjectURL(blob);
 
@@ -127,11 +145,12 @@ const Carrito: React.FC = () => {
     window.URL.revokeObjectURL(url);
 
     alert("¡Pedido realizado y PDF descargado!");
-    vaciar();
+    vaciar(); // Vacío el carrito tras completar el pedido.
   };
 
   return (
     <>
+      {/* Barra de navegación */}
       <Navbar />
 
       <main className="fullwidth carrito-container">
@@ -142,10 +161,12 @@ const Carrito: React.FC = () => {
 
         <div className="section-line"></div>
 
+        {/* Si el carrito está vacío, muestro mensaje */}
         {carrito.length === 0 ? (
           <p className="empty">Tu carrito está vacío.</p>
         ) : (
           <div className="carrito-layout">
+            {/* Lista de productos del carrito */}
             <div className="carrito-lista">
               {carrito.map((item) => (
                 <article className="carrito-item" key={item.productoId}>
@@ -161,6 +182,7 @@ const Carrito: React.FC = () => {
                       Subtotal: {(item.precio * item.cantidad).toFixed(2)} €
                     </p>
 
+                    {/* Controles de cantidad */}
                     <div className="cantidad">
                       <button onClick={() => disminuir(item.productoId)}>
                         -
@@ -171,6 +193,7 @@ const Carrito: React.FC = () => {
                       </button>
                     </div>
 
+                    {/* Botón para eliminar producto */}
                     <button
                       className="btn eliminar"
                       onClick={() => eliminar(item.productoId)}
@@ -182,18 +205,22 @@ const Carrito: React.FC = () => {
               ))}
             </div>
 
+            {/* Resumen del pedido */}
             <aside className="carrito-resumen">
               <h3>Resumen</h3>
+
               <p>
                 Total productos:{" "}
                 {carrito.reduce((a, i) => a + i.cantidad, 0)}
               </p>
+
               <p className="total">Total: {total.toFixed(2)} €</p>
 
               <button className="btn vaciar" onClick={vaciar}>
                 Vaciar carrito
               </button>
 
+              {/* Botón para finalizar pedido */}
               <button
                 className="btn finalizar"
                 onClick={() => {
@@ -211,6 +238,7 @@ const Carrito: React.FC = () => {
         )}
       </main>
 
+      {/* Pie de página */}
       <Footer />
     </>
   );

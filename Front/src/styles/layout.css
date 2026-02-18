@@ -153,13 +153,13 @@
   display: block;
 }
 
-/* MAIN — CORRECCIÓN CRÍTICA */
+/* MAIN */
 main {
   padding-top: 140px;
-  background: #f5f1eb; /* fondo claro para TODAS las páginas */
+  background: #f5f1eb; 
   min-height: 100vh;
   position: relative;
-  z-index: 10; /* por encima del hero */
+  z-index: 10; 
 }
 
 /* SOLO EL HOME DEBE SER TRANSPARENTE */

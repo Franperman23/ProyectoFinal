@@ -5,8 +5,10 @@ import Hero from "../components/Hero";
 import type { ListarProductoDTO } from "../types/ListarProductoDTO";
 
 const PasteleriaEventos: React.FC = () => {
+  // Estado donde guardo los productos creados por empleados.
   const [productos, setProductos] = useState<ListarProductoDTO[]>([]);
 
+  // Función que obtiene todos los productos del backend.
   async function fetchProductos() {
     try {
       const response = await fetch("http://localhost:8080/api/productos");
@@ -14,26 +16,30 @@ const PasteleriaEventos: React.FC = () => {
 
       const data: ListarProductoDTO[] = await response.json();
 
-      // Filtrar productos creados por empleados
+      // Filtrar solo los productos cuyo tipo sea "Pasteleria para eventos".
       const filtrados = data.filter(
         (p) => p.tipo === "Pasteleria para eventos"
       );
 
+      // Guardar los productos filtrados en el estado.
       setProductos(filtrados);
     } catch (error) {
       console.error("Error:", error);
     }
   }
 
+  // Cargar productos al montar el componente.
   useEffect(() => {
     fetchProductos();
   }, []);
 
   return (
     <>
+      {/* Barra de navegación */}
       <Navbar />
 
       <main>
+        {/* Sección principal con imagen y texto */}
         <Hero
           title="Pastelería para eventos"
           subtitle="Diseños únicos para ocasiones especiales"
@@ -51,6 +57,7 @@ const PasteleriaEventos: React.FC = () => {
           <div className="grid fade-up">
 
             {/* EJEMPLOS FIJOS */}
+
             <article className="card">
               <div className="card-image">
                 <img src="img pasteleria eventos/card1.png" alt="Evento 1" loading="lazy" />
@@ -156,6 +163,7 @@ const PasteleriaEventos: React.FC = () => {
             </article>
 
             {/* PRODUCTOS CREADOS POR EMPLEADOS */}
+
             {productos.map((producto) => (
               <article className="card" key={producto.id}>
                 <div className="card-image">
@@ -180,6 +188,7 @@ const PasteleriaEventos: React.FC = () => {
         </section>
       </main>
 
+      {/* Pie de página */}
       <Footer />
     </>
   );

@@ -2,6 +2,7 @@ import AdminLayout from "../../components/admin/AdminLayout.tsx";
 
 const AdminDashboard: React.FC = () => {
   return (
+    //Lo meto dentro de AdminLayout para mantener la estructura.
     <AdminLayout>
       <h2>Panel del administrador</h2>
 

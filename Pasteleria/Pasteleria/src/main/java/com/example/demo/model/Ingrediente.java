@@ -9,7 +9,7 @@ public class Ingrediente {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "ID_INGREDIENTE")
-    private Integer idIngrediente; 
+    private Integer idIngrediente;
 
     @Column(name = "NOMBRE", nullable = false, length = 50)
     private String nombre;
@@ -17,11 +17,11 @@ public class Ingrediente {
     @Column(name = "CANTIDAD", nullable = false)
     private Integer cantidad;
 
-    // Ahora es un simple String, sin relaciones con otras tablas
     @Column(name = "PROVEEDOR", nullable = false, length = 100)
-    private String proveedor; 
+    private String proveedor;
 
-    public Ingrediente() {}
+    public Ingrediente() {
+    }
 
     public Ingrediente(Integer idIngrediente, String nombre, Integer cantidad, String proveedor) {
         this.idIngrediente = idIngrediente;
@@ -30,12 +30,35 @@ public class Ingrediente {
         this.proveedor = proveedor;
     }
 
-    public Integer getIdIngrediente() { return idIngrediente; }
-    public void setIdIngrediente(Integer idIngrediente) { this.idIngrediente = idIngrediente; }
-    public String getNombre() { return nombre; }
-    public void setNombre(String nombre) { this.nombre = nombre; }
-    public Integer getCantidad() { return cantidad; }
-    public void setCantidad(Integer cantidad) { this.cantidad = cantidad; }
-    public String getProveedor() { return proveedor; }
-    public void setProveedor(String proveedor) { this.proveedor = proveedor; }
+    public Integer getIdIngrediente() {
+        return idIngrediente;
+    }
+
+    public void setIdIngrediente(Integer idIngrediente) {
+        this.idIngrediente = idIngrediente;
+    }
+
+    public String getNombre() {
+        return nombre;
+    }
+
+    public void setNombre(String nombre) {
+        this.nombre = nombre;
+    }
+
+    public Integer getCantidad() {
+        return cantidad;
+    }
+
+    public void setCantidad(Integer cantidad) {
+        this.cantidad = cantidad;
+    }
+
+    public String getProveedor() {
+        return proveedor;
+    }
+
+    public void setProveedor(String proveedor) {
+        this.proveedor = proveedor;
+    }
 }

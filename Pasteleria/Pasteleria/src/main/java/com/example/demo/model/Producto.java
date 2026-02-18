@@ -32,30 +32,70 @@ public class Producto {
     @Column(name = "IMAGEN", nullable = true, length = 300)
     private String imagen;
 
-    public Producto() {}
+    public Producto() {
+    }
 
-    // GETTERS Y SETTERS
-    public Integer getId() { return id; }
-    public void setId(Integer id) { this.id = id; }
+    public Integer getId() {
+        return id;
+    }
 
-    public String getNombre() { return nombre; }
-    public void setNombre(String nombre) { this.nombre = nombre; }
+    public void setId(Integer id) {
+        this.id = id;
+    }
 
-    public String getDescripcion() { return descripcion; }
-    public void setDescripcion(String descripcion) { this.descripcion = descripcion; }
+    public String getNombre() {
+        return nombre;
+    }
 
-    public Double getPrecio() { return precio; }
-    public void setPrecio(Double precio) { this.precio = precio; }
+    public void setNombre(String nombre) {
+        this.nombre = nombre;
+    }
 
-    public String getReceta() { return receta; }
-    public void setReceta(String receta) { this.receta = receta; }
+    public String getDescripcion() {
+        return descripcion;
+    }
 
-    public Integer getStock() { return stock; }
-    public void setStock(Integer stock) { this.stock = stock; }
+    public void setDescripcion(String descripcion) {
+        this.descripcion = descripcion;
+    }
 
-    public String getTipoProducto() { return tipoProducto; }
-    public void setTipoProducto(String tipoProducto) { this.tipoProducto = tipoProducto; }
+    public Double getPrecio() {
+        return precio;
+    }
 
-    public String getImagen() { return imagen; }
-    public void setImagen(String imagen) { this.imagen = imagen; }
+    public void setPrecio(Double precio) {
+        this.precio = precio;
+    }
+
+    public String getReceta() {
+        return receta;
+    }
+
+    public void setReceta(String receta) {
+        this.receta = receta;
+    }
+
+    public Integer getStock() {
+        return stock;
+    }
+
+    public void setStock(Integer stock) {
+        this.stock = stock;
+    }
+
+    public String getTipoProducto() {
+        return tipoProducto;
+    }
+
+    public void setTipoProducto(String tipoProducto) {
+        this.tipoProducto = tipoProducto;
+    }
+
+    public String getImagen() {
+        return imagen;
+    }
+
+    public void setImagen(String imagen) {
+        this.imagen = imagen;
+    }
 }

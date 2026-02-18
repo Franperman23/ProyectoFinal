@@ -19,12 +19,30 @@ public class Beneficio {
     @Column(name = "GANANCIA", nullable = false, precision = 10, scale = 2)
     private BigDecimal ganancia;
 
-    public Beneficio() {}
+    public Beneficio() {
+    }
 
-    public Integer getIdBeneficios() { return idBeneficios; }
-    public void setIdBeneficios(Integer idBeneficios) { this.idBeneficios = idBeneficios; }
-    public LocalDate getFecha() { return fecha; }
-    public void setFecha(LocalDate fecha) { this.fecha = fecha; }
-    public BigDecimal getGanancia() { return ganancia; }
-    public void setGanancia(BigDecimal ganancia) { this.ganancia = ganancia; }
+    public Integer getIdBeneficios() {
+        return idBeneficios;
+    }
+
+    public void setIdBeneficios(Integer idBeneficios) {
+        this.idBeneficios = idBeneficios;
+    }
+
+    public LocalDate getFecha() {
+        return fecha;
+    }
+
+    public void setFecha(LocalDate fecha) {
+        this.fecha = fecha;
+    }
+
+    public BigDecimal getGanancia() {
+        return ganancia;
+    }
+
+    public void setGanancia(BigDecimal ganancia) {
+        this.ganancia = ganancia;
+    }
 }
