@@ -1,16 +1,5 @@
 package com.example.demo.controller;
 
-import java.util.List;
-
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.*;
-
-import com.example.demo.dto.ProductoDTO;
-import com.example.demo.service.ProductoService;
-
-/* CONTROLADOR DE REGISTROS */
-package com.example.demo.controller;
-
 import com.example.demo.model.Registro;
 import com.example.demo.service.RegistroService;
 import org.springframework.web.bind.annotation.*;
