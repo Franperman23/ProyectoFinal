@@ -12,7 +12,7 @@ const Ingredientes: React.FC = () => {
   // Función para obtener los datos del servidor
   const cargarIngredientes = async () => {
     try {
-      const response = await fetch("http://localhost:8080/api/ingredientes");
+      const response = await fetch("/api/ingredientes");
       if (response.ok) {
         const datos = await response.json();
         setIngredientes(datos);
@@ -36,7 +36,7 @@ const Ingredientes: React.FC = () => {
     if (!confirm("¿Seguro que quieres eliminarlo?")) return;
     
     try {
-      const response = await fetch(`http://localhost:8080/api/ingredientes/${id}`, {
+      const response = await fetch(`/api/ingredientes/${id}`, {
         method: "DELETE",
       });
       if (response.ok) {

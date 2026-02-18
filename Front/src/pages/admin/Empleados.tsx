@@ -15,7 +15,7 @@ const Empleados: React.FC = () => {
   const [error, setError] = useState<string | null>(null);
 
   useEffect(() => {
-    fetch("http://localhost:8080/api/admin/usuarios", {
+    fetch("/api/admin/usuarios", {
       headers: {
         Authorization: `Bearer ${token}`,
       },
@@ -46,7 +46,7 @@ const Empleados: React.FC = () => {
   const eliminarEmpleado = async (id: number) => {
     if (!confirm("¿Seguro que quieres eliminar este empleado?")) return;
 
-    await fetch(`http://localhost:8080/api/admin/usuarios/${id}`, {
+    await fetch(`/api/admin/usuarios/${id}`, {
       method: "DELETE",
       headers: {
         Authorization: `Bearer ${token}`,

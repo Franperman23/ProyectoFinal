@@ -16,7 +16,7 @@ const DescubrirProductos: React.FC = () => {
 
   async function fetchProductos() {
     try {
-      const response = await fetch("http://localhost:8080/api/productos");
+      const response = await fetch("/api/productos");
 
       if (!response.ok) {
         throw new Error("Error al cargar los productos");

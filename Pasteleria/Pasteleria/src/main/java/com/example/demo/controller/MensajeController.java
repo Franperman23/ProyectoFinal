@@ -9,7 +9,6 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/api/mensajes")
-@CrossOrigin(origins = "http://localhost:5173")
 public class MensajeController {
 
     private final MensajeRepository repo;

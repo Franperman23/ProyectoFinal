@@ -17,7 +17,7 @@ const ProductosCrear: React.FC = () => {
     e.preventDefault();
 
     try {
-      const result = await fetch("http://localhost:8080/api/productos", {
+      const result = await fetch("/api/productos", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",

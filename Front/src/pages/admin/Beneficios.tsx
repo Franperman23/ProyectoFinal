@@ -14,7 +14,7 @@ const Beneficios: React.FC = () => {
     const [beneficios, setBeneficios] = useState<Beneficio[]>([]);
 
     const cargarDatos = () => {
-        fetch("http://localhost:8080/api/admin/beneficios", {
+        fetch("/api/admin/beneficios", {
             headers: { Authorization: `Bearer ${token}` }
         })
         .then(res => res.json())
@@ -28,7 +28,7 @@ const Beneficios: React.FC = () => {
 
     const eliminar = async (id: number) => {
         if (!confirm("¿Eliminar este registro de ganancia?")) return;
-        await fetch(`http://localhost:8080/api/admin/beneficios/${id}`, {
+        await fetch(`api/admin/beneficios/${id}`, {
             method: "DELETE",
             headers: { Authorization: `Bearer ${token}` }
         });

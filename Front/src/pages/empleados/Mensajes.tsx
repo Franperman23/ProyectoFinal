@@ -15,7 +15,7 @@ const Mensajes: React.FC = () => {
   const [mensajes, setMensajes] = useState<Mensaje[]>([]);
 
   const cargarMensajes = async () => {
-    const res = await fetch("http://localhost:8080/api/mensajes");
+    const res = await fetch("/api/mensajes");
     const data = await res.json();
     setMensajes(data);
   };
@@ -25,14 +25,14 @@ const Mensajes: React.FC = () => {
   }, []);
 
   const marcarLeido = async (id: number) => {
-    await fetch(`http://localhost:8080/api/mensajes/${id}/leido`, {
+    await fetch(`/api/mensajes/${id}/leido`, {
       method: "PUT",
     });
     cargarMensajes();
   };
 
   const eliminar = async (id: number) => {
-    await fetch(`http://localhost:8080/api/mensajes/${id}`, {
+    await fetch(`/api/mensajes/${id}`, {
       method: "DELETE",
     });
     cargarMensajes();

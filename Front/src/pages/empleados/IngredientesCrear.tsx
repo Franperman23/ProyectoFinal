@@ -18,7 +18,7 @@ const IngredientesCrear: React.FC = () => {
     e.preventDefault();
 
     try {
-      const result = await fetch("http://localhost:8080/api/ingredientes", {
+      const result = await fetch("/api/ingredientes", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",

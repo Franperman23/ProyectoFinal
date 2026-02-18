@@ -14,7 +14,7 @@ const EmpleadosEditar: React.FC = () => {
   const [error, setError] = useState<string | null>(null);
 
   useEffect(() => {
-    fetch(`http://localhost:8080/api/admin/usuarios/${id}`, {
+    fetch(`/api/admin/usuarios/${id}`, {
       headers: {
         Authorization: `Bearer ${token}`,
       },
@@ -48,7 +48,7 @@ const EmpleadosEditar: React.FC = () => {
       body.password = password;
     }
 
-    const res = await fetch(`http://localhost:8080/api/admin/usuarios/${id}`, {
+    const res = await fetch(`/api/admin/usuarios/${id}`, {
       method: "PUT",
       headers: {
         "Content-Type": "application/json",

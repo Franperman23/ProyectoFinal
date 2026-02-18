@@ -7,7 +7,7 @@ const Productos: React.FC = () => {
 
   async function fetchProductos() {
     try {
-      const response = await fetch("http://localhost:8080/api/productos");
+      const response = await fetch("/api/productos");
       if (!response.ok) throw new Error("Error al cargar productos");
       const data: ListarProductoDTO[] = await response.json();
       setProductos(data);
@@ -19,7 +19,7 @@ const Productos: React.FC = () => {
   async function eliminarProducto(id: number) {
     if (!confirm("¿Seguro que quieres eliminar este producto?")) return;
 
-    await fetch(`http://localhost:8080/api/productos/${id}`, {
+    await fetch(`/api/productos/${id}`, {
       method: "DELETE",
     });
 

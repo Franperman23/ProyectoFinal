@@ -12,7 +12,7 @@ const IngredientesEditar: React.FC = () => {
   useEffect(() => {
     async function cargarIngrediente() {
       try {
-        const res = await fetch(`http://localhost:8080/api/ingredientes/${id}`);
+        const res = await fetch(`/api/ingredientes/${id}`);
         if (res.ok) {
           const data = await res.json();
           setIngrediente(data);
@@ -34,7 +34,7 @@ const IngredientesEditar: React.FC = () => {
     e.preventDefault();
 
     try {
-      const response = await fetch(`http://localhost:8080/api/ingredientes/${id}`, {
+      const response = await fetch(`/api/ingredientes/${id}`, {
         method: "PUT",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(ingrediente),

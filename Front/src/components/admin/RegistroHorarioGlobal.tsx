@@ -19,7 +19,7 @@ const RegistroHorarioGlobal: React.FC = () => {
     const [error, setError] = useState<string | null>(null);
 
     useEffect(() => {
-        fetch("http://localhost:8080/api/registros", {
+        fetch("/api/registros", {
             headers: {
                 Authorization: `Bearer ${token}`,
             },

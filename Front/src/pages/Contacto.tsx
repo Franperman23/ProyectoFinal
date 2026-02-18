@@ -20,7 +20,7 @@ const Contacto: React.FC = () => {
   const enviarFormulario = async (e: React.FormEvent) => {
     e.preventDefault();
 
-    const res = await fetch("http://localhost:8080/api/mensajes", {
+    const res = await fetch("/api/mensajes", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify(form),
