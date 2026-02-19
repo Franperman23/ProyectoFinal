@@ -34,7 +34,7 @@ import EmpleadosCrear from "./pages/admin/EmpleadosCrear";
 import EmpleadosEditar from "./pages/admin/EmpleadosEditar";
 import PedidosAdmin from "./pages/admin/PedidosAdmin";
 import Beneficios from "./pages/admin/Beneficios";
-import CrearBeneficios from "./pages/admin/CrearBeneficios"; // <--- NUEVO: Importar el formulario
+import CrearBeneficios from "./pages/admin/CrearBeneficios"; 
 import RegistroGlobal from "./pages/admin/RegistroGlobal";
 
 const router = createBrowserRouter([

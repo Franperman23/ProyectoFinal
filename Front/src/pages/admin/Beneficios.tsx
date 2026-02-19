@@ -37,12 +37,8 @@ const Beneficios: React.FC = () => {
     // FUNCIÓN PARA ELIMINAR UN REGISTRO DE BENEFICIO
     const eliminar = async (id: number) => {
         if (!confirm("¿Eliminar este registro de ganancia?")) return;
-<<<<<<< HEAD
-        await fetch(`api/admin/beneficios/${id}`, {
-=======
 
-        await fetch(`http://localhost:8080/api/admin/beneficios/${id}`, {
->>>>>>> main
+        await fetch(`/api/admin/beneficios/${id}`, {
             method: "DELETE",
             headers: { Authorization: `Bearer ${token}` }
         });

@@ -48,7 +48,7 @@ const Especialidades: React.FC = () => {
 
         {/* TARJETA 3: Tartas personalizadas */}
         <article className="card">
-          <a href="/TartasPersonalizadas">
+          <a href="/tartas-personalizadas">
             <div className="card-image">
               <img src="img index/card3.png" loading="lazy" alt="Tartas personalizadas" />
             </div>
@@ -62,7 +62,7 @@ const Especialidades: React.FC = () => {
 
         {/* TARJETA 4: Pastelería para eventos */}
         <article className="card">
-          <a href="/PasteleriaEventos">
+          <a href="/pasteleria-eventos">
             <div className="card-image">
               <img src="img index/card4.png" loading="lazy" alt="Pastelería para eventos" />
             </div>
