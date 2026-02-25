@@ -94,6 +94,9 @@ CREATE TABLE PEDIDO_PRODUCTO (
     CONSTRAINT FK_PEDIDO_PRODUCTO_PEDIDO FOREIGN KEY (PEDIDO_ID) REFERENCES PEDIDO(ID)
 );
 
+-- ============================
+-- TABLA BENEFICIOS
+-- ============================
 CREATE TABLE BENEFICIOS (
 	ID_BENEFICIOS INT NOT NULL AUTO_INCREMENT,
     FECHA DATE NOT NULL,
@@ -115,23 +118,6 @@ CREATE TABLE mensaje (
 );
 ALTER TABLE REGISTRO MODIFY HORA_SALIDA TIME NULL;
 
--- Crear la base de datos si no existe
-CREATE DATABASE IF NOT EXISTS pasteleria;
-USE pasteleria;
-
--- Crear la tabla de usuarios (la que fallaba antes)
-CREATE TABLE IF NOT EXISTS usuario (
-    id BIGINT AUTO_INCREMENT PRIMARY KEY,
-    nombre VARCHAR(100),
-    email VARCHAR(100) UNIQUE NOT NULL,
-    password VARCHAR(255) NOT NULL,
-    rol VARCHAR(50)
-);
-
 SELECT * FROM USUARIO;
 INSERT INTO USUARIO (NOMBRE, EMAIL, PASSWORD, ROL)
 VALUES('admin', 'admin@gmail.com', 'admin', 'ADMIN');
-
-
-
--- Aquí puedes pegar el resto de tus tablas (productos, pedidos, etc.)
