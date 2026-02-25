@@ -1,6 +1,7 @@
 import React, { useState, useContext } from "react";
 import AdminLayout from "../../components/admin/AdminLayout";
 import { AuthContext } from "../../context/AuthContext";
+import "../../styles/admin.css";
 
 const EmpleadosCrear: React.FC = () => {
 
@@ -38,7 +39,7 @@ const EmpleadosCrear: React.FC = () => {
     <AdminLayout>
       <h2>Crear empleado</h2>
 
-      <form onSubmit={crearEmpleado} className="form">
+      <form onSubmit={crearEmpleado} className="admin-form">
 
         <label>Nombre</label>
         <input
