@@ -71,6 +71,7 @@ export default function Registro() {
             value={password}
             onChange={(e) => setPassword(e.target.value)}
             required
+            minLength={8}
           />
 
           {/* Campo repetir contraseña */}

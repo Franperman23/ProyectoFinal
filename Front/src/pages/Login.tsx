@@ -38,7 +38,7 @@ export default function Login() {
         <form className="login-form" onSubmit={handleSubmit}>
           {/* Campo email */}
           <input
-            type="text"
+            type="email"
             placeholder="Correo electrónico"
             value={email}
             onChange={(e) => setEmail(e.target.value)}
@@ -52,6 +52,7 @@ export default function Login() {
             value={password}
             onChange={(e) => setPassword(e.target.value)}
             required
+            minLength={8}
           />
 
           {/* Mensaje de error si existe */}
