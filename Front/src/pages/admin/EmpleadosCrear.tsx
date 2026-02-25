@@ -4,30 +4,25 @@ import { AuthContext } from "../../context/AuthContext";
 
 const EmpleadosCrear: React.FC = () => {
 
-  // Obtengo el token del contexto para acceder a rutas protegidas.
   const { token } = useContext(AuthContext);
 
-  // Estados del formulario: nombre, email, contraseña y rol.
   const [nombre, setNombre] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const [rol, setRol] = useState("EMPLEADO"); // Valor por defecto
+  const [rol, setRol] = useState("EMPLEADO");
 
-  // FUNCIÓN PARA CREAR UN EMPLEADO
   const crearEmpleado = async (e: React.FormEvent) => {
-    e.preventDefault(); // Evita recargar la página
-   
-    // Envío la petición al backend
+    e.preventDefault();
+
     const res = await fetch("/api/admin/usuarios", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
-        Authorization: `Bearer ${token}`, // Token JWT
+        Authorization: `Bearer ${token}`,
       },
       body: JSON.stringify({ nombre, email, password, rol }),
     });
 
-    // Si la respuesta no es OK, muestro error
     if (!res.ok) {
       const text = await res.text();
       console.error("Error al crear empleado:", text);
@@ -35,20 +30,16 @@ const EmpleadosCrear: React.FC = () => {
       return;
     }
 
-    // Si todo va bien, aviso y redirijo
     alert("Empleado creado correctamente");
     window.location.href = "/admin/empleados";
   };
 
   return (
     <AdminLayout>
-      {/* Título principal */}
       <h2>Crear empleado</h2>
 
-      {/* FORMULARIO */}
-      <form onSubmit={crearEmpleado} className="formulario">
+      <form onSubmit={crearEmpleado} className="form">
 
-        {/* Campo NOMBRE */}
         <label>Nombre</label>
         <input
           value={nombre}
@@ -56,7 +47,6 @@ const EmpleadosCrear: React.FC = () => {
           required
         />
 
-        {/* Campo EMAIL */}
         <label>Email</label>
         <input
           value={email}
@@ -64,7 +54,6 @@ const EmpleadosCrear: React.FC = () => {
           required
         />
 
-        {/* Campo CONTRASEÑA */}
         <label>Contraseña</label>
         <input
           type="password"
@@ -73,15 +62,13 @@ const EmpleadosCrear: React.FC = () => {
           required
         />
 
-        {/* Campo ROL */}
         <label>Rol</label>
         <select value={rol} onChange={(e) => setRol(e.target.value)}>
           <option value="EMPLEADO">Empleado</option>
           <option value="ADMIN">Administrador</option>
         </select>
 
-        {/* Botón de guardar */}
-        <button className="btn crear">Guardar</button>
+        <button className="btn">Guardar</button>
       </form>
     </AdminLayout>
   );
