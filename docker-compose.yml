@@ -16,7 +16,7 @@ services:
 
   # 2. Backend (Spring Boot)
   backend:
-    build: ./Pasteleria/Pasteleria
+    build: ./Pasteleria
     environment:
       - SPRING_DATASOURCE_URL=jdbc:mysql://db:3306/PASTELERIA?allowPublicKeyRetrieval=true&useSSL=false
       - SPRING_DATASOURCE_USERNAME=root
