@@ -7,8 +7,8 @@ const AdminDashboard: React.FC = () => {
 
       <div className="dashboard-grid">
         <a href="/admin/empleados" className="admin-btn">Gestión de empleados</a>
-        <a href="/admin/productos" className="admin-btn">Gestión de productos</a>
-        <a href="/admin/ingredientes" className="admin-btn">Gestión de ingredientes</a>
+        <a href="/empleados/productos" className="admin-btn">Gestión de productos</a>
+        <a href="/empleados/ingredientes" className="admin-btn">Gestión de ingredientes</a>
         <a href="/admin/pedidos" className="admin-btn">Pedidos</a>
         <a href="/admin/beneficios" className="admin-btn">Beneficios</a>
         <a href="/admin/registro-global" className="admin-btn">Registro horario global</a>
