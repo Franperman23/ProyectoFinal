@@ -1,0 +1,93 @@
+package com.example.demo.entity;
+
+import jakarta.persistence.*;
+import com.fasterxml.jackson.annotation.JsonProperty;
+	
+@Entity
+@Table(name = "EMPLEADO")
+public class Empleado {
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "ID_EMPLEADO")
+    private Integer idEmpleado;
+
+    @Column(name = "NOMBRE", nullable = false, length = 45)
+    private String nombre;
+
+    @Column(name = "APELLIDOS", nullable = false, length = 70)
+    private String apellidos;
+
+    @Column(name = "EMAIL", nullable = false, unique = true, length = 100)
+    private String email;
+
+    @Column(name = "TELEFONO", nullable = false, length = 15) 
+    private String telefono;
+
+    @Column(name = "ROL", nullable = false, length = 20)
+    private String rol;
+
+    @Column(name = "CONTRASEÑA", nullable = false, length = 100)
+    @JsonProperty("contraseña") 
+    private String contrasena;
+
+    public Empleado() {}
+
+    public Empleado(String nombre, String apellidos, String email, String telefono, String rol, String contrasena) {
+        this.nombre = nombre;
+        this.apellidos = apellidos;
+        this.email = email;
+        this.telefono = telefono;
+        this.rol = rol;
+        this.contrasena = contrasena;
+    }
+
+    public Integer getIdEmpleado() {
+    	return idEmpleado; 
+    }
+    public void setIdEmpleado(Integer idEmpleado) {
+    	this.idEmpleado = idEmpleado; 
+    }
+
+    public String getNombre() {
+    	return nombre; 
+    }
+    public void setNombre(String nombre) {
+    	this.nombre = nombre; 
+    }
+
+    public String getApellidos() {
+    	return apellidos; 
+    }
+    public void setApellidos(String apellidos) {
+    	this.apellidos = apellidos; 
+    }
+
+    public String getEmail() {
+    	return email; 
+    }
+    public void setEmail(String email) {
+    	this.email = email; 
+    }
+
+    public String getTelefono() {
+    	return telefono; 
+    }
+    public void setTelefono(String telefono) {
+    	this.telefono = telefono; 
+    }
+
+    public String getRol() {
+    	return rol; 
+    }
+    public void setRol(String rol) {
+    	this.rol = rol; 
+    }
+
+    public String getContrasena() {
+    	return contrasena; 
+    }
+    public void setContrasena(String contrasena) {
+    	this.contrasena = contrasena; 
+    }
+}

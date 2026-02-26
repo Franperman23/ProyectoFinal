@@ -1,0 +1,67 @@
+package com.example.demo.serviceimpl;
+
+import com.example.demo.entity.Empleado;
+import com.example.demo.entity.Registro;
+import com.example.demo.repository.EmpleadoRepository;
+import com.example.demo.repository.RegistroRepository;
+import com.example.demo.service.RegistroService;
+import org.springframework.stereotype.Service;
+
+import java.math.BigDecimal;
+import java.math.RoundingMode;
+import java.time.Duration;
+import java.time.LocalDate;
+import java.time.LocalTime;
+import java.util.List;
+
+@Service
+public class RegistroServiceImpl implements RegistroService {
+
+    private final RegistroRepository registroRepo;
+    private final EmpleadoRepository empleadoRepo;
+
+    public RegistroServiceImpl(RegistroRepository registroRepo, EmpleadoRepository empleadoRepo) {
+        this.registroRepo = registroRepo;
+        this.empleadoRepo = empleadoRepo;
+    }
+
+    @Override
+    public Registro ficharEntrada(Integer empleadoId) {
+        Empleado empleado = empleadoRepo.findById(empleadoId)
+                .orElseThrow(() -> new RuntimeException("Empleado no encontrado"));
+
+        Registro registro = new Registro();
+        registro.setEmpleado(empleado);
+        registro.setFecha(LocalDate.now());
+        registro.setHoraEntrada(LocalTime.now());
+
+        return registroRepo.save(registro);
+    }
+
+    @Override
+    public Registro ficharSalida(Integer registroId) {
+        Registro registro = registroRepo.findById(registroId)
+                .orElseThrow(() -> new RuntimeException("Registro no encontrado"));
+
+        LocalTime salida = LocalTime.now();
+        registro.setHoraSalida(salida);
+
+        if (registro.getHoraEntrada() != null) {
+            Duration duracion = Duration.between(registro.getHoraEntrada(), salida);
+            double horas = duracion.toMinutes() / 60.0;
+            registro.setHorasTrabajadas(BigDecimal.valueOf(horas).setScale(2, RoundingMode.HALF_UP));
+        }
+
+        return registroRepo.save(registro);
+    }
+
+    @Override
+    public List<Registro> obtenerRegistrosPorEmpleado(Integer empleadoId) {
+        return registroRepo.findByEmpleadoIdEmpleado(empleadoId);
+    }
+
+    @Override
+    public List<Registro> obtenerTodos() {
+        return registroRepo.findAll();
+    }
+}

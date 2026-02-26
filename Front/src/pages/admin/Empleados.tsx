@@ -54,7 +54,13 @@ const Empleados: React.FC = () => {
   }, [token]);
 
   // FUNCIÓN PARA ELIMINAR UN EMPLEADO
-  const eliminarEmpleado = async (id: number) => {
+  const eliminarEmpleado = async (id: number, rol: string) => {
+    // BLOQUEO DE SEGURIDAD: Convertimos a minúsculas para comparar correctamente (ADMIN vs admin)
+    if (rol.toLowerCase() === "admin") {
+      alert("No se puede eliminar a un administrador.");
+      return;
+    }
+
     if (!confirm("¿Seguro que quieres eliminar este empleado?")) return;
 
     await fetch(`/api/admin/usuarios/${id}`, {
@@ -107,13 +113,15 @@ const Empleados: React.FC = () => {
                   Editar
                 </a>
 
-                {/* Botón para eliminar */}
-                <button
-                  className="btn small danger"
-                  onClick={() => eliminarEmpleado(emp.id)}
-                >
-                  Eliminar
-                </button>
+                {/* BLOQUEO VISUAL: Solo mostramos el botón si el rol NO contiene la palabra admin (insensible a mayúsculas) */}
+                {emp.rol.toLowerCase() !== "admin" && (
+                  <button
+                    className="btn small danger"
+                    onClick={() => eliminarEmpleado(emp.id, emp.rol)}
+                  >
+                    Eliminar
+                  </button>
+                )}
               </td>
             </tr>
           ))}

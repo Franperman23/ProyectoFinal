@@ -86,6 +86,7 @@ const EmpleadosEditar: React.FC = () => {
 
         <label>Email</label>
         <input
+          type="email"
           value={email}
           onChange={(e) => setEmail(e.target.value)}
           required
@@ -97,6 +98,7 @@ const EmpleadosEditar: React.FC = () => {
           placeholder="Dejar vacío para no cambiar"
           value={password}
           onChange={(e) => setPassword(e.target.value)}
+          minLength={8}
         />
 
         <label>Rol</label>
