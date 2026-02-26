@@ -22,3 +22,4 @@ jobs:
 
     - name: Ejecutar tests
       run: mvn -B test
+      working-directory: ./Pasteleria
