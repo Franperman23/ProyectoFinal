@@ -92,10 +92,10 @@ const EmpleadosEditar: React.FC = () => {
           required
         />
 
-        <label>Nueva contraseña (opcional)</label>
+        <label>Nueva contraseña</label>
         <input
           type="password"
-          placeholder="Dejar vacío para no cambiar"
+          placeholder="Introduzca la nueva contraseña"
           value={password}
           onChange={(e) => setPassword(e.target.value)}
           minLength={8}
