@@ -28,6 +28,13 @@ jobs:
     - name: Checkout del repositorio
       uses: actions/checkout@v3
 
+    - name: Instalar cliente MySQL
+      run: sudo apt-get update && sudo apt-get install -y mysql-client
+
+    - name: Ejecutar script SQL
+      run: |
+        mysql -h 127.0.0.1 -u root -proot PASTELERIA < PasteleriaScript.sql
+
     - name: Configurar Java
       uses: actions/setup-java@v3
       with:
