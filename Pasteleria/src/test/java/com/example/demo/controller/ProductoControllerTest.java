@@ -1,33 +1,44 @@
-package test.java.com.example.demo.controller;
+package com.example.demo.controller;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
-
+import com.example.demo.dto.ProductoDTO;
+import com.example.demo.service.ProductoService;
 import org.junit.jupiter.api.Test;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
-import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.test.web.servlet.MockMvc;
-import org.springframework.test.web.servlet.MvcResult;
+import org.mockito.Mockito;
 
-@SpringBootTest
-@AutoConfigureMockMvc // Necesario para simular las peticiones HTTP
+import static org.junit.jupiter.api.Assertions.*;
+
 class ProductoControllerTest {
 
-    @Autowired
-    private MockMvc mockMvc;
-
     @Test
-    void verificarRespuestaControlador() throws Exception {
-        // 1. Simulamos una petición GET a la URL de tu controlador (ejemplo: /productos/1)
-        MvcResult resultado = mockMvc.perform(get("/productos/1"))
-                .andReturn();
+    void testObtenerProducto() {
+        // Simulamos el servicio
+        ProductoService servicio = Mockito.mock(ProductoService.class);
 
-        // 2. Obtenemos el código de estado (200, 404, etc.)
-        int status = resultado.getResponse().getStatus();
+        ProductoDTO p = new ProductoDTO();
+        p.setId(1);
+        p.setNombre("Tarta de queso");
 
-        // 3. El assertEquals que quiere tu profesor
-        // Verificamos que el código sea 200 (OK)
-        assertEquals(200, status, "El controlador no respondió con un código 200 OK");
+        // Simulamos que listarProductos devuelve una lista con un producto
+        Mockito.when(servicio.listarProductos())
+                .thenReturn(java.util.List.of(p));
+
+        // Creamos el controlador (sin constructor, usando setter por reflexión)
+        ProductoController controller = new ProductoController();
+        // Inyectamos el servicio simulado
+        java.lang.reflect.Field field;
+        try {
+            field = ProductoController.class.getDeclaredField("productoService");
+            field.setAccessible(true);
+            field.set(controller, servicio);
+        } catch (Exception e) {
+            fail("No se pudo inyectar el servicio en el controlador");
+        }
+
+        // Llamamos al método real del controlador
+        ProductoDTO resultado = controller.obtener(1);
+
+        // Asserts
+        assertNotNull(resultado);
+        assertEquals("Tarta de queso", resultado.getNombre());
     }
 }
